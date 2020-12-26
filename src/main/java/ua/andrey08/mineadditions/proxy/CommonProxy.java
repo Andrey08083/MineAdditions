@@ -1,4 +1,4 @@
-package com.minemod.mineadditions.proxy;
+package ua.andrey08.mineadditions.proxy;
 
 import net.minecraft.item.Item;
 

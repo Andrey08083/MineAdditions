@@ -1,7 +1,7 @@
-package com.minemod.mineadditions;
+package ua.andrey08.mineadditions;
 
-import com.minemod.mineadditions.proxy.CommonProxy;
-import com.minemod.mineadditions.util.Reference;
+import ua.andrey08.mineadditions.proxy.CommonProxy;
+import ua.andrey08.mineadditions.util.Reference;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;

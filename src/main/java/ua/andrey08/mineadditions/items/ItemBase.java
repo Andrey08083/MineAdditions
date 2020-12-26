@@ -1,8 +1,8 @@
-package com.minemod.mineadditions.items;
+package ua.andrey08.mineadditions.items;
 
-import com.minemod.mineadditions.Main;
-import com.minemod.mineadditions.init.ModItems;
-import com.minemod.mineadditions.util.IHasModel;
+import ua.andrey08.mineadditions.Main;
+import ua.andrey08.mineadditions.init.ModItems;
+import ua.andrey08.mineadditions.util.IHasModel;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 

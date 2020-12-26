@@ -1,8 +1,8 @@
-package com.minemod.mineadditions.util.handlers;
+package ua.andrey08.mineadditions.util.handlers;
 
-import com.minemod.mineadditions.init.ModBlocks;
-import com.minemod.mineadditions.init.ModItems;
-import com.minemod.mineadditions.util.IHasModel;
+import ua.andrey08.mineadditions.init.ModBlocks;
+import ua.andrey08.mineadditions.init.ModItems;
+import ua.andrey08.mineadditions.util.IHasModel;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraftforge.client.event.ModelRegistryEvent;

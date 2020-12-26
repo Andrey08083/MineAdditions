@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+
+  "pattern":
+  [
+    "LLL",
+    "LLL",
+    "LLL"
+  ],
+
+  "key":
+  {
+    "L":
+    {
+      "item": "mineadditions:labatium"
+    }
+  },
+
+  "result":
+  {
+    "item": "mineadditions:labatium_block",
+    "count": 1
+  }
+}

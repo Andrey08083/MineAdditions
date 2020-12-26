@@ -1,6 +1,6 @@
-package com.minemod.mineadditions.init;
+package ua.andrey08.mineadditions.init;
 
-import com.minemod.mineadditions.items.ItemBase;
+import ua.andrey08.mineadditions.items.ItemBase;
 import net.minecraft.item.Item;
 
 import java.util.ArrayList;
