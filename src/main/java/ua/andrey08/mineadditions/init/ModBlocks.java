@@ -13,6 +13,6 @@ public class ModBlocks
 {
     public static final List<Block> BLOCKS = new ArrayList<Block>();
 
-    public static final Block LABATIUM_BLOCK = new LabatiumBlock("labatium_block", Material.GLASS);
+    public static final Block LABATIUM_BLOCK = new LabatiumBlock("labatium_block", Material.IRON);
     public static final Block LABATIUM_ORE = new LabatiumOre("labatium_ore", Material.ROCK);
 }

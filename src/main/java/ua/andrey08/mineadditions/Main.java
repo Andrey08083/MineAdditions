@@ -1,5 +1,6 @@
 package ua.andrey08.mineadditions;
 
+import net.minecraftforge.fml.common.registry.GameRegistry;
 import ua.andrey08.mineadditions.proxy.CommonProxy;
 import ua.andrey08.mineadditions.util.Reference;
 import net.minecraftforge.fml.common.Mod;
@@ -7,6 +8,7 @@ import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+import ua.andrey08.mineadditions.world.ModWorldGen;
 
 @Mod(modid = Reference.MOD_ID, name = Reference.NAME, version = Reference.VERSION)
 public class Main
@@ -20,7 +22,7 @@ public class Main
     @Mod.EventHandler
     public static void PreInit(FMLPreInitializationEvent event)
     {
-
+        GameRegistry.registerWorldGenerator(new ModWorldGen(), 3);
     }
 
     @Mod.EventHandler
