@@ -5,3 +5,7 @@ item.labatium.name=Labatium
 
 tile.labatium_block.name=Labatium Block
 tile.labatium_ore.name=Labatium Ore
+
+#Tools
+
+item.labatium_pickaxe.name=Labatium Pickaxe
