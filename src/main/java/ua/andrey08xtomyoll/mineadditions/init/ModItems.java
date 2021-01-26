@@ -23,6 +23,7 @@ public class ModItems {
     //Items
     public static final List<Item> ITEMS = new ArrayList<Item>();
     public static final Item LABATIUM = new ItemGlowingBase("labatium");
+    public static final Item MAZURIUM = new ItemGlowingBase("mazurium");
 
     //Tools
     public static final ItemPickaxe LABATIUM_PICKAXE = new ToolPickaxe("labatium_pickaxe", MATERIAL_LABATIUM);
