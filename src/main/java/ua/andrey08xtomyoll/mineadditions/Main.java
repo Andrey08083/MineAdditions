@@ -1,14 +1,14 @@
-package ua.andrey08.mineadditions;
+package ua.andrey08xtomyoll.mineadditions;
 
 import net.minecraftforge.fml.common.registry.GameRegistry;
-import ua.andrey08.mineadditions.proxy.CommonProxy;
-import ua.andrey08.mineadditions.util.Reference;
+import ua.andrey08xtomyoll.mineadditions.proxy.CommonProxy;
+import ua.andrey08xtomyoll.mineadditions.util.Reference;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
-import ua.andrey08.mineadditions.world.ModWorldGen;
+import ua.andrey08xtomyoll.mineadditions.world.ModWorldGen;
 
 @Mod(modid = Reference.MOD_ID, name = Reference.NAME, version = Reference.VERSION)
 public class Main

@@ -1,4 +1,4 @@
-package ua.andrey08.mineadditions.proxy;
+package ua.andrey08xtomyoll.mineadditions.proxy;
 
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.item.Item;

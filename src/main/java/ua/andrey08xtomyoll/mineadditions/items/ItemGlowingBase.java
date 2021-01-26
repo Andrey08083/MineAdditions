@@ -1,10 +1,10 @@
-package ua.andrey08.mineadditions.items;
+package ua.andrey08xtomyoll.mineadditions.items;
 
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import ua.andrey08.mineadditions.Main;
-import ua.andrey08.mineadditions.util.IHasModel;
+import ua.andrey08xtomyoll.mineadditions.Main;
+import ua.andrey08xtomyoll.mineadditions.util.IHasModel;
 
 public class ItemGlowingBase extends ItemBase implements IHasModel
 {

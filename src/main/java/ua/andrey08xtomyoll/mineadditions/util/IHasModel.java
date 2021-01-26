@@ -1,4 +1,4 @@
-package ua.andrey08.mineadditions.util;
+package ua.andrey08xtomyoll.mineadditions.util;
 
 public interface IHasModel
 {

@@ -1,8 +1,8 @@
-package ua.andrey08.mineadditions.init;
+package ua.andrey08xtomyoll.mineadditions.init;
 
 
-import ua.andrey08.mineadditions.blocks.LabatiumBlock;
-import ua.andrey08.mineadditions.blocks.LabatiumOre;
+import ua.andrey08xtomyoll.mineadditions.blocks.LabatiumBlock;
+import ua.andrey08xtomyoll.mineadditions.blocks.LabatiumOre;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 

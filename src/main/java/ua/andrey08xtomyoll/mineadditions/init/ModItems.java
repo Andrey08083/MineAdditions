@@ -1,14 +1,12 @@
-package ua.andrey08.mineadditions.init;
+package ua.andrey08xtomyoll.mineadditions.init;
 
 import net.minecraft.item.*;
 import net.minecraftforge.common.util.EnumHelper;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
-import ua.andrey08.mineadditions.items.ItemGlowingBase;
-import ua.andrey08.mineadditions.items.tools.ToolAxe;
-import ua.andrey08.mineadditions.items.tools.ToolPickaxe;
-import ua.andrey08.mineadditions.items.tools.ToolSpade;
-import ua.andrey08.mineadditions.items.tools.ToolSword;
+import ua.andrey08xtomyoll.mineadditions.items.ItemGlowingBase;
+import ua.andrey08xtomyoll.mineadditions.items.tools.ToolAxe;
+import ua.andrey08xtomyoll.mineadditions.items.tools.ToolPickaxe;
+import ua.andrey08xtomyoll.mineadditions.items.tools.ToolSpade;
+import ua.andrey08xtomyoll.mineadditions.items.tools.ToolSword;
 
 import java.util.ArrayList;
 import java.util.List;

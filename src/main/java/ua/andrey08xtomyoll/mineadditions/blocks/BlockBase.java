@@ -1,9 +1,9 @@
-package ua.andrey08.mineadditions.blocks;
+package ua.andrey08xtomyoll.mineadditions.blocks;
 
-import ua.andrey08.mineadditions.Main;
-import ua.andrey08.mineadditions.init.ModBlocks;
-import ua.andrey08.mineadditions.init.ModItems;
-import ua.andrey08.mineadditions.util.IHasModel;
+import ua.andrey08xtomyoll.mineadditions.Main;
+import ua.andrey08xtomyoll.mineadditions.init.ModBlocks;
+import ua.andrey08xtomyoll.mineadditions.init.ModItems;
+import ua.andrey08xtomyoll.mineadditions.util.IHasModel;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.creativetab.CreativeTabs;

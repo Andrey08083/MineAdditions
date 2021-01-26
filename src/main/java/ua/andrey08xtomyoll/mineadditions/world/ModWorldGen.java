@@ -1,4 +1,4 @@
-package ua.andrey08.mineadditions.world;
+package ua.andrey08xtomyoll.mineadditions.world;
 
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.util.math.BlockPos;
@@ -7,7 +7,7 @@ import net.minecraft.world.chunk.IChunkProvider;
 import net.minecraft.world.gen.IChunkGenerator;
 import net.minecraft.world.gen.feature.WorldGenMinable;
 import net.minecraftforge.fml.common.IWorldGenerator;
-import ua.andrey08.mineadditions.init.ModBlocks;
+import ua.andrey08xtomyoll.mineadditions.init.ModBlocks;
 
 import java.util.Random;
 
