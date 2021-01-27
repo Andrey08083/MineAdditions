@@ -33,9 +33,9 @@ public class ModItems {
 
     //Armor
     public static final ItemArmor.ArmorMaterial ARMOR_LABATIUM = EnumHelper.addArmorMaterial("armormateral_labatium", "armormaterial_labatium", 9, new int[]{2, 4, 6, 3}, 7, SoundEvents.ITEM_ARMOR_EQUIP_IRON, 2.0F).setRepairItem(new ItemStack(Item.getItemFromBlock(Blocks.OBSIDIAN)));
-    public static final Item BOOTS = new ArmorBase("boots", ARMOR_LABATIUM, 1, EntityEquipmentSlot.FEET);
-    public static final Item LEGGS = new ArmorBase("leggs", ARMOR_LABATIUM, 2, EntityEquipmentSlot.LEGS);
-    public static final Item CHESTPLATE = new ArmorBase("chestplate", ARMOR_LABATIUM, 1, EntityEquipmentSlot.CHEST);
-    public static final Item HEAD = new ArmorBase("head", ARMOR_LABATIUM, 1, EntityEquipmentSlot.HEAD);
+    public static final ItemArmor LABATIUM_BOOTS = new ArmorBase("labatium_boots", ARMOR_LABATIUM, 1, EntityEquipmentSlot.FEET);
+    public static final ItemArmor LABATIUM_LEGGS = new ArmorBase("labatium_leggings", ARMOR_LABATIUM, 2, EntityEquipmentSlot.LEGS);
+    public static final ItemArmor LABATIUM_CHESTPLATE = new ArmorBase("labatium_chestplate", ARMOR_LABATIUM, 1, EntityEquipmentSlot.CHEST);
+    public static final ItemArmor LABATIUM_HEAD = new ArmorBase("labatium_helmet", ARMOR_LABATIUM, 1, EntityEquipmentSlot.HEAD);
 
 }
