@@ -1,5 +1,6 @@
 package ua.andrey08xtomyoll.mineadditions.blocks;
 
+import net.minecraft.block.state.BlockStateContainer;
 import ua.andrey08xtomyoll.mineadditions.Main;
 import ua.andrey08xtomyoll.mineadditions.init.ModBlocks;
 import ua.andrey08xtomyoll.mineadditions.init.ModItems;
@@ -12,6 +13,7 @@ import net.minecraft.item.ItemBlock;
 
 public class BlockBase extends Block implements IHasModel
 {
+
     public BlockBase(String name, Material material)
     {
         super(material);

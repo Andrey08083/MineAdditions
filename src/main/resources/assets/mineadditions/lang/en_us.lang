@@ -10,3 +10,8 @@ tile.mazurium_ore.name=Mazurium Ore
 #Tools
 
 item.labatium_pickaxe.name=Labatium Pickaxe
+
+#Machines
+
+tile.ore_disassembler.name=Ore Disassembler
+container.ore_disassembler=Ore Disassembler

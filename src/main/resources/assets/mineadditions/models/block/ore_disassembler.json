@@ -1,0 +1,12 @@
+{
+  "parent": "block/orientable",
+  "textures": {
+    "particle": "mineadditions:blocks/ore_disassembler_front_off",
+    "up": "mineadditions:blocks/ore_disassembler_front_off",
+    "down": "mineadditions:blocks/ore_disassembler_front_off",
+    "north": "mineadditions:blocks/ore_disassembler_front_off",
+    "east": "mineadditions:blocks/ore_disassembler_side1",
+    "south": "mineadditions:blocks/ore_disassembler_side3",
+    "west": "mineadditions:blocks/ore_disassembler_side2"
+  }
+}

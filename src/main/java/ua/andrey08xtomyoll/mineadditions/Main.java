@@ -4,6 +4,7 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 import ua.andrey08xtomyoll.mineadditions.proxy.CommonProxy;
 import ua.andrey08xtomyoll.mineadditions.util.Reference;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
