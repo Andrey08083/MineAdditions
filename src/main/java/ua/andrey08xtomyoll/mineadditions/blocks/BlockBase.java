@@ -1,6 +1,5 @@
 package ua.andrey08xtomyoll.mineadditions.blocks;
 
-import net.minecraft.block.state.BlockStateContainer;
 import ua.andrey08xtomyoll.mineadditions.Main;
 import ua.andrey08xtomyoll.mineadditions.init.ModBlocks;
 import ua.andrey08xtomyoll.mineadditions.init.ModItems;

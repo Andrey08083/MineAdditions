@@ -9,5 +9,4 @@ public class Reference
     public static final String CLIENT_PROXY_CLASS = "ua.andrey08xtomyoll.mineadditions.proxy.ClientProxy";
     public static final String COMMON_PROXY_CLASS = "ua.andrey08xtomyoll.mineadditions.proxy.CommonProxy";
 
-    public static final int GUI_ORE_DISASSEMBLER = 0;
 }
