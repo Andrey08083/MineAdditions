@@ -1,0 +1,12 @@
+{
+  "parent": "block/cube",
+  "textures": {
+    "down": "mineadditions:blocks/thermalcrusher_bottom",
+    "up": "mineadditions:blocks/thermalcrusher_top",
+    "north": "mineadditions:blocks/thermalcrusher_front_off",
+    "east": "mineadditions:blocks/thermalcrusher_side",
+    "south": "mineadditions:blocks/thermalcrusher_side",
+    "west": "mineadditions:blocks/thermalcrusher_side",
+    "particle": "mineadditions:blocks/thermalcrusher_bottom"
+  }
+}

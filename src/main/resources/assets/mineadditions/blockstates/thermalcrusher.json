@@ -1,0 +1,22 @@
+{
+    "variants": {
+        "normal": {
+            "model": "mineadditions:thermalcrusher"
+        },
+        "facing=north": {
+            "model": "mineadditions:thermalcrusher"
+        },
+        "facing=east": {
+            "model": "mineadditions:thermalcrusher",
+            "y": 90
+        },
+        "facing=south": {
+            "model": "mineadditions:thermalcrusher",
+            "y": 180
+        },
+        "facing=west": {
+            "model": "mineadditions:thermalcrusher",
+            "y": 270
+        }
+    }
+}
