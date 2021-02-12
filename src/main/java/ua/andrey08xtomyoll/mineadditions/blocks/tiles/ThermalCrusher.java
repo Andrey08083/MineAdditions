@@ -18,9 +18,6 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ITickable;
 import net.minecraft.util.NonNullList;
-import net.minecraft.util.datafix.DataFixer;
-import net.minecraft.util.datafix.FixTypes;
-import net.minecraft.util.datafix.walkers.ItemStackDataLists;
 import net.minecraft.util.math.MathHelper;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -28,9 +25,13 @@ import ua.andrey08xtomyoll.mineadditions.ModMain;
 import ua.andrey08xtomyoll.mineadditions.blocks.BlockThermalCrusher;
 import ua.andrey08xtomyoll.mineadditions.gui.containers.ContainerThermalCrusher;
 import ua.andrey08xtomyoll.mineadditions.util.TCrusherBurnRecipies;
-import ua.andrey08xtomyoll.mineadditions.util.TCrusherFuel;
 import ua.andrey08xtomyoll.mineadditions.util.Reference;
 
+import javax.annotation.Nonnull;
+
+import static ua.andrey08xtomyoll.mineadditions.util.TCrusherFuel.getItemBurnTime;
+
+@Nonnull
 public class ThermalCrusher extends TileEntity implements ITickable, ISidedInventory
 {
 
@@ -45,7 +46,7 @@ public class ThermalCrusher extends TileEntity implements ITickable, ISidedInven
     private static final int[] SLOTS_SIDES = new int[] {slotsinput};
     
     // Все слоты. Сначала входящие, затем топливо, затем результат, затем суб-продукты
-    private NonNullList<ItemStack> furnaceItemStacks = NonNullList.<ItemStack>withSize(slotscount, ItemStack.EMPTY);
+    private NonNullList<ItemStack> furnaceItemStacks = NonNullList.withSize(slotscount, ItemStack.EMPTY);
     
     private int furnaceBurnTime;
     
@@ -53,7 +54,7 @@ public class ThermalCrusher extends TileEntity implements ITickable, ISidedInven
     private int cookTime;
     private int totalCookTime;
 	private String furnaceCustomName;
-	
+
 	public int getSizeInventory()
     {
         return this.furnaceItemStacks.size();
@@ -72,16 +73,19 @@ public class ThermalCrusher extends TileEntity implements ITickable, ISidedInven
         return true;
     }
 
+    @Nonnull
     public ItemStack getStackInSlot(int index)
     {
         return this.furnaceItemStacks.get(index);
     }
-    
+
+    @Nonnull
     public ItemStack decrStackSize(int index, int count)
     {
         return ItemStackHelper.getAndSplit(this.furnaceItemStacks, index, count);
     }
 
+    @Nonnull
     public ItemStack removeStackFromSlot(int index)
     {
         return ItemStackHelper.getAndRemove(this.furnaceItemStacks, index);
@@ -98,7 +102,7 @@ public class ThermalCrusher extends TileEntity implements ITickable, ISidedInven
             stack.setCount(this.getInventoryStackLimit());
         }
         // Сбрасываем время, если меняются входящие
-        if (index >= 0 && index < this.slotsinput && !flag)
+        if (index >= 0 && index < slotsinput && !flag)
         {
         	this.totalCookTime = TCrusherBurnRecipies.getCookTimeForItems(getInputSlots());
             this.cookTime = 0;
@@ -106,6 +110,7 @@ public class ThermalCrusher extends TileEntity implements ITickable, ISidedInven
         }
     }
 
+    @Nonnull
     public String getName()
     {
         return this.hasCustomName() ? this.furnaceCustomName : "container.furnace";
@@ -121,15 +126,10 @@ public class ThermalCrusher extends TileEntity implements ITickable, ISidedInven
         this.furnaceCustomName = name;
     }
 
-    public static void registerFixesFurnace(DataFixer fixer)
-    {
-        fixer.registerWalker(FixTypes.BLOCK_ENTITY, new ItemStackDataLists(ThermalCrusher.class, new String[] {"Items"}));
-    }
-
-    public void readFromNBT(NBTTagCompound compound)
+    public void readFromNBT(NBTTagCompound  compound)
     {
         super.readFromNBT(compound);
-        this.furnaceItemStacks = NonNullList.<ItemStack>withSize(this.getSizeInventory(), ItemStack.EMPTY);
+        this.furnaceItemStacks = NonNullList.withSize(this.getSizeInventory(), ItemStack.EMPTY);
         ItemStackHelper.loadAllItems(compound, this.furnaceItemStacks);
         this.furnaceBurnTime = compound.getInteger("BurnTime");
         this.cookTime = compound.getInteger("CookTime");
@@ -142,6 +142,7 @@ public class ThermalCrusher extends TileEntity implements ITickable, ISidedInven
         }
     }
 
+    @Nonnull
     public NBTTagCompound writeToNBT(NBTTagCompound compound)
     {
         super.writeToNBT(compound);
@@ -177,7 +178,7 @@ public class ThermalCrusher extends TileEntity implements ITickable, ISidedInven
     // Проверяем, есть ли что-то внутри
     private boolean isSomethingInput(){
     	boolean isSomething = false;
-    	for(int i = 0; i < this.slotsinput; i++){
+    	for(int i = 0; i < slotsinput; i++){
     		if(!this.furnaceItemStacks.get(i).isEmpty())
 			{
 				isSomething = true;
@@ -188,7 +189,7 @@ public class ThermalCrusher extends TileEntity implements ITickable, ISidedInven
     }
     
     private int getFuelSlotId(){
-    	return this.slotsinput;
+    	return slotsinput;
     }
     
     // Основной метод цикла
@@ -196,7 +197,7 @@ public class ThermalCrusher extends TileEntity implements ITickable, ISidedInven
     {
     	//  Лог для слотов, сугубо на отладку
     	ModMain.log("======== Состояние =========");
-    	for(int l = 0; l < this.slotscount; l++){
+    	for(int l = 0; l < slotscount; l++){
     		ModMain.log("Слот " + l + ": " + (this.furnaceItemStacks.get(l).isEmpty() ? "Пусто" : this.furnaceItemStacks.get(l).getDisplayName()));
     	}
     	
@@ -282,7 +283,7 @@ public class ThermalCrusher extends TileEntity implements ITickable, ISidedInven
     // Получаем список активных слотов входящих веществ
 	private List<Item> getInputSlots(){
     	
-    	ArrayList<Item> inputItemsStacks = new ArrayList<Item>();
+    	ArrayList<Item> inputItemsStacks = new ArrayList<>();
     	for(int i = 0; i < slotsinput; i++){
     		if(!this.furnaceItemStacks.get(i).isEmpty())
     			inputItemsStacks.add(this.furnaceItemStacks.get(i).getItem());
@@ -291,16 +292,11 @@ public class ThermalCrusher extends TileEntity implements ITickable, ISidedInven
     	return inputItemsStacks;
     }
     
-    public int getCookTime(NonNullList<Item> stacks)
-    {
-    	return TCrusherBurnRecipies.getCookTimeForItems(stacks);
-    }
-    
     // Проверка на то, можно ли провести такой рецепт
     private boolean canSmelt()
     {
     	boolean inputChecker = false;
-    	for(int i = 0; i < this.slotsinput; i++){
+    	for(int i = 0; i < slotsinput; i++){
 			if (!this.furnaceItemStacks.get(i).isEmpty())
 	        {
 	            inputChecker = true;
@@ -310,16 +306,13 @@ public class ThermalCrusher extends TileEntity implements ITickable, ISidedInven
 		
 		if(!inputChecker)
 			return false;
-    		
+
 		ItemStack result = new ItemStack(TCrusherBurnRecipies.getResultForItems(getInputSlots()));
 
-        if (result.isEmpty())
-        {
-            return false;
-        }
+        if (result.isEmpty()) return false;
         else
         {
-            ItemStack resultSlot = this.furnaceItemStacks.get(this.slotsinput + 1); // берём слот выше входящих + топливо
+            ItemStack resultSlot = this.furnaceItemStacks.get(slotsinput + 1); // берём слот выше входящих + топливо
             if (resultSlot.isEmpty())
                 return true;
             else if (!resultSlot.isItemEqual(result))
@@ -336,7 +329,7 @@ public class ThermalCrusher extends TileEntity implements ITickable, ISidedInven
     {
         if (this.canSmelt())
         {
-        	int resultSlotId = this.slotsinput + 1;
+        	int resultSlotId = slotsinput + 1;
         	List<Item> input = getInputSlots();
         	ItemStack result = new ItemStack(TCrusherBurnRecipies.getResultForItems(input));
         	ItemStack resultSlot = this.furnaceItemStacks.get(resultSlotId);
@@ -353,10 +346,12 @@ public class ThermalCrusher extends TileEntity implements ITickable, ISidedInven
             }
             
             // Добрасываем суб-продукты в слоты исходящих
-            for(int item = 0; item < output.size(); item++){
+            for(int item = 0; item < output.size(); item++)
+            {
             	if(output.get(item) == null)
             		continue;
-            	for(int slot = resultSlotId + 1; slot < this.slotscount; slot++){
+            	for(int slot = resultSlotId + 1; slot < slotscount; slot++)
+            	{
 	            	if (this.furnaceItemStacks.get(slot).isEmpty())
 	                {
 	                    this.furnaceItemStacks.set(slot, new ItemStack(output.get(item)));
@@ -370,7 +365,7 @@ public class ThermalCrusher extends TileEntity implements ITickable, ISidedInven
             	}
             }
 
-            for(int i = 0; i < this.slotsinput; i++){
+            for(int i = 0; i < slotsinput; i++){
             	if(!this.furnaceItemStacks.get(i).isEmpty())
             		this.furnaceItemStacks.get(i).shrink(1);
             }
@@ -378,10 +373,7 @@ public class ThermalCrusher extends TileEntity implements ITickable, ISidedInven
     }
 
     // Время пережигания, вынесено в отдельный класс
-    public static int getItemBurnTime(ItemStack stack)
-    {
-        return TCrusherFuel.getFuelTime(stack);
-    }
+
 
     public static boolean isItemFuel(ItemStack stack)
     {
@@ -448,10 +440,7 @@ public class ThermalCrusher extends TileEntity implements ITickable, ISidedInven
         {
             Item item = stack.getItem();
 
-            if (item != Items.WATER_BUCKET && item != Items.BUCKET)
-            {
-                return false;
-            }
+            return item == Items.WATER_BUCKET || item == Items.BUCKET;
         }
 
         return true;
@@ -459,7 +448,7 @@ public class ThermalCrusher extends TileEntity implements ITickable, ISidedInven
 
     public String getGuiID()
     {
-        return Reference.MOD_ID + ":base_furnace";
+        return Reference.MOD_ID + ":thermalcrusher";
     }
 
     public Container createContainer(InventoryPlayer playerInventory, EntityPlayer playerIn)

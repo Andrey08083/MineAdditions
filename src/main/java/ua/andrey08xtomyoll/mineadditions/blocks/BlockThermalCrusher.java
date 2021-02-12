@@ -40,7 +40,7 @@ import ua.andrey08xtomyoll.mineadditions.util.IHasModel;
 public class BlockThermalCrusher extends BlockContainer implements IHasModel{
 
 	public static final PropertyDirection FACING = BlockHorizontal.FACING;
-    private boolean isBurning;
+    private final boolean isBurning;
     private static boolean keepInventory;
     
 	public BlockThermalCrusher(String name, Material material, boolean isBurning)
@@ -50,14 +50,18 @@ public class BlockThermalCrusher extends BlockContainer implements IHasModel{
         this.setRegistryName(name);
         this.setCreativeTab(isBurning ? null : CreativeTabs.DECORATIONS);
         this.setLightLevel(isBurning ? 0.875F : 0.100F);
+        setHardness(6.0F);
+        setResistance(50.0F);
+        setHarvestLevel("pickaxe",3);
         this.setDefaultState(this.blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH));
+        this.isBurning = isBurning;
         ModBlocks.BLOCKS.add(this);
         ModItems.ITEMS.add(new ItemBlock(this).setRegistryName(this.getRegistryName()));
     }
 
 	public Item getItemDropped(IBlockState state, Random rand, int fortune)
     {
-        return Item.getItemFromBlock(ModBlocks.THERMAL_CRUSHER_ON);
+        return Item.getItemFromBlock(ModBlocks.THERMALCRUSHER_ON);
     }
 
     
@@ -74,7 +78,7 @@ public class BlockThermalCrusher extends BlockContainer implements IHasModel{
             IBlockState iblockstate1 = worldIn.getBlockState(pos.south());
             IBlockState iblockstate2 = worldIn.getBlockState(pos.west());
             IBlockState iblockstate3 = worldIn.getBlockState(pos.east());
-            EnumFacing enumfacing = (EnumFacing)state.getValue(FACING);
+            EnumFacing enumfacing = state.getValue(FACING);
 
             if (enumfacing == EnumFacing.NORTH && iblockstate.isFullBlock() && !iblockstate1.isFullBlock())
             {
@@ -101,38 +105,27 @@ public class BlockThermalCrusher extends BlockContainer implements IHasModel{
     @SuppressWarnings("incomplete-switch")
     public void randomDisplayTick(IBlockState stateIn, World worldIn, BlockPos pos, Random rand)
     {
+        super.randomDisplayTick(stateIn, worldIn, pos, rand);
         if (this.isBurning)
         {
-            EnumFacing enumfacing = (EnumFacing)stateIn.getValue(FACING);
-            double d0 = (double)pos.getX() + 0.5D;
-            double d1 = (double)pos.getY() + rand.nextDouble() * 6.0D / 16.0D;
-            double d2 = (double)pos.getZ() + 0.5D;
-            double d3 = 0.52D;
-            double d4 = rand.nextDouble() * 0.6D - 0.3D;
-
+            int x = pos.getX();
+            int y = pos.getY();
+            int z = pos.getZ();
+            int i = x;
+            int j = y;
+            int k = z;
             if (rand.nextDouble() < 0.1D)
             {
-                worldIn.playSound((double)pos.getX() + 0.5D, (double)pos.getY(), (double)pos.getZ() + 0.5D, SoundEvents.BLOCK_FURNACE_FIRE_CRACKLE, SoundCategory.BLOCKS, 1.0F, 1.0F, false);
+                worldIn.playSound((double)pos.getX() + 0.5D, pos.getY(), (double)pos.getZ() + 0.5D, SoundEvents.BLOCK_FURNACE_FIRE_CRACKLE, SoundCategory.BLOCKS, 1.0F, 1.0F, false);
             }
 
-            switch (enumfacing)
-            {
-                case WEST:
-                    worldIn.spawnParticle(EnumParticleTypes.SMOKE_NORMAL, d0 - 0.52D, d1, d2 + d4, 0.0D, 0.0D, 0.0D);
-                    worldIn.spawnParticle(EnumParticleTypes.FLAME, d0 - 0.52D, d1, d2 + d4, 0.0D, 0.0D, 0.0D);
-                    break;
-                case EAST:
-                    worldIn.spawnParticle(EnumParticleTypes.SMOKE_NORMAL, d0 + 0.52D, d1, d2 + d4, 0.0D, 0.0D, 0.0D);
-                    worldIn.spawnParticle(EnumParticleTypes.FLAME, d0 + 0.52D, d1, d2 + d4, 0.0D, 0.0D, 0.0D);
-                    break;
-                case NORTH:
-                    worldIn.spawnParticle(EnumParticleTypes.SMOKE_NORMAL, d0 + d4, d1, d2 - 0.52D, 0.0D, 0.0D, 0.0D);
-                    worldIn.spawnParticle(EnumParticleTypes.FLAME, d0 + d4, d1, d2 - 0.52D, 0.0D, 0.0D, 0.0D);
-                    break;
-                case SOUTH:
-                    worldIn.spawnParticle(EnumParticleTypes.SMOKE_NORMAL, d0 + d4, d1, d2 + 0.52D, 0.0D, 0.0D, 0.0D);
-                    worldIn.spawnParticle(EnumParticleTypes.FLAME, d0 + d4, d1, d2 + 0.52D, 0.0D, 0.0D, 0.0D);
+            for (int l = 0; l < 1; ++l) {
+                double d0 =  ((float) i + 0.5) + (rand.nextFloat() - 0.5) * 0.0999999985098839D;
+                double d1 =  ((float) j + 0.7) + (rand.nextFloat() - 0.5) * 0.0999999985098839D + 0.5;
+                double d2 =  ((float) k + 0.5) + (rand.nextFloat() - 0.5) * 0.0999999985098839D;
+                worldIn.spawnParticle(EnumParticleTypes.SMOKE_NORMAL, d0, d1, d2, 0, 0, 0);
             }
+
         }
     }
 
@@ -141,7 +134,7 @@ public class BlockThermalCrusher extends BlockContainer implements IHasModel{
      */
     public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
     {
-    	playerIn.openGui(ModMain.instance, GuiHandler.GUI_BASEFURNACE, worldIn, pos.getX(), pos.getY(), pos.getZ());
+    	playerIn.openGui(ModMain.instance, GuiHandler.GUI_THERMAL_CRUSHER, worldIn, pos.getX(), pos.getY(), pos.getZ());
     	return true;
     }
     
@@ -159,13 +152,13 @@ public class BlockThermalCrusher extends BlockContainer implements IHasModel{
 
         if (active)
         {
-            worldIn.setBlockState(pos, ModBlocks.THERMAL_CRUSHER.getDefaultState().withProperty(FACING, iblockstate.getValue(FACING)), 3);
-            worldIn.setBlockState(pos, ModBlocks.THERMAL_CRUSHER.getDefaultState().withProperty(FACING, iblockstate.getValue(FACING)), 3);
+            worldIn.setBlockState(pos, ModBlocks.THERMALCRUSHER_ON.getDefaultState().withProperty(FACING, iblockstate.getValue(FACING)), 3);
+            worldIn.setBlockState(pos, ModBlocks.THERMALCRUSHER_ON.getDefaultState().withProperty(FACING, iblockstate.getValue(FACING)), 3);
         }
         else
         {
-            worldIn.setBlockState(pos, ModBlocks.THERMAL_CRUSHER_ON.getDefaultState().withProperty(FACING, iblockstate.getValue(FACING)), 3);
-            worldIn.setBlockState(pos, ModBlocks.THERMAL_CRUSHER_ON.getDefaultState().withProperty(FACING, iblockstate.getValue(FACING)), 3);
+            worldIn.setBlockState(pos, ModBlocks.THERMALCRUSHER.getDefaultState().withProperty(FACING, iblockstate.getValue(FACING)), 3);
+            worldIn.setBlockState(pos, ModBlocks.THERMALCRUSHER.getDefaultState().withProperty(FACING, iblockstate.getValue(FACING)), 3);
         }
 
         keepInventory = false;
@@ -176,7 +169,7 @@ public class BlockThermalCrusher extends BlockContainer implements IHasModel{
             worldIn.setTileEntity(pos, tileentity);
         }
     }
-	
+
 	public IBlockState getStateForPlacement(World worldIn, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer)
     {
         return this.getDefaultState().withProperty(FACING, placer.getHorizontalFacing().getOpposite());
@@ -231,7 +224,7 @@ public class BlockThermalCrusher extends BlockContainer implements IHasModel{
 
     public ItemStack getItem(World worldIn, BlockPos pos, IBlockState state)
     {
-        return new ItemStack(ModBlocks.THERMAL_CRUSHER_ON);
+        return new ItemStack(ModBlocks.THERMALCRUSHER_ON);
     }
 
     /**
@@ -263,7 +256,7 @@ public class BlockThermalCrusher extends BlockContainer implements IHasModel{
      */
     public int getMetaFromState(IBlockState state)
     {
-        return ((EnumFacing)state.getValue(FACING)).getIndex();
+        return (state.getValue(FACING)).getIndex();
     }
 
     /**
@@ -272,7 +265,7 @@ public class BlockThermalCrusher extends BlockContainer implements IHasModel{
      */
     public IBlockState withRotation(IBlockState state, Rotation rot)
     {
-        return state.withProperty(FACING, rot.rotate((EnumFacing)state.getValue(FACING)));
+        return state.withProperty(FACING, rot.rotate(state.getValue(FACING)));
     }
 
     /**
@@ -281,12 +274,12 @@ public class BlockThermalCrusher extends BlockContainer implements IHasModel{
      */
     public IBlockState withMirror(IBlockState state, Mirror mirrorIn)
     {
-        return state.withRotation(mirrorIn.toRotation((EnumFacing)state.getValue(FACING)));
+        return state.withRotation(mirrorIn.toRotation(state.getValue(FACING)));
     }
 
     protected BlockStateContainer createBlockState()
     {
-        return new BlockStateContainer(this, new IProperty[] {FACING});
+        return new BlockStateContainer(this, FACING);
     }
 
     @Override

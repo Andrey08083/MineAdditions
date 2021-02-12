@@ -19,12 +19,12 @@ public class ModBlocks
     public static final Block LABATIUM_BLOCK 	= new LabatiumBlock("labatium_block", Material.IRON);
     public static final Block LABATIUM_ORE 		= new LabatiumOre("labatium_ore", Material.ROCK);
     public static final Block MAZURIUM_ORE 		= new MazuriumOre("mazurium_ore", Material.ROCK);
-    public static final Block THERMAL_CRUSHER = new BlockThermalCrusher("thermalcrusher", Material.ROCK, false);
-    public static final Block THERMAL_CRUSHER_ON = new BlockThermalCrusher("thermalcrusher_on", Material.ROCK, true);
+    public static final Block THERMALCRUSHER = new BlockThermalCrusher("thermalcrusher", Material.IRON, false);
+    public static final Block THERMALCRUSHER_ON = new BlockThermalCrusher("thermalcrusher_on", Material.IRON, true);
 	
     public static void register()
     {
-    	GameRegistry.registerTileEntity(ThermalCrusher.class, THERMAL_CRUSHER.getRegistryName().toString());
+    	GameRegistry.registerTileEntity(ThermalCrusher.class, THERMALCRUSHER_ON.getRegistryName().toString());
 
 	}
 }

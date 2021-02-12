@@ -16,8 +16,7 @@ import ua.andrey08xtomyoll.mineadditions.blocks.tiles.ThermalCrusher;
 
 public class ContainerThermalCrusher extends Container
 {
-    private final IInventory tileFurnace;
-    private final ThermalCrusher furnace;
+    private final IInventory tileThermalCrusher;
     private int cookTime;
     private int totalCookTime;
     private int furnaceBurnTime;
@@ -25,17 +24,17 @@ public class ContainerThermalCrusher extends Container
 
     public ContainerThermalCrusher(InventoryPlayer playerInventory, IInventory furnaceInventory)
     {
-        this.tileFurnace = furnaceInventory;
-        this.furnace = (ThermalCrusher)tileFurnace;
+        this.tileThermalCrusher = furnaceInventory;
+        ThermalCrusher thermalCrusher = (ThermalCrusher) tileThermalCrusher;
         // Входящие слоты (слева направо, в верхнем левом углу)
-        for(int i = 0; i < furnace.slotsinput; i++){
-        	this.addSlotToContainer(new Slot(furnaceInventory, i, 57 + i * 18, 16));
+        for(int i = 0; i < ThermalCrusher.slotsinput; i++){
+        	this.addSlotToContainer(new ThermalCrusherInputSlot(furnaceInventory, i, 57 + i * 18, 16));
         }
         // Топливо
-        this.addSlotToContainer(new SlotFurnaceFuel(furnaceInventory, furnace.slotsinput, 57, 53));
+        this.addSlotToContainer(new SlotFurnaceFuel(furnaceInventory, ThermalCrusher.slotsinput, 57, 53));
         // Исходящие слоты (справа налево, в нижнем правом углу)
-        for(int n = (furnace.slotsinput + 1); n < furnace.slotscount; n++){
-        	this.addSlotToContainer(new SlotFurnaceOutput(playerInventory.player, furnaceInventory, n, 120, 44 - (n - (furnace.slotsinput + 1)) * 18));
+        for(int n = (ThermalCrusher.slotsinput + 1); n < ThermalCrusher.slotscount; n++){
+        	this.addSlotToContainer(new SlotFurnaceOutput(playerInventory.player, furnaceInventory, n, 120, 44 - (n - (ThermalCrusher.slotsinput + 1)) * 18));
         }
 
         // Слоты игрока
@@ -57,7 +56,7 @@ public class ContainerThermalCrusher extends Container
     public void addListener(IContainerListener listener)
     {
         super.addListener(listener);
-        listener.sendAllWindowProperties(this, this.tileFurnace);
+        listener.sendAllWindowProperties(this, this.tileThermalCrusher);
     }
 
     /**
@@ -67,41 +66,39 @@ public class ContainerThermalCrusher extends Container
     {
     	super.detectAndSendChanges();
 
-        for (int i = 0; i < this.listeners.size(); ++i)
+        for (IContainerListener icontainerlistener : this.listeners)
         {
-            IContainerListener icontainerlistener = this.listeners.get(i);
-
-            if (this.cookTime != this.tileFurnace.getField(2))
+            if (this.cookTime != this.tileThermalCrusher.getField(2))
             {
-                icontainerlistener.sendWindowProperty(this, 2, this.tileFurnace.getField(2));
+                icontainerlistener.sendWindowProperty(this, 2, this.tileThermalCrusher.getField(2));
             }
 
-            if (this.furnaceBurnTime != this.tileFurnace.getField(0))
+            if (this.furnaceBurnTime != this.tileThermalCrusher.getField(0))
             {
-                icontainerlistener.sendWindowProperty(this, 0, this.tileFurnace.getField(0));
+                icontainerlistener.sendWindowProperty(this, 0, this.tileThermalCrusher.getField(0));
             }
 
-            if (this.currentItemBurnTime != this.tileFurnace.getField(1))
+            if (this.currentItemBurnTime != this.tileThermalCrusher.getField(1))
             {
-                icontainerlistener.sendWindowProperty(this, 1, this.tileFurnace.getField(1));
+                icontainerlistener.sendWindowProperty(this, 1, this.tileThermalCrusher.getField(1));
             }
 
-            if (this.totalCookTime != this.tileFurnace.getField(3))
+            if (this.totalCookTime != this.tileThermalCrusher.getField(3))
             {
-                icontainerlistener.sendWindowProperty(this, 3, this.tileFurnace.getField(3));
+                icontainerlistener.sendWindowProperty(this, 3, this.tileThermalCrusher.getField(3));
             }
         }
 
-        this.cookTime = this.tileFurnace.getField(2);
-        this.furnaceBurnTime = this.tileFurnace.getField(0);
-        this.currentItemBurnTime = this.tileFurnace.getField(1);
-        this.totalCookTime = this.tileFurnace.getField(3);
+        this.cookTime = this.tileThermalCrusher.getField(2);
+        this.furnaceBurnTime = this.tileThermalCrusher.getField(0);
+        this.currentItemBurnTime = this.tileThermalCrusher.getField(1);
+        this.totalCookTime = this.tileThermalCrusher.getField(3);
     }
 
     @SideOnly(Side.CLIENT)
     public void updateProgressBar(int id, int data)
     {
-        this.tileFurnace.setField(id, data);
+        this.tileThermalCrusher.setField(id, data);
     }
 
     /**
@@ -109,7 +106,7 @@ public class ContainerThermalCrusher extends Container
      */
     public boolean canInteractWith(EntityPlayer playerIn)
     {
-        return this.tileFurnace.isUsableByPlayer(playerIn);
+        return this.tileThermalCrusher.isUsableByPlayer(playerIn);
     }
 
     /**
@@ -151,14 +148,14 @@ public class ContainerThermalCrusher extends Container
                         return ItemStack.EMPTY;
                     }
                 }
-                else if (index >= 3 && index < 30)
+                else if (index < 30)
                 {
                     if (!this.mergeItemStack(itemstack1, 30, 39, false))
                     {
                         return ItemStack.EMPTY;
                     }
                 }
-                else if (index >= 30 && index < 39 && !this.mergeItemStack(itemstack1, 3, 30, false))
+                else if (index < 39 && !this.mergeItemStack(itemstack1, 3, 30, false))
                 {
                     return ItemStack.EMPTY;
                 }

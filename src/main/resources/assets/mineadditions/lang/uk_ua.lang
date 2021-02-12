@@ -6,3 +6,6 @@ item.labatium.name=Лабатіум
 tile.labatium_block.name=Лабатіумовий блок
 tile.labatium_ore.name=Лабатіумова руда
 tile.mazurium_ore.name=Мазуріумова руда
+
+#Machines
+tile.thermalcrusher.name=Термічний подрібнювач

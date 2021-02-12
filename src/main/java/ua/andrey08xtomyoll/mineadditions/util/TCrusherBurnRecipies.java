@@ -3,8 +3,6 @@ package ua.andrey08xtomyoll.mineadditions.util;
 import java.util.ArrayList;
 import java.util.List;
 
-import net.minecraft.init.Blocks;
-import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import ua.andrey08xtomyoll.mineadditions.ModMain;
@@ -15,13 +13,14 @@ public class TCrusherBurnRecipies
 {
 
     // Исходные
-	private static ArrayList<List<Item>> inputList 			= new ArrayList<List<Item>>();
+	private static final ArrayList<List<Item>> inputList 			= new ArrayList<List<Item>>();
 	// Основной результат
-	private static ArrayList<Item> resultList 				= new ArrayList<Item>();
+	private static final ArrayList<Item> resultList 				= new ArrayList<Item>();
 	// Суб-продукты
-	private static ArrayList<List<Item>> subOutputList 		= new ArrayList<List<Item>>();
+	private static final ArrayList<List<Item>> subOutputList 		= new ArrayList<List<Item>>();
 	// Время плавки
-    private static ArrayList<Integer> timeList 				= new ArrayList<Integer>();
+    private static final ArrayList<Integer> timeList 				= new ArrayList<Integer>();
+
 
 
     // Инициализируется в главном классе
@@ -32,20 +31,8 @@ public class TCrusherBurnRecipies
 		- Item[]{} список  исходных (до 5 соответсвенно)
 		- Item основной результат
 		- Item[]{} список  суб-результатов (до 4х соответсвенно)
-
-		Ниже разобран как пример по строкам
-		- Руда типа 1 + Руда типа 2 за 200 тиков дают Кирпич + Порох + Камень
 		*/
-		TCrusherBurnRecipies.addFurnaceRecipeWithCookTime(
-			200,
-			new Item[]{Item.getItemFromBlock(ModBlocks.LABATIUM_ORE), Item.getItemFromBlock(ModBlocks.MAZURIUM_ORE)},
-			Items.BRICK,
-			new Item[]{Items.GUNPOWDER, Item.getItemFromBlock(Blocks.STONE)}
-		);
-
-        TCrusherBurnRecipies.addFurnaceRecipeWithCookTime(200, new Item[]{Item.getItemFromBlock(ModBlocks.LABATIUM_ORE)}, ModItems.LABATIUM, new Item[]{});
-        TCrusherBurnRecipies.addFurnaceRecipeWithCookTime(200, new Item[]{Item.getItemFromBlock(ModBlocks.LABATIUM_ORE), Items.COAL}, ModItems.LABATIUM, new Item[]{Items.GUNPOWDER});
-
+        TCrusherBurnRecipies.addFurnaceRecipeWithCookTime(2000, new Item[]{Item.getItemFromBlock(ModBlocks.LABATIUM_ORE)}, ModItems.LABATIUM, new Item[]{});
 	}
 
 	// Добавление рецепта
@@ -87,7 +74,6 @@ public class TCrusherBurnRecipies
     		return 200;
     	}
 
-		boolean confirm = false;
 		int matches = 0;
 
     	for (int i = 0; i < inputList.size(); i++){
@@ -127,7 +113,6 @@ public class TCrusherBurnRecipies
     		return null;
     	}
 
-		boolean confirm = false;
 		int matches = 0;
 
     	for (int i = 0; i < inputList.size(); i++){
@@ -138,8 +123,7 @@ public class TCrusherBurnRecipies
     			for(int m = 0; m < inputList.get(i).size(); m++){
         			if(inputList.get(i).get(m) == input.get(n)){
         				matches++;
-        				continue;
-        			}
+					}
     			}
     		}
 
@@ -168,7 +152,6 @@ public class TCrusherBurnRecipies
     		return null;
     	}
 
-		boolean confirm = false;
 		int matches = 0;
 
     	for (int i = 0; i < inputList.size(); i++){
@@ -179,7 +162,6 @@ public class TCrusherBurnRecipies
     			for(int m = 0; m < inputList.get(i).size(); m++){
         			if(inputList.get(i).get(m) == input.get(n)){
         				matches++;
-        				continue;
         			}
     			}
     		}
@@ -193,24 +175,5 @@ public class TCrusherBurnRecipies
         }
         return null;
     }
-
-    // Получение суб-продукции по результату
-    /*public static List<Item> getSubsForItems(Item result)
-    {
-    	if (result == null)
-    		return null;
-    	TomMain.log("[Субпродукты] Результат не равен нулю (" + result.getUnlocalizedName() + ")");
-
-    	for (int i = 0; i < resultList.size(); i++){
-
-        	TomMain.log("[Субпродукты] Результат " + i + " равен " + resultList.get(i));
-    		if(resultList.get(i) == result){
-    			TomMain.log("[Субпродукты] Он подходит, выдаём список " + i + ", равный " + subOutputList.get(i));
-    			return subOutputList.get(i);
-    		}
-		}
-
-        return null;
-    }*/
 
 }
