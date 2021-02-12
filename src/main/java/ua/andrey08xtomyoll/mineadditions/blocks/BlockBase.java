@@ -1,14 +1,14 @@
 package ua.andrey08xtomyoll.mineadditions.blocks;
 
-import ua.andrey08xtomyoll.mineadditions.Main;
-import ua.andrey08xtomyoll.mineadditions.init.ModBlocks;
-import ua.andrey08xtomyoll.mineadditions.init.ModItems;
-import ua.andrey08xtomyoll.mineadditions.util.IHasModel;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
+import ua.andrey08xtomyoll.mineadditions.ModMain;
+import ua.andrey08xtomyoll.mineadditions.init.ModBlocks;
+import ua.andrey08xtomyoll.mineadditions.init.ModItems;
+import ua.andrey08xtomyoll.mineadditions.util.IHasModel;
 
 public class BlockBase extends Block implements IHasModel
 {
@@ -26,6 +26,6 @@ public class BlockBase extends Block implements IHasModel
     @Override
     public void registerModels()
     {
-        Main.proxy.registerItemRenderer(Item.getItemFromBlock(this), 0, "inventory");
+        ModMain.proxy.registerItemRenderer(Item.getItemFromBlock(this), 0, "inventory");
     }
 }

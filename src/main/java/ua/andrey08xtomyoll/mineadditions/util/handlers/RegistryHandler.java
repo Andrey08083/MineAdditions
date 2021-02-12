@@ -1,14 +1,14 @@
 package ua.andrey08xtomyoll.mineadditions.util.handlers;
 
-import ua.andrey08xtomyoll.mineadditions.init.ModBlocks;
-import ua.andrey08xtomyoll.mineadditions.init.ModItems;
-import ua.andrey08xtomyoll.mineadditions.util.IHasModel;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import ua.andrey08xtomyoll.mineadditions.init.ModBlocks;
+import ua.andrey08xtomyoll.mineadditions.init.ModItems;
+import ua.andrey08xtomyoll.mineadditions.util.IHasModel;
 
 @Mod.EventBusSubscriber
 public class RegistryHandler

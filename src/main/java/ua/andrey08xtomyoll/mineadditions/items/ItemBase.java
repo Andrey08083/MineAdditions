@@ -1,10 +1,10 @@
 package ua.andrey08xtomyoll.mineadditions.items;
 
-import ua.andrey08xtomyoll.mineadditions.Main;
-import ua.andrey08xtomyoll.mineadditions.init.ModItems;
-import ua.andrey08xtomyoll.mineadditions.util.IHasModel;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
+import ua.andrey08xtomyoll.mineadditions.ModMain;
+import ua.andrey08xtomyoll.mineadditions.init.ModItems;
+import ua.andrey08xtomyoll.mineadditions.util.IHasModel;
 
 public class ItemBase extends Item implements IHasModel
 {
@@ -19,6 +19,6 @@ public class ItemBase extends Item implements IHasModel
     @Override
     public void registerModels()
     {
-        Main.proxy.registerItemRenderer(this,0,"inventory");
+        ModMain.proxy.registerItemRenderer(this,0,"inventory");
     }
 }
