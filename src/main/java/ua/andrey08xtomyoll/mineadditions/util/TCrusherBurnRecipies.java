@@ -32,7 +32,8 @@ public class TCrusherBurnRecipies
 		- Item основной результат
 		- Item[]{} список  суб-результатов (до 4х соответсвенно)
 		*/
-        TCrusherBurnRecipies.addFurnaceRecipeWithCookTime(2000, new Item[]{Item.getItemFromBlock(ModBlocks.LABATIUM_ORE)}, ModItems.LABATIUM, new Item[]{});
+        TCrusherBurnRecipies.addFurnaceRecipeWithCookTime(2000, new Item[]{Item.getItemFromBlock(ModBlocks.LABATIUM_ORE)}, ModItems.LITTLE_LABATIUM_DUST, new Item[]{});
+		TCrusherBurnRecipies.addFurnaceRecipeWithCookTime(2000, new Item[]{Item.getItemFromBlock(ModBlocks.MAZURIUM_ORE)}, ModItems.LITTLE_MAZURIUM_DUST, new Item[]{});
 	}
 
 	// Добавление рецепта
@@ -142,8 +143,10 @@ public class TCrusherBurnRecipies
     public static List<Item> getSubsForItems(List<Item> input)
     {
     	boolean isEmpty = true;
-    	for(int i = 0; i < input.size(); i++){
-            if (input.get(i) != null){
+    	for(int i = 0; i < input.size(); i++)
+    	{
+            if (input.get(i) != null)
+            {
             	isEmpty =  false;
             	break;
             }
@@ -154,19 +157,25 @@ public class TCrusherBurnRecipies
 
 		int matches = 0;
 
-    	for (int i = 0; i < inputList.size(); i++){
-    		if(input.size() != inputList.get(i).size()){
+    	for (int i = 0; i < inputList.size(); i++)
+    	{
+    		if(input.size() != inputList.get(i).size())
+    		{
     			continue;
     		}
-    		for(int n = 0; n < input.size(); n++){
-    			for(int m = 0; m < inputList.get(i).size(); m++){
-        			if(inputList.get(i).get(m) == input.get(n)){
+    		for(int n = 0; n < input.size(); n++)
+    		{
+    			for(int m = 0; m < inputList.get(i).size(); m++)
+    			{
+        			if(inputList.get(i).get(m) == input.get(n))
+        			{
         				matches++;
         			}
     			}
     		}
 
-    		if(matches == input.size()){
+    		if(matches == input.size())
+    		{
     			return subOutputList.get(i);
     		}
     		else{

@@ -5,6 +5,7 @@ import net.minecraft.init.SoundEvents;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.*;
 import net.minecraftforge.common.util.EnumHelper;
+import ua.andrey08xtomyoll.mineadditions.items.ItemBase;
 import ua.andrey08xtomyoll.mineadditions.items.ItemGlowingBase;
 import ua.andrey08xtomyoll.mineadditions.items.armor.ArmorBase;
 import ua.andrey08xtomyoll.mineadditions.items.tools.ToolAxe;
@@ -24,6 +25,10 @@ public class ModItems {
     public static final List<Item> ITEMS = new ArrayList<Item>();
     public static final Item LABATIUM = new ItemGlowingBase("labatium");
     public static final Item MAZURIUM = new ItemGlowingBase("mazurium");
+    public static final Item LITTLE_LABATIUM_DUST = new ItemBase("little_labatium_dust");
+    public static final Item LITTLE_MAZURIUM_DUST = new ItemBase("little_mazurium_dust");
+    public static final Item LABATIUM_DUST = new ItemBase("labatium_dust");
+    public static final Item MAZURIUM_DUST = new ItemBase("mazurium_dust");
 
     //Tools
     public static final ItemPickaxe LABATIUM_PICKAXE = new ToolPickaxe("labatium_pickaxe", MATERIAL_LABATIUM);
