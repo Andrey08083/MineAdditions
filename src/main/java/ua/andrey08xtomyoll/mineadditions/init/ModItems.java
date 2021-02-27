@@ -7,7 +7,9 @@ import net.minecraft.item.*;
 import net.minecraftforge.common.util.EnumHelper;
 import ua.andrey08xtomyoll.mineadditions.items.ItemBase;
 import ua.andrey08xtomyoll.mineadditions.items.ItemGlowingBase;
+import ua.andrey08xtomyoll.mineadditions.items.ItemLabatiumFruit;
 import ua.andrey08xtomyoll.mineadditions.items.armor.ArmorBase;
+import ua.andrey08xtomyoll.mineadditions.items.seeds.LabatiumFruitSeed;
 import ua.andrey08xtomyoll.mineadditions.items.tools.ToolAxe;
 import ua.andrey08xtomyoll.mineadditions.items.tools.ToolPickaxe;
 import ua.andrey08xtomyoll.mineadditions.items.tools.ToolSpade;
@@ -43,4 +45,9 @@ public class ModItems {
     public static final ItemArmor LABATIUM_CHESTPLATE = new ArmorBase("labatium_chestplate", ARMOR_LABATIUM, 1, EntityEquipmentSlot.CHEST);
     public static final ItemArmor LABATIUM_HEAD = new ArmorBase("labatium_helmet", ARMOR_LABATIUM, 1, EntityEquipmentSlot.HEAD);
 
+    //Seeds
+    public static final Item LABATIUM_FRUIT_SEED = new LabatiumFruitSeed("labatium_fruit_seed");
+
+    //food
+    public static final Item LABATIUM_FRUIT = new ItemLabatiumFruit("labatium_fruit", 1, false);
 }

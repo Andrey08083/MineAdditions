@@ -34,7 +34,6 @@ public class ModMain
         // База для пакетной системы
         ModMain.network = NetworkRegistry.INSTANCE.newSimpleChannel("TomChannel");
 		NetworkUtils.registerMessages();
-		
         proxy.preInit(event);
     }
 

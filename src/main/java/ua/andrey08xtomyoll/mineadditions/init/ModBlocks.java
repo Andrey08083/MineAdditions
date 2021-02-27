@@ -6,10 +6,7 @@ import java.util.List;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraftforge.fml.common.registry.GameRegistry;
-import ua.andrey08xtomyoll.mineadditions.blocks.BlockThermalCrusher;
-import ua.andrey08xtomyoll.mineadditions.blocks.LabatiumBlock;
-import ua.andrey08xtomyoll.mineadditions.blocks.LabatiumOre;
-import ua.andrey08xtomyoll.mineadditions.blocks.MazuriumOre;
+import ua.andrey08xtomyoll.mineadditions.blocks.*;
 import ua.andrey08xtomyoll.mineadditions.blocks.tiles.ThermalCrusher;
 
 public class ModBlocks
@@ -21,10 +18,10 @@ public class ModBlocks
     public static final Block MAZURIUM_ORE 		= new MazuriumOre("mazurium_ore", Material.ROCK);
     public static final Block THERMALCRUSHER = new BlockThermalCrusher("thermalcrusher", Material.IRON, false);
     public static final Block THERMALCRUSHER_ON = new BlockThermalCrusher("thermalcrusher_on", Material.IRON, true);
+    public static final Block LABATIUM_FRUIT_CROP = new LabatiumFruitCrop("labatium_fruit_crop");
 	
     public static void register()
     {
     	GameRegistry.registerTileEntity(ThermalCrusher.class, THERMALCRUSHER_ON.getRegistryName().toString());
-
 	}
 }
