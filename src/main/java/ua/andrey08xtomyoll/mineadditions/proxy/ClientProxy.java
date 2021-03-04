@@ -6,16 +6,21 @@ import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+import ua.andrey08xtomyoll.mineadditions.entity.EntityRegistry;
 
 public class ClientProxy extends CommonProxy
 {
 	@Override
-    public void preInit(FMLPreInitializationEvent event) {
+    public void preInit(FMLPreInitializationEvent event)
+    {
     	super.preInit(event);
+        EntityRegistry.initModels();
+        System.out.println("Lds");
     }
 
     @Override
-    public void init(FMLInitializationEvent event) {
+    public void init(FMLInitializationEvent event)
+    {
     	super.init(event);
     }
 

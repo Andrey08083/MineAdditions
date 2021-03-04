@@ -46,12 +46,10 @@ public class ModMain
     @Mod.EventHandler
     public static void PostInit(FMLPostInitializationEvent event)
     {
-    	// инициализация рецептов печи
     	TCrusherBurnRecipies.init();
     	proxy.postInit(event);
     }
-    
-    // Если активен DEBUG, то логи идут в консоль, если нет, их не будет
+
     public static void log(String text){
     	if(Reference.DEBUG){
     		System.out.println(text);
