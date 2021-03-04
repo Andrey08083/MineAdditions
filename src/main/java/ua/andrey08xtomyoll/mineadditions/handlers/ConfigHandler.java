@@ -35,6 +35,6 @@ public class ConfigHandler {
             }
         }
         catch (Exception e) { }
-        return new Object();
+        return new JSONObject();
     }
 }
