@@ -29,6 +29,7 @@ public class ModMain
     @Mod.EventHandler
     public static void PreInit(FMLPreInitializationEvent event)
     {
+        Reference.CONFIG_FOLDER = event.getModConfigurationDirectory().getAbsolutePath();
         GameRegistry.registerWorldGenerator(new ModWorldGen(), 3);
         
         // База для пакетной системы
