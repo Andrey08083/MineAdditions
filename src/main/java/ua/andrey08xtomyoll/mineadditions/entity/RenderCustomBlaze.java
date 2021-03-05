@@ -1,6 +1,5 @@
 package ua.andrey08xtomyoll.mineadditions.entity;
 
-import net.minecraft.client.model.ModelBlaze;
 import net.minecraft.client.model.ModelGhast;
 import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.client.renderer.entity.RenderLiving;
@@ -13,10 +12,10 @@ import javax.annotation.Nonnull;
 
 public class RenderCustomBlaze extends RenderLiving<EntityCustomBlaze>
 {
-    private ResourceLocation mobTexture = new ResourceLocation(Reference.MOD_ID + ":textures/entity/skin_custom_blaze.png");
+    private final ResourceLocation mobTexture = new ResourceLocation(Reference.MOD_ID + ":textures/entity/model_custom_blaze.png");
 
     public RenderCustomBlaze(RenderManager manager) {
-        super(manager, new ModelGhast(), 0.5F);
+        super(manager, new model_custom_blaze(), 0.5F);
     }
 
     public static Factory FACTORY = new Factory();
