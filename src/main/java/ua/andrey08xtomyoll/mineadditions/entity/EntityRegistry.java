@@ -34,7 +34,7 @@ public class EntityRegistry
 
     private static int ID = 1;
     public static EntityEntry CUSTOM_BLAZE = EntityEntryBuilder.create().entity(EntityCustomBlaze.class).name("Custom Blaze")
-            .id("Custom Blaze", ID++).egg(0xc82020, 0x892612).tracker(160, 2, false).build();
+            .id("custom_blaze", ID++).egg(0xc82020, 0x892612).tracker(160, 2, false).build();
     public static EntityEntry SNOWSHARD = EntityEntryBuilder.create()
             .entity(EntityCustomBlaze.EntityArrowCustom.class)
             .name("Snowshard")
