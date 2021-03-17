@@ -14,7 +14,8 @@ public class ModSounds {
 
     //Sounds
     public static SoundEvent untitled_record = initSound("untitled_record", "untitled_record");
-
+    public static SoundEvent fire_shoot_sound = initSound("fire_shoot_sound", "fire_shoot_sound");
+    public static SoundEvent van_ambient_sound = initSound("van_ambient_sound", "van_ambient_sound");
 
     private static SoundEvent initSound(String resourcePath, String name) {
         SoundEvent soundEvent = new SoundEvent(new ResourceLocation(Reference.MOD_ID, resourcePath)).setRegistryName(name);

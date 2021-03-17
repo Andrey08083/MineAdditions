@@ -15,10 +15,10 @@ import javax.annotation.Nullable;
 
 public class RenderCustomBlaze extends RenderLiving<EntityCustomBlaze>
 {
-    private ResourceLocation mobTexture = new ResourceLocation(Reference.MOD_ID + ":textures/entity/skin_custom_blaze.png");
+    private ResourceLocation mobTexture = new ResourceLocation(Reference.MOD_ID + ":textures/entity/model_custom_blaze.png");
 
     public RenderCustomBlaze(RenderManager manager) {
-        super(manager, new ModelGhast(), 0.5F);
+        super(manager, new model_custom_blaze(), 0.5F);
     }
 
     public static Factory FACTORY = new Factory();

@@ -7,5 +7,27 @@
         "stream": true
       }
     ]
+  },
+  "fire_shoot_sound": {
+    "category": "player",
+    "sounds": [
+      {
+        "name": "mineadditions:fire_shoot_sound2"
+      }
+    ]
+  },
+  "van_ambient_sound": {
+    "category": "master",
+    "sounds": [
+      {
+        "name": "mineadditions:van_1_ambient"
+      },
+      {
+        "name": "mineadditions:van_2_ambient"
+      },
+      {
+        "name": "mineadditions:van_3_ambient"
+      }
+    ]
   }
 }
