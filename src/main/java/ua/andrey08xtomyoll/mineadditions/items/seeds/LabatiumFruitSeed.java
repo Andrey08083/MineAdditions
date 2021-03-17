@@ -20,7 +20,6 @@ import ua.andrey08xtomyoll.mineadditions.util.IHasModel;
 
 public class LabatiumFruitSeed extends Item implements IHasModel, IPlantable
 {
-    public static final Item block = null;
     public LabatiumFruitSeed(String name)
     {
         setRegistryName(name);

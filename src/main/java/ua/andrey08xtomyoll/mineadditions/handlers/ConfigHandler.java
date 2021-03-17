@@ -24,7 +24,7 @@ public class ConfigHandler {
 
     private Object readConfig() {
         try {
-            File config = new File(Reference.CONFIG_FOLDER + "/" + Reference.NAME + "config.json");
+            File config = new File(Reference.CONFIG_FOLDER + "/" + Reference.NAME  + "/" + "config.json");
             if (config.exists()) {
                 JSONParser configObject = new JSONParser();
                 BufferedReader reader = new BufferedReader(new FileReader(config));

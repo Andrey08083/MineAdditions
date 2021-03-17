@@ -4,21 +4,28 @@ import net.minecraft.init.Blocks;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.*;
+import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.SoundEvent;
 import net.minecraftforge.common.util.EnumHelper;
 import ua.andrey08xtomyoll.mineadditions.items.ItemBase;
 import ua.andrey08xtomyoll.mineadditions.items.ItemGlowingBase;
 import ua.andrey08xtomyoll.mineadditions.items.ItemLabatiumFruit;
 import ua.andrey08xtomyoll.mineadditions.items.armor.ArmorBase;
+import ua.andrey08xtomyoll.mineadditions.items.records.RecordBase;
 import ua.andrey08xtomyoll.mineadditions.items.seeds.LabatiumFruitSeed;
 import ua.andrey08xtomyoll.mineadditions.items.tools.ToolAxe;
 import ua.andrey08xtomyoll.mineadditions.items.tools.ToolPickaxe;
 import ua.andrey08xtomyoll.mineadditions.items.tools.ToolSpade;
 import ua.andrey08xtomyoll.mineadditions.items.tools.ToolSword;
+import ua.andrey08xtomyoll.mineadditions.util.Reference;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class ModItems {
+
+    ModItems instance  = new ModItems();
+
     //Materials
     public static final Item.ToolMaterial MATERIAL_LABATIUM = EnumHelper.addToolMaterial("material_labatium", 4, 3000, 15.0F, 15.0F, 20);
 
@@ -52,4 +59,8 @@ public class ModItems {
 
     //food
     public static final Item LABATIUM_FRUIT = new ItemLabatiumFruit("labatium_fruit", 1, false);
+
+    //Records
+    public static final Item UNTITLED_RECORD = new RecordBase("untitled_record", ModSounds.untitled_record);
+
 }
