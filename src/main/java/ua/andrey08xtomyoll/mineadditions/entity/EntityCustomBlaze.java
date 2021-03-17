@@ -74,7 +74,7 @@ public class EntityCustomBlaze extends EntityMob implements IRangedAttackMob {
         this.tasks.addTask(5, new EntityAIWanderAvoidWater(this, 1.0D));
         this.tasks.addTask(6, new EntityAIWatchClosest(this, EntityPlayer.class, 16.0F));
         this.tasks.addTask(6, new EntityAILookIdle(this));
-        this.tasks.addTask(6, new EntityAIAttackRanged(this, 1.25D, 40, 8.0F));
+        this.tasks.addTask(6, new EntityAIAttackRanged(this, 1.25D, 30, 8.0F));
         this.targetTasks.addTask(1, new EntityAIHurtByTarget(this, false, new Class[0]));
         this.targetTasks.addTask(2, new EntityAINearestAttackableTarget(this, EntityPlayer.class, true));
     }
@@ -108,7 +108,7 @@ public class EntityCustomBlaze extends EntityMob implements IRangedAttackMob {
         double d2 = d0 - entityarrow.posY;
         double d3 = target.posZ - this.posZ;
         float f = MathHelper.sqrt(d1 * d1 + d3 * d3) * 0.2F;
-        entityarrow.shoot(d1, d2 +(double)f, d3, 5F, 1.0F);
+        entityarrow.shoot(d1, d2 +(double)f, d3, 2F, 1.0F);
         this.playSound(ModSounds.fire_shoot_sound, 1.0F, 1.0F / (this.getRNG().nextFloat() * 0.4F + 0.8F));
         this.world.spawnEntity(entityarrow);
     }
