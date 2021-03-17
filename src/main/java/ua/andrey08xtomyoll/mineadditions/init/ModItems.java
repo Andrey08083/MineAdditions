@@ -32,6 +32,8 @@ public class ModItems {
     public static final Item LABATIUM_DUST = new ItemBase("labatium_dust");
     public static final Item MAZURIUM_DUST = new ItemBase("mazurium_dust");
 
+    public static final Item ITEM_SHOOT = new ItemBase("shoot_hight");
+
     //Tools
     public static final ItemPickaxe LABATIUM_PICKAXE = new ToolPickaxe("labatium_pickaxe", MATERIAL_LABATIUM);
     public static final ItemSword LABATIUM_SWORD = new ToolSword("labatium_sword", MATERIAL_LABATIUM);

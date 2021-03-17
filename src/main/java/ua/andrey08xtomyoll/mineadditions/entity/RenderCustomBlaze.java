@@ -1,14 +1,16 @@
 package ua.andrey08xtomyoll.mineadditions.entity;
 
 import net.minecraft.client.model.ModelGhast;
-import net.minecraft.client.renderer.entity.Render;
-import net.minecraft.client.renderer.entity.RenderLiving;
-import net.minecraft.client.renderer.entity.RenderManager;
+import net.minecraft.client.renderer.entity.*;
+import net.minecraft.entity.Entity;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import ua.andrey08xtomyoll.mineadditions.util.Reference;
 import net.minecraftforge.fml.client.registry.IRenderFactory;
 
 import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 
 public class RenderCustomBlaze extends RenderLiving<EntityCustomBlaze>
 {

@@ -14,6 +14,7 @@ import net.minecraftforge.fml.common.registry.EntityEntry;
 import net.minecraftforge.fml.common.registry.EntityEntryBuilder;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import ua.andrey08xtomyoll.mineadditions.init.ModItems;
 import ua.andrey08xtomyoll.mineadditions.util.Reference;
 
 @Mod.EventBusSubscriber(modid = Reference.MOD_ID)
@@ -24,7 +25,7 @@ public class EntityRegistry
         RenderingRegistry.registerEntityRenderingHandler(EntityCustomBlaze.EntityArrowCustom.class, renderManager -> {
             return new RenderSnowball<EntityCustomBlaze.EntityArrowCustom>(renderManager, null, Minecraft.getMinecraft().getRenderItem()) {
                 public ItemStack getStackToRender(EntityCustomBlaze.EntityArrowCustom entity) {
-                    return new ItemStack(Items.CHORUS_FRUIT, (int) (1));
+                    return new ItemStack(ModItems.ITEM_SHOOT, (int) (1));
                 }
             };
         });
