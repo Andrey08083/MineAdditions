@@ -4,14 +4,13 @@ import net.minecraft.entity.EnumCreatureType;
 import net.minecraft.item.Item;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.biome.Biome;
-import net.minecraft.world.biome.BiomeBeach;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
 import net.minecraftforge.fml.common.registry.EntityRegistry;
 import ua.andrey08xtomyoll.mineadditions.ModMain;
-import ua.andrey08xtomyoll.mineadditions.entity.EntityCustomBlaze;
+import ua.andrey08xtomyoll.mineadditions.entity.EntityVan;
 import ua.andrey08xtomyoll.mineadditions.handlers.GuiHandler;
 import ua.andrey08xtomyoll.mineadditions.init.ModBlocks;
 
@@ -34,7 +33,7 @@ public class CommonProxy
                 Biome.REGISTRY.getObject(new ResourceLocation("mutated_savanna")),
                 Biome.REGISTRY.getObject(new ResourceLocation("mutated_savanna_rock")),
                 Biome.REGISTRY.getObject(new ResourceLocation("mutated_mesa")),};
-        EntityRegistry.addSpawn(EntityCustomBlaze.class, 60, 1, 3, EnumCreatureType.MONSTER, spawnBiomes);
+        EntityRegistry.addSpawn(EntityVan.class, 60, 1, 3, EnumCreatureType.MONSTER, spawnBiomes);
 
     }
     

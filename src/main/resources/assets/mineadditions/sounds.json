@@ -8,22 +8,38 @@
       }
     ]
   },
-  "fire_shoot_sound": {
+  "van_shoot_sound": {
     "category": "player",
     "sounds": [
       {
-        "name": "mineadditions:fire_shoot_sound2"
+        "name": "mineadditions:van_shoot"
       }
     ]
   },
   "van_ambient_sound": {
-    "category": "master",
+    "category": "hostile",
     "sounds": [
       {
         "name": "mineadditions:van_1_ambient"
       },
       {
-        "name": "mineadditions:van_3_ambient"
+        "name": "mineadditions:van_2_ambient"
+      }
+    ]
+  },
+  "van_death_sound": {
+    "category": "hostile",
+    "sounds": [
+      {
+        "name": "mineadditions:van_death"
+      }
+    ]
+  },
+  "van_hurt_sound": {
+    "category": "hostile",
+    "sounds": [
+      {
+        "name": "mineadditions:van_hurt"
       }
     ]
   }

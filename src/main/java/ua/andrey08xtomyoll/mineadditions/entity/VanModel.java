@@ -8,7 +8,7 @@ import net.minecraft.client.model.ModelBox;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
 
-public class model_custom_blaze extends ModelBase {
+public class VanModel extends ModelBase {
 	private final ModelRenderer Body;
 	private final ModelRenderer cube_r1;
 	private final ModelRenderer cube_r2;
@@ -54,7 +54,7 @@ public class model_custom_blaze extends ModelBase {
 	private final ModelRenderer cube_r39;
 	private final ModelRenderer cube_r40;
 
-	public model_custom_blaze() {
+	public VanModel() {
 		textureWidth = 64;
 		textureHeight = 64;
 

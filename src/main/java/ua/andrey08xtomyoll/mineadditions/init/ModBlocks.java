@@ -8,6 +8,7 @@ import net.minecraft.block.material.Material;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import ua.andrey08xtomyoll.mineadditions.blocks.*;
 import ua.andrey08xtomyoll.mineadditions.blocks.tiles.ThermalCrusher;
+import ua.andrey08xtomyoll.mineadditions.blocks.tiles.TileAlchemyExtractor;
 
 public class ModBlocks
 {
@@ -19,9 +20,12 @@ public class ModBlocks
     public static final Block THERMALCRUSHER = new BlockThermalCrusher("thermalcrusher", Material.IRON, false);
     public static final Block THERMALCRUSHER_ON = new BlockThermalCrusher("thermalcrusher_on", Material.IRON, true);
     public static final Block LABATIUM_FRUIT_CROP = new LabatiumFruitCrop("labatium_fruit_crop");
+    public static final Block ALCHEMY_EXTRACTOR = new BlockAlchemyExtractor("alchemy_extractor", Material.IRON, false);
+    public static final Block ALCHEMY_EXTRACTOR_ON = new BlockAlchemyExtractor("alchemy_extractor_on", Material.IRON, true);
 	
     public static void register()
     {
     	GameRegistry.registerTileEntity(ThermalCrusher.class, THERMALCRUSHER_ON.getRegistryName().toString());
+        GameRegistry.registerTileEntity(TileAlchemyExtractor.class, ALCHEMY_EXTRACTOR_ON.getRegistryName().toString());
 	}
 }

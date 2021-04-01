@@ -16,19 +16,19 @@ import ua.andrey08xtomyoll.mineadditions.blocks.tiles.ThermalCrusher;
 
 public class ContainerThermalCrusher extends Container
 {
-    private final IInventory tileThermalCrusher;
+    private final IInventory tileentity;
     private int cookTime;
     private int totalCookTime;
-    private int furnaceBurnTime;
+    private int BurnTime;
     private int currentItemBurnTime;
 
     public ContainerThermalCrusher(InventoryPlayer playerInventory, IInventory furnaceInventory)
     {
-        this.tileThermalCrusher = furnaceInventory;
-        ThermalCrusher thermalCrusher = (ThermalCrusher) tileThermalCrusher;
+        this.tileentity = furnaceInventory;
+        ThermalCrusher thermalCrusher = (ThermalCrusher) tileentity;
         // Входящие слоты (слева направо, в верхнем левом углу)
         for(int i = 0; i < ThermalCrusher.slotsinput; i++){
-        	this.addSlotToContainer(new ThermalCrusherInputSlot(furnaceInventory, i, 57 + i * 18, 16));
+        	this.addSlotToContainer(new Slot(furnaceInventory, i, 57 + i * 18, 16));
         }
         // Топливо
         this.addSlotToContainer(new SlotFurnaceFuel(furnaceInventory, ThermalCrusher.slotsinput, 57, 53));
@@ -56,7 +56,7 @@ public class ContainerThermalCrusher extends Container
     public void addListener(IContainerListener listener)
     {
         super.addListener(listener);
-        listener.sendAllWindowProperties(this, this.tileThermalCrusher);
+        listener.sendAllWindowProperties(this, this.tileentity);
     }
 
     /**
@@ -68,37 +68,37 @@ public class ContainerThermalCrusher extends Container
 
         for (IContainerListener icontainerlistener : this.listeners)
         {
-            if (this.cookTime != this.tileThermalCrusher.getField(2))
+            if (this.cookTime != this.tileentity.getField(2))
             {
-                icontainerlistener.sendWindowProperty(this, 2, this.tileThermalCrusher.getField(2));
+                icontainerlistener.sendWindowProperty(this, 2, this.tileentity.getField(2));
             }
 
-            if (this.furnaceBurnTime != this.tileThermalCrusher.getField(0))
+            if (this.BurnTime != this.tileentity.getField(0))
             {
-                icontainerlistener.sendWindowProperty(this, 0, this.tileThermalCrusher.getField(0));
+                icontainerlistener.sendWindowProperty(this, 0, this.tileentity.getField(0));
             }
 
-            if (this.currentItemBurnTime != this.tileThermalCrusher.getField(1))
+            if (this.currentItemBurnTime != this.tileentity.getField(1))
             {
-                icontainerlistener.sendWindowProperty(this, 1, this.tileThermalCrusher.getField(1));
+                icontainerlistener.sendWindowProperty(this, 1, this.tileentity.getField(1));
             }
 
-            if (this.totalCookTime != this.tileThermalCrusher.getField(3))
+            if (this.totalCookTime != this.tileentity.getField(3))
             {
-                icontainerlistener.sendWindowProperty(this, 3, this.tileThermalCrusher.getField(3));
+                icontainerlistener.sendWindowProperty(this, 3, this.tileentity.getField(3));
             }
         }
 
-        this.cookTime = this.tileThermalCrusher.getField(2);
-        this.furnaceBurnTime = this.tileThermalCrusher.getField(0);
-        this.currentItemBurnTime = this.tileThermalCrusher.getField(1);
-        this.totalCookTime = this.tileThermalCrusher.getField(3);
+        this.cookTime = this.tileentity.getField(2);
+        this.BurnTime = this.tileentity.getField(0);
+        this.currentItemBurnTime = this.tileentity.getField(1);
+        this.totalCookTime = this.tileentity.getField(3);
     }
 
     @SideOnly(Side.CLIENT)
     public void updateProgressBar(int id, int data)
     {
-        this.tileThermalCrusher.setField(id, data);
+        this.tileentity.setField(id, data);
     }
 
     /**
@@ -106,7 +106,7 @@ public class ContainerThermalCrusher extends Container
      */
     public boolean canInteractWith(EntityPlayer playerIn)
     {
-        return this.tileThermalCrusher.isUsableByPlayer(playerIn);
+        return this.tileentity.isUsableByPlayer(playerIn);
     }
 
     /**

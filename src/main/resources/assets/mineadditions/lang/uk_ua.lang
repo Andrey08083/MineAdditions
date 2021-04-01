@@ -14,3 +14,6 @@ tile.mazurium_ore.name=Мазуріумова руда
 
 #Machines
 tile.thermalcrusher.name=Термічний подрібнювач
+tile.alchemy_extractor.name=Алхімічний екстрактор
+#Entities
+entity.Van.name=Вен

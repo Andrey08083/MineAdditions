@@ -3,70 +3,72 @@ package ua.andrey08xtomyoll.mineadditions.blocks.tiles;
 import java.util.ArrayList;
 import java.util.List;
 
+import net.minecraft.block.state.IBlockState;
+import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.init.Items;
-import net.minecraft.inventory.Container;
-import net.minecraft.inventory.IInventory;
-import net.minecraft.inventory.ISidedInventory;
-import net.minecraft.inventory.ItemStackHelper;
-import net.minecraft.inventory.SlotFurnaceFuel;
+import net.minecraft.inventory.*;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTBase;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.network.NetworkManager;
+import net.minecraft.network.play.server.SPacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ITickable;
 import net.minecraft.util.NonNullList;
+import net.minecraft.util.SoundCategory;
+import net.minecraft.util.datafix.DataFixer;
+import net.minecraft.util.datafix.FixTypes;
+import net.minecraft.util.datafix.walkers.ItemStackDataLists;
 import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.TextComponentTranslation;
+import net.minecraft.world.World;
+import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import ua.andrey08xtomyoll.mineadditions.ModMain;
-import ua.andrey08xtomyoll.mineadditions.blocks.BlockThermalCrusher;
-import ua.andrey08xtomyoll.mineadditions.gui.containers.ContainerThermalCrusher;
-import ua.andrey08xtomyoll.mineadditions.util.TCrusherBurnRecipies;
-import ua.andrey08xtomyoll.mineadditions.util.Reference;
+import ua.andrey08xtomyoll.mineadditions.blocks.BlockAlchemyExtractor;
+import ua.andrey08xtomyoll.mineadditions.gui.containers.ContainerAlchemyExtractor;
+import ua.andrey08xtomyoll.mineadditions.gui.containers.CustomSlots;
+import ua.andrey08xtomyoll.mineadditions.init.ModBlocks;
+import ua.andrey08xtomyoll.mineadditions.init.ModItems;
+import ua.andrey08xtomyoll.mineadditions.init.ModSounds;
+import ua.andrey08xtomyoll.mineadditions.util.AlchemyExtractorRecipies;
+import ua.andrey08xtomyoll.mineadditions.util.TilesFuel;
 
-import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 
-import static ua.andrey08xtomyoll.mineadditions.util.TilesFuel.getItemBurnTime;
-
-
-@Nonnull
-public class ThermalCrusher extends TileEntity implements ITickable, ISidedInventory
-{
-
-    /** Величины, которые задают кол-во слотов на выход/выход и соотвественно саму математику **/
+public class TileAlchemyExtractor extends TileEntity implements ITickable, ISidedInventory {
     // Общее кол-во слотов, не менее 3х, не более 11 (5 входящих + топливо + 5 на выходе)
-    public static int slotscount = 4;
+    public static int slotscount = 5;
     // Кол-во входящих (от 1 до 5, с ориентацией на общее кол-во)
-    public static int slotsinput = 1;
+    public static int slotsinput = 2;
 
-    private static final int[] SLOTS_TOP = new int[] {0};
-    private static final int[] SLOTS_BOTTOM = new int[] {slotsinput + 1, slotsinput};
-    private static final int[] SLOTS_SIDES = new int[] {slotsinput};
+    private static final int[] SLOTS_TOP = new int[]{0};
+    private static final int[] SLOTS_BOTTOM = new int[]{slotsinput + 1, slotsinput};
+    private static final int[] SLOTS_SIDES = new int[]{slotsinput};
 
     // Все слоты. Сначала входящие, затем топливо, затем результат, затем суб-продукты
-    private NonNullList<ItemStack> CrusherItemStacks = NonNullList.withSize(slotscount, ItemStack.EMPTY);
+    public NonNullList<ItemStack> ExtractorItemStacks = NonNullList.<ItemStack>withSize(slotscount, ItemStack.EMPTY);
 
-    private int CrusherBurnTime;
-
+    private int ExtratctorBurnTime;
     private int currentItemBurnTime;
     private int cookTime;
-    private int totalCookTime;
+    public int totalCookTime;
     private String CustomName;
+    boolean endburn = false;
 
-    public int getSizeInventory()
-    {
-        return this.CrusherItemStacks.size();
+    public int getSizeInventory() {
+        return this.ExtractorItemStacks.size();
     }
 
-    public boolean isEmpty()
-    {
-        for (ItemStack itemstack : this.CrusherItemStacks)
-        {
-            if (!itemstack.isEmpty())
-            {
+    public boolean isEmpty() {
+        for (ItemStack itemstack : this.ExtractorItemStacks) {
+            if (!itemstack.isEmpty()) {
                 return false;
             }
         }
@@ -74,91 +76,85 @@ public class ThermalCrusher extends TileEntity implements ITickable, ISidedInven
         return true;
     }
 
-    @Nonnull
-    public ItemStack getStackInSlot(int index)
-    {
-        return this.CrusherItemStacks.get(index);
+    public ItemStack getStackInSlot(int index) {
+        return this.ExtractorItemStacks.get(index);
     }
 
-    @Nonnull
-    public ItemStack decrStackSize(int index, int count)
-    {
-        return ItemStackHelper.getAndSplit(this.CrusherItemStacks, index, count);
+    public ItemStack decrStackSize(int index, int count) {
+        return ItemStackHelper.getAndSplit(this.ExtractorItemStacks, index, count);
     }
 
-    @Nonnull
-    public ItemStack removeStackFromSlot(int index)
-    {
-        return ItemStackHelper.getAndRemove(this.CrusherItemStacks, index);
+    public ItemStack removeStackFromSlot(int index) {
+        return ItemStackHelper.getAndRemove(this.ExtractorItemStacks, index);
     }
 
-    public void setInventorySlotContents(int index, ItemStack stack)
-    {
-        ItemStack itemstack = this.CrusherItemStacks.get(index);
+    public void setInventorySlotContents(int index, ItemStack stack) {
+        ItemStack itemstack = this.ExtractorItemStacks.get(index);
         boolean flag = !stack.isEmpty() && stack.isItemEqual(itemstack) && ItemStack.areItemStackTagsEqual(stack, itemstack);
-        this.CrusherItemStacks.set(index, stack);
+        this.ExtractorItemStacks.set(index, stack);
 
-        if (stack.getCount() > this.getInventoryStackLimit())
-        {
+        if (stack.getCount() > this.getInventoryStackLimit()) {
             stack.setCount(this.getInventoryStackLimit());
         }
-        // Сбрасываем время, если меняются входящие
-        if (index >= 0 && index < slotsinput && !flag)
-        {
-            this.totalCookTime = TCrusherBurnRecipies.getCookTimeForItems(getInputSlots());
+
+        if (index >= 0 && index < this.slotsinput && !flag) {
+            this.totalCookTime = AlchemyExtractorRecipies.getCookTimeForItems(getInputSlots());
             this.cookTime = 0;
             this.markDirty();
         }
     }
 
-    @Nonnull
-    public String getName()
-    {
-        return this.hasCustomName() ? this.CustomName : "container.thermal_crusher";
+    public String getName() {
+        return this.hasCustomName() ? this.CustomName : "container.alchemy_extractor";
     }
 
-    public boolean hasCustomName()
-    {
+    public boolean hasCustomName() {
         return this.CustomName != null && !this.CustomName.isEmpty();
     }
 
-    public void setCustomInventoryName(String name)
-    {
+    public void setCustomInventoryName(String name) {
         this.CustomName = name;
     }
 
-    public void readFromNBT(NBTTagCompound  compound)
-    {
+    public static void registerFixesFurnace(DataFixer fixer) {
+        fixer.registerWalker(FixTypes.BLOCK_ENTITY, new ItemStackDataLists(TileAlchemyExtractor.class, new String[]{"Items"}));
+    }
+
+    public void readFromNBT(NBTTagCompound compound) {
         super.readFromNBT(compound);
-        this.CrusherItemStacks = NonNullList.withSize(this.getSizeInventory(), ItemStack.EMPTY);
-        ItemStackHelper.loadAllItems(compound, this.CrusherItemStacks);
-        this.CrusherBurnTime = compound.getInteger("BurnTime");
+        this.ExtractorItemStacks = NonNullList.<ItemStack>withSize(this.getSizeInventory(), ItemStack.EMPTY);
+        ItemStackHelper.loadAllItems(compound, this.ExtractorItemStacks);
+        this.ExtratctorBurnTime = compound.getInteger("BurnTime");
         this.cookTime = compound.getInteger("CookTime");
         this.totalCookTime = compound.getInteger("CookTimeTotal");
-        this.currentItemBurnTime = getItemBurnTime(this.CrusherItemStacks.get(1));
+        this.currentItemBurnTime = getItemBurnTime(this.ExtractorItemStacks.get(1));
 
-        if (compound.hasKey("CustomName", 8))
-        {
+        if (compound.hasKey("CustomName", 8)) {
             this.CustomName = compound.getString("CustomName");
         }
     }
 
-    @Nonnull
-    public NBTTagCompound writeToNBT(NBTTagCompound compound)
-    {
+    public NBTTagCompound writeToNBT(NBTTagCompound compound) {
         super.writeToNBT(compound);
-        compound.setInteger("BurnTime", (short)this.CrusherBurnTime);
-        compound.setInteger("CookTime", (short)this.cookTime);
-        compound.setInteger("CookTimeTotal", (short)this.totalCookTime);
-        ItemStackHelper.saveAllItems(compound, this.CrusherItemStacks);
+        compound.setInteger("BurnTime", (short) this.ExtratctorBurnTime);
+        compound.setInteger("CookTime", (short) this.cookTime);
+        compound.setInteger("CookTimeTotal", (short) this.totalCookTime);
+        ItemStackHelper.saveAllItems(compound, this.ExtractorItemStacks);
 
-        if (this.hasCustomName())
-        {
+        if (this.hasCustomName()) {
             compound.setString("CustomName", this.CustomName);
         }
 
         return compound;
     }
+
+
+    @Override
+    public ITextComponent getDisplayName()
+    {
+        return new TextComponentTranslation("container.alchemy_extractor");
+    }
+
 
     public int getInventoryStackLimit()
     {
@@ -167,7 +163,7 @@ public class ThermalCrusher extends TileEntity implements ITickable, ISidedInven
 
     public boolean isBurning()
     {
-        return this.CrusherBurnTime > 0;
+        return this.ExtratctorBurnTime > 0;
     }
 
     @SideOnly(Side.CLIENT)
@@ -176,11 +172,10 @@ public class ThermalCrusher extends TileEntity implements ITickable, ISidedInven
         return inventory.getField(0) > 0;
     }
 
-    // Проверяем, есть ли что-то внутри
     private boolean isSomethingInput(){
         boolean isSomething = false;
-        for(int i = 0; i < slotsinput; i++){
-            if(!this.CrusherItemStacks.get(i).isEmpty())
+        for(int i = 0; i < this.slotsinput; i++){
+            if(!this.ExtractorItemStacks.get(i).isEmpty())
             {
                 isSomething = true;
                 break;
@@ -190,33 +185,32 @@ public class ThermalCrusher extends TileEntity implements ITickable, ISidedInven
     }
 
     private int getFuelSlotId(){
-        return slotsinput;
+        return this.slotsinput;
     }
 
-    // Основной метод цикла
     public void update()
     {
+
         boolean flag = this.isBurning();
         boolean flag1 = false;
 
-        // Если печь горит, медленно тратим топливо
         if (this.isBurning())
         {
-            --this.CrusherBurnTime;
+            --this.ExtratctorBurnTime;
         }
 
         if (!this.world.isRemote)
         {
-            // Получаем стак в слоте топлива
-            ItemStack fuel = this.CrusherItemStacks.get(getFuelSlotId());
+
+            ItemStack fuel = this.ExtractorItemStacks.get(getFuelSlotId());
 
             if (this.isBurning() || !fuel.isEmpty() && isSomethingInput())
             {
-                // Если горит и рецепт проходит проверку, то тратим топливо
+
                 if (!this.isBurning() && this.canSmelt())
                 {
-                    this.CrusherBurnTime = getItemBurnTime(fuel);
-                    this.currentItemBurnTime = this.CrusherBurnTime;
+                    this.ExtratctorBurnTime = getItemBurnTime(fuel);
+                    this.currentItemBurnTime = this.ExtratctorBurnTime;
 
                     if (this.isBurning())
                     {
@@ -226,11 +220,10 @@ public class ThermalCrusher extends TileEntity implements ITickable, ISidedInven
                         {
                             Item item = fuel.getItem();
                             fuel.shrink(1);
-
                             if (fuel.isEmpty())
                             {
                                 ItemStack fuelStack = item.getContainerItem(fuel);
-                                this.CrusherItemStacks.set(getFuelSlotId(), fuelStack);
+                                this.ExtractorItemStacks.set(getFuelSlotId(), fuelStack);
                             }
                         }
                     }
@@ -238,21 +231,21 @@ public class ThermalCrusher extends TileEntity implements ITickable, ISidedInven
 
                 if (this.isBurning() && this.canSmelt())
                 {
-                    // Наблюдаем за процессом
+
                     ModMain.log("Процесс плавления: " + this.cookTime + " из " + this.totalCookTime);
                     ++this.cookTime;
 
                     if (this.cookTime == this.totalCookTime)
                     {
                         this.cookTime = 0;
-                        this.totalCookTime = TCrusherBurnRecipies.getCookTimeForItems(getInputSlots());
+                        this.totalCookTime = AlchemyExtractorRecipies.getCookTimeForItems(getInputSlots());
                         this.smeltItem();
                         flag1 = true;
                     }
                 }
                 else
                 {
-                    // Если процесс не идёт, сбрасываем время
+
                     ModMain.log("Печь не горит, либо невозможно произвести прцоесс");
                     this.cookTime = 0;
                 }
@@ -265,7 +258,7 @@ public class ThermalCrusher extends TileEntity implements ITickable, ISidedInven
             if (flag != this.isBurning())
             {
                 flag1 = true;
-                BlockThermalCrusher.setState(this.isBurning(), this.world, this.pos);
+                BlockAlchemyExtractor.setState(this.isBurning(), this.world, this.pos);
             }
         }
 
@@ -275,24 +268,30 @@ public class ThermalCrusher extends TileEntity implements ITickable, ISidedInven
         }
     }
 
-    // Получаем список активных слотов входящих веществ
+
     private List<Item> getInputSlots(){
 
-        ArrayList<Item> inputItemsStacks = new ArrayList<>();
+        ArrayList<Item> inputItemsStacks = new ArrayList<Item>();
         for(int i = 0; i < slotsinput; i++){
-            if(!this.CrusherItemStacks.get(i).isEmpty())
-                inputItemsStacks.add(this.CrusherItemStacks.get(i).getItem());
+            if(!this.ExtractorItemStacks.get(i).isEmpty())
+                inputItemsStacks.add(this.ExtractorItemStacks.get(i).getItem());
         }
 
         return inputItemsStacks;
     }
 
-    // Проверка на то, можно ли провести такой рецепт
+    public int getCookTime(NonNullList<Item> stacks)
+    {
+        return AlchemyExtractorRecipies.getCookTimeForItems(stacks);
+    }
+
+
     private boolean canSmelt()
     {
         boolean inputChecker = false;
-        for(int i = 0; i < slotsinput; i++){
-            if (!this.CrusherItemStacks.get(i).isEmpty())
+
+        for(int i = 0; i < this.slotsinput; i++){
+            if (!this.ExtractorItemStacks.get(i).isEmpty())
             {
                 inputChecker = true;
                 break;
@@ -302,73 +301,72 @@ public class ThermalCrusher extends TileEntity implements ITickable, ISidedInven
         if(!inputChecker)
             return false;
 
-        ItemStack result = new ItemStack(TCrusherBurnRecipies.getResultForItems(getInputSlots()));
+        ItemStack result = new ItemStack(AlchemyExtractorRecipies.getResultForItems(getInputSlots()));
 
-        if (result.isEmpty()) return false;
+        if (result.isEmpty())
+        {
+            return false;
+        }
         else
         {
-            ItemStack resultSlot = this.CrusherItemStacks.get(slotsinput + 1); // берём слот выше входящих + топливо
+            ItemStack resultSlot = this.ExtractorItemStacks.get(this.slotsinput + 1);
             if (resultSlot.isEmpty())
                 return true;
             else if (!resultSlot.isItemEqual(result))
                 return false;
-            else if (resultSlot.getCount() + result.getCount() <= this.getInventoryStackLimit() && resultSlot.getCount() + result.getCount() <= resultSlot.getMaxStackSize())  // Forge fix: make furnace respect stack sizes in furnace recipes
+            else if (resultSlot.getCount() + result.getCount() <= this.getInventoryStackLimit() && resultSlot.getCount() + result.getCount() <= resultSlot.getMaxStackSize())
                 return true;
             else
-                return resultSlot.getCount() + result.getCount() <= result.getMaxStackSize(); // Forge fix: make furnace respect stack sizes in furnace recipes
+                return resultSlot.getCount() + result.getCount() <= result.getMaxStackSize();
         }
     }
 
-    // Конец переплавки (цикла)
     public void smeltItem()
     {
         if (this.canSmelt())
         {
-            int resultSlotId = slotsinput + 1;
+            int resultSlotId = this.slotsinput + 1;
             List<Item> input = getInputSlots();
-            ItemStack result = new ItemStack(TCrusherBurnRecipies.getResultForItems(input));
-            ItemStack resultSlot = this.CrusherItemStacks.get(resultSlotId);
-            List<Item> output = TCrusherBurnRecipies.getSubsForItems(input);
+            ItemStack result = new ItemStack(AlchemyExtractorRecipies.getResultForItems(input));
+            ItemStack resultSlot = this.ExtractorItemStacks.get(resultSlotId);
+            List<Item> output = AlchemyExtractorRecipies.getSubsForItems(input);
 
-            // Основной результат
             if (resultSlot.isEmpty())
             {
-                this.CrusherItemStacks.set(resultSlotId, result.copy());
+                this.ExtractorItemStacks.set(resultSlotId, result.copy());
             }
             else if (resultSlot.getItem() == result.getItem())
             {
                 resultSlot.grow(result.getCount());
             }
 
-            // Добрасываем суб-продукты в слоты исходящих
-            for(int item = 0; item < output.size(); item++)
-            {
+            for(int item = 0; item < output.size(); item++){
                 if(output.get(item) == null)
                     continue;
-                for(int slot = resultSlotId + 1; slot < slotscount; slot++)
-                {
-                    if (this.CrusherItemStacks.get(slot).isEmpty())
-                    {
-                        this.CrusherItemStacks.set(slot, new ItemStack(output.get(item)));
-                        break;
-                    }
-                    else if (this.CrusherItemStacks.get(slot).getItem() == output.get(item))
-                    {
-                        this.CrusherItemStacks.get(slot).grow(1);
-                        break;
+                for(int slot = resultSlotId + 1; slot < this.slotscount; slot++){
+                    if (endburn = true) {
+                        if (this.ExtractorItemStacks.get(slot).isEmpty()) {
+                            this.ExtractorItemStacks.set(slot, new ItemStack(output.get(item)));
+                            break;
+                        } else if (this.ExtractorItemStacks.get(slot).getItem() == output.get(item)) {
+                            this.ExtractorItemStacks.get(slot).grow(1);
+                            break;
+                        }
                     }
                 }
             }
 
-            for(int i = 0; i < slotsinput; i++){
-                if(!this.CrusherItemStacks.get(i).isEmpty())
-                    this.CrusherItemStacks.get(i).shrink(1);
+            for(int i = 0; i < this.slotsinput; i++){
+                if(!this.ExtractorItemStacks.get(i).isEmpty())
+                    this.ExtractorItemStacks.get(i).shrink(1);
             }
         }
     }
 
-    // Время пережигания, вынесено в отдельный класс
-
+    public static int getItemBurnTime(ItemStack stack)
+    {
+        return TilesFuel.getFuelTime(stack);
+    }
 
     public static boolean isItemFuel(ItemStack stack)
     {
@@ -397,6 +395,7 @@ public class ThermalCrusher extends TileEntity implements ITickable, ISidedInven
 
     public boolean isItemValidForSlot(int index, ItemStack stack)
     {
+
         if (index == 2)
         {
             return false;
@@ -407,7 +406,7 @@ public class ThermalCrusher extends TileEntity implements ITickable, ISidedInven
         }
         else
         {
-            ItemStack itemstack = this.CrusherItemStacks.get(1);
+            ItemStack itemstack = this.ExtractorItemStacks.get(1);
             return isItemFuel(stack) || SlotFurnaceFuel.isBucket(stack) && itemstack.getItem() != Items.BUCKET;
         }
     }
@@ -435,20 +434,18 @@ public class ThermalCrusher extends TileEntity implements ITickable, ISidedInven
         {
             Item item = stack.getItem();
 
-            return item == Items.WATER_BUCKET || item == Items.BUCKET;
+            if (item != Items.WATER_BUCKET && item != Items.BUCKET)
+            {
+                return false;
+            }
         }
 
         return true;
     }
 
-    public String getGuiID()
-    {
-        return Reference.MOD_ID + ":thermalcrusher";
-    }
-
     public Container createContainer(InventoryPlayer playerInventory, EntityPlayer playerIn)
     {
-        return new ContainerThermalCrusher(playerInventory, this);
+        return new ContainerAlchemyExtractor(playerInventory, this);
     }
 
     public int getField(int id)
@@ -456,7 +453,7 @@ public class ThermalCrusher extends TileEntity implements ITickable, ISidedInven
         switch (id)
         {
             case 0:
-                return this.CrusherBurnTime;
+                return this.ExtratctorBurnTime;
             case 1:
                 return this.currentItemBurnTime;
             case 2:
@@ -473,7 +470,7 @@ public class ThermalCrusher extends TileEntity implements ITickable, ISidedInven
         switch (id)
         {
             case 0:
-                this.CrusherBurnTime = value;
+                this.ExtratctorBurnTime = value;
                 break;
             case 1:
                 this.currentItemBurnTime = value;
@@ -493,7 +490,7 @@ public class ThermalCrusher extends TileEntity implements ITickable, ISidedInven
 
     public void clear()
     {
-        this.CrusherItemStacks.clear();
+        this.ExtractorItemStacks.clear();
     }
 
     net.minecraftforge.items.IItemHandler handlerTop = new net.minecraftforge.items.wrapper.SidedInvWrapper(this, net.minecraft.util.EnumFacing.UP);
@@ -513,5 +510,26 @@ public class ThermalCrusher extends TileEntity implements ITickable, ISidedInven
             else
                 return (T) handlerSide;
         return super.getCapability(capability, facing);
+    }
+
+    @Override
+    @Nullable
+    public SPacketUpdateTileEntity getUpdatePacket() {
+
+        return new SPacketUpdateTileEntity(this.pos, 3, this.getUpdateTag());
+    }
+
+    @Override
+    public NBTTagCompound getUpdateTag() {
+
+        return this.writeToNBT(new NBTTagCompound());
+    }
+
+    @Override
+    public void onDataPacket(NetworkManager networkManager, SPacketUpdateTileEntity packet) {
+
+        super.onDataPacket(networkManager, packet);
+
+        this.handleUpdateTag(packet.getNbtCompound());
     }
 }

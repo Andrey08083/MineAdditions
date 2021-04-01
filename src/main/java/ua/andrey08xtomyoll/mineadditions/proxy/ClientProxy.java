@@ -15,7 +15,6 @@ public class ClientProxy extends CommonProxy
     {
     	super.preInit(event);
         EntityRegistry.initModels();
-        System.out.println("Lds");
     }
 
     @Override

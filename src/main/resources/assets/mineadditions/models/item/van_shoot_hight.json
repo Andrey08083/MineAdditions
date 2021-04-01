@@ -1,0 +1,6 @@
+{
+	"parent": "item/generated",
+	"textures": {
+		"layer0": "mineadditions:items/van_shoot_hight"
+	}
+}

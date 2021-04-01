@@ -18,6 +18,9 @@ tile.mazurium_ore.name=Mazurium Ore
 item.labatium_pickaxe.name=Labatium Pickaxe
 
 #Machines
-
 tile.thermalcrusher.name=Thermal Crusher
-container.thermalcrusher=Ore Disassembler
+container.thermalcrusher=Thermal Crusher
+tile.alchemy_extractor.name=Alchemy Extractor
+
+#Entities
+entity.Van.name=Van

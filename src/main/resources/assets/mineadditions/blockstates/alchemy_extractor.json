@@ -1,0 +1,22 @@
+{
+  "variants": {
+    "normal": {
+      "model": "mineadditions:alchemy_extractor"
+    },
+    "facing=north": {
+      "model": "mineadditions:alchemy_extractor"
+    },
+    "facing=east": {
+      "model": "mineadditions:alchemy_extractor",
+      "y": 90
+    },
+    "facing=south": {
+      "model": "mineadditions:alchemy_extractor",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "mineadditions:alchemy_extractor",
+      "y": 270
+    }
+  }
+}

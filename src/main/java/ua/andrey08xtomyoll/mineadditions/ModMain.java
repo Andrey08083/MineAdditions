@@ -11,6 +11,7 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 import ua.andrey08xtomyoll.mineadditions.handlers.ConfigHandler;
 import ua.andrey08xtomyoll.mineadditions.network.NetworkUtils;
 import ua.andrey08xtomyoll.mineadditions.proxy.CommonProxy;
+import ua.andrey08xtomyoll.mineadditions.util.AlchemyExtractorRecipies;
 import ua.andrey08xtomyoll.mineadditions.util.TCrusherBurnRecipies;
 import ua.andrey08xtomyoll.mineadditions.util.Reference;
 import ua.andrey08xtomyoll.mineadditions.world.ModWorldGen;
@@ -50,6 +51,7 @@ public class ModMain
     public static void PostInit(FMLPostInitializationEvent event)
     {
     	TCrusherBurnRecipies.init();
+        AlchemyExtractorRecipies.init();
     	proxy.postInit(event);
     }
 
