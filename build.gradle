@@ -5,6 +5,7 @@ buildscript {
     }
     dependencies {
         classpath 'net.minecraftforge.gradle:ForgeGradle:2.3-SNAPSHOT'
+        classpath 'mysql:mysql-connector-java:6.0.6'
     }
 }
 apply plugin: 'net.minecraftforge.gradle.forge'
@@ -40,6 +41,7 @@ dependencies {
     //compile "some.group:artifact:version"
     // https://mvnrepository.com/artifact/com.googlecode.json-simple/json-simple
     compile 'com.googlecode.json-simple:json-simple:1.1.1'
+    compile 'mysql:mysql-connector-java:6.0.6'
     // real examples
     //compile 'com.mod-buildcraft:buildcraft:6.0.8:dev'  // adds buildcraft to the dev env
     //compile 'com.googlecode.efficient-java-matrix-library:ejml:0.24' // adds ejml to the dev env
