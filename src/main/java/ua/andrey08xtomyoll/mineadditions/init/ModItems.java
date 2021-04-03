@@ -7,12 +7,11 @@ import net.minecraft.item.*;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
 import net.minecraftforge.common.util.EnumHelper;
-import ua.andrey08xtomyoll.mineadditions.items.ItemBase;
-import ua.andrey08xtomyoll.mineadditions.items.ItemGlowingBase;
-import ua.andrey08xtomyoll.mineadditions.items.ItemLabatiumFruit;
+import ua.andrey08xtomyoll.mineadditions.items.*;
 import ua.andrey08xtomyoll.mineadditions.items.armor.ArmorBase;
 import ua.andrey08xtomyoll.mineadditions.items.records.RecordBase;
 import ua.andrey08xtomyoll.mineadditions.items.seeds.LabatiumFruitSeed;
+import ua.andrey08xtomyoll.mineadditions.items.seeds.MazuriumFruitSeed;
 import ua.andrey08xtomyoll.mineadditions.items.tools.ToolAxe;
 import ua.andrey08xtomyoll.mineadditions.items.tools.ToolPickaxe;
 import ua.andrey08xtomyoll.mineadditions.items.tools.ToolSpade;
@@ -39,7 +38,7 @@ public class ModItems {
     public static final Item LABATIUM_DUST = new ItemBase("labatium_dust");
     public static final Item MAZURIUM_DUST = new ItemBase("mazurium_dust");
 
-    public static final Item ITEM_VAN_SHOOT = new ItemBase("van_shoot_low");
+    public static final Item ITEM_VAN_SHOOT = new ItemShoot("van_shoot_low");
 
     //Tools
     public static final ItemPickaxe LABATIUM_PICKAXE = new ToolPickaxe("labatium_pickaxe", MATERIAL_LABATIUM);
@@ -56,10 +55,11 @@ public class ModItems {
 
     //Seeds
     public static final Item LABATIUM_FRUIT_SEED = new LabatiumFruitSeed("labatium_fruit_seed");
+    public static final Item MAZURIUM_FRUIT_SEED = new MazuriumFruitSeed("mazurium_fruit_seed");
 
     //food
     public static final Item LABATIUM_FRUIT = new ItemLabatiumFruit("labatium_fruit", 1, false);
-
+    public static final Item MAZURIUM_FRUIT = new ItemMazuriumFruit("mazurium_fruit", 1, false);
     //Records
     public static final Item UNTITLED_RECORD = new RecordBase("untitled_record", ModSounds.untitled_record);
 

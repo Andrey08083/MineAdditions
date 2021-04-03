@@ -5,7 +5,9 @@ item.little_labatium_dust.name=Крихітна купка лабатіумов�
 item.mazurium_dust.name=Мазуріумовий пил
 item.little_mazurium_dust.name=Крихітна купка мазуріумового пилу
 item.labatium_fruit.name=Лабатіумовий фрукт
-item.labatium_fruit_seed.name=Насіння лабатіумове насіння
+item.mazurium_fruit.name=Мазуріумовий фрукт
+item.labatium_fruit_seed.name=Лабатіумове насіння
+item.mazurium_fruit_seed.name=Мазуріумове насіння
 #Blocks
 
 tile.labatium_block.name=Лабатіумовий блок

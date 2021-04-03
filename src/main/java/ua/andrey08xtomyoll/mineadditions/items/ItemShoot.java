@@ -1,12 +1,18 @@
 package ua.andrey08xtomyoll.mineadditions.items;
 
+import net.minecraft.item.Item;
 import ua.andrey08xtomyoll.mineadditions.ModMain;
+import ua.andrey08xtomyoll.mineadditions.init.ModItems;
+import ua.andrey08xtomyoll.mineadditions.util.IHasModel;
 
-public class ItemShoot extends ItemBase
+public class ItemShoot extends Item implements IHasModel
 {
 
     public ItemShoot(String name) {
-        super(name);
+        setUnlocalizedName(name);
+        setRegistryName(name);
+        this.setCreativeTab(null);
+        ModItems.ITEMS.add(this);
     }
 
     @Override

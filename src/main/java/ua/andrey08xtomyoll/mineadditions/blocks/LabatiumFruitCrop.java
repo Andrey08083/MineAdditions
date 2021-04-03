@@ -44,7 +44,6 @@ public class LabatiumFruitCrop extends BlockCrops implements IHasModel
 
         ModBlocks.BLOCKS.add(this);
         ModItems.ITEMS.add(new ItemBlock(this).setRegistryName(getRegistryName()));
-        //ModItems.ITEMS.add(new ItemBlock(this).setRegistryName(this.getRegistryName()));
     }
 
     @Override
@@ -84,7 +83,7 @@ public class LabatiumFruitCrop extends BlockCrops implements IHasModel
     @Override
     protected int getBonemealAgeIncrease(World world)
     {
-        return 0;
+        return 1;
     }
 
     @Override

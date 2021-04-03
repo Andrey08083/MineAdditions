@@ -20,6 +20,7 @@ public class ModBlocks
     public static final Block THERMALCRUSHER = new BlockThermalCrusher("thermalcrusher", Material.IRON, false);
     public static final Block THERMALCRUSHER_ON = new BlockThermalCrusher("thermalcrusher_on", Material.IRON, true);
     public static final Block LABATIUM_FRUIT_CROP = new LabatiumFruitCrop("labatium_fruit_crop");
+    public static final Block MAZURIUM_FRUIT_CROP = new MazuriumFruitCrop("mazurium_fruit_crop");
     public static final Block ALCHEMY_EXTRACTOR = new BlockAlchemyExtractor("alchemy_extractor", Material.IRON, false);
     public static final Block ALCHEMY_EXTRACTOR_ON = new BlockAlchemyExtractor("alchemy_extractor_on", Material.IRON, true);
 	
