@@ -42,5 +42,13 @@
         "name": "mineadditions:van_hurt"
       }
     ]
+  },
+  "door_sound": {
+    "category": "block",
+    "sounds": [
+      {
+        "name": "mineadditions:door_sound"
+      }
+    ]
   }
 }

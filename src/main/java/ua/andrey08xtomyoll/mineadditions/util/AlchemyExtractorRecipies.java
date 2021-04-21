@@ -14,7 +14,6 @@ import java.util.List;
 
 public class AlchemyExtractorRecipies {
 
-    // Исходные
     private static final ArrayList<List<Item>> inputList = new ArrayList<List<Item>>();
     // Основной результат
     private static final ArrayList<Item> resultList = new ArrayList<Item>();
@@ -24,7 +23,6 @@ public class AlchemyExtractorRecipies {
     private static final ArrayList<Integer> timeList = new ArrayList<Integer>();
 
 
-    // Инициализируется в главном классе
     public static void init() {
 		/* Рецепты состоят из:
 		- int время плавления

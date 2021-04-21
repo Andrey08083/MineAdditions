@@ -32,7 +32,7 @@ public class ContainerThermalCrusher extends Container
         }
         // Топливо
         this.addSlotToContainer(new SlotFurnaceFuel(furnaceInventory, ThermalCrusher.slotsinput, 57, 53));
-        // Исходящие слоты (справа налево, в нижнем правом углу)
+
         for(int n = (ThermalCrusher.slotsinput + 1); n < ThermalCrusher.slotscount; n++){
         	this.addSlotToContainer(new SlotFurnaceOutput(playerInventory.player, furnaceInventory, n, 120, 44 - (n - (ThermalCrusher.slotsinput + 1)) * 18));
         }

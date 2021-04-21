@@ -13,7 +13,8 @@ public class ModSounds {
     public static List<SoundEvent> sounds = new ArrayList();
 
     //Sounds
-    public static SoundEvent untitled_record = initSound("untitled_record", "untitled_record");
+    public static SoundEvent untitledRecord = initSound("untitled_record", "untitled_record");
+    public static SoundEvent doorSound = initSound("door_sound", "door_sound");
     public static SoundEvent van_shoot_sound = initSound("van_shoot_sound", "van_shoot_sound");
     public static SoundEvent van_ambient_sound = initSound("van_ambient_sound", "van_ambient_sound");
     public static SoundEvent van_death_sound = initSound("van_death_sound", "van_death_sound");

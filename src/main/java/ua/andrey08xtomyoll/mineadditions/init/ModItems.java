@@ -4,19 +4,17 @@ import net.minecraft.init.Blocks;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.*;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.SoundEvent;
 import net.minecraftforge.common.util.EnumHelper;
 import ua.andrey08xtomyoll.mineadditions.items.*;
 import ua.andrey08xtomyoll.mineadditions.items.armor.ArmorBase;
-import ua.andrey08xtomyoll.mineadditions.items.records.RecordBase;
+import ua.andrey08xtomyoll.mineadditions.items.armor.ChestplateBase;
+import ua.andrey08xtomyoll.mineadditions.items.records.UntitledRecord;
 import ua.andrey08xtomyoll.mineadditions.items.seeds.LabatiumFruitSeed;
 import ua.andrey08xtomyoll.mineadditions.items.seeds.MazuriumFruitSeed;
 import ua.andrey08xtomyoll.mineadditions.items.tools.ToolAxe;
 import ua.andrey08xtomyoll.mineadditions.items.tools.ToolPickaxe;
 import ua.andrey08xtomyoll.mineadditions.items.tools.ToolSpade;
 import ua.andrey08xtomyoll.mineadditions.items.tools.ToolSword;
-import ua.andrey08xtomyoll.mineadditions.util.Reference;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -42,15 +40,16 @@ public class ModItems {
 
     //Tools
     public static final ItemPickaxe LABATIUM_PICKAXE = new ToolPickaxe("labatium_pickaxe", MATERIAL_LABATIUM);
+    public static final ItemPickaxe LABATIUM_HOE = new ToolPickaxe("labatium_hoe", MATERIAL_LABATIUM);
     public static final ItemSword LABATIUM_SWORD = new ToolSword("labatium_sword", MATERIAL_LABATIUM);
     public static final ItemAxe LABATIUM_AXE = new ToolAxe("labatium_axe", MATERIAL_LABATIUM);
     public static final ItemSpade LABATIUM_SHOVEL = new ToolSpade("labatium_shovel", MATERIAL_LABATIUM);
 
     //Armor
-    public static final ItemArmor.ArmorMaterial ARMOR_LABATIUM = EnumHelper.addArmorMaterial("armormateral_labatium", "armormaterial_labatium", 9, new int[]{2, 4, 6, 3}, 7, SoundEvents.ITEM_ARMOR_EQUIP_IRON, 2.0F).setRepairItem(new ItemStack(Item.getItemFromBlock(Blocks.OBSIDIAN)));
+    public static final ItemArmor.ArmorMaterial ARMOR_LABATIUM = EnumHelper.addArmorMaterial("armormateral_labatium", "armormaterial_labatium", 30, new int[]{10, 10, 10, 10}, 7, SoundEvents.ITEM_ARMOR_EQUIP_IRON, 10.0F).setRepairItem(new ItemStack(ModItems.LABATIUM));
     public static final ItemArmor LABATIUM_BOOTS = new ArmorBase("labatium_boots", ARMOR_LABATIUM, 1, EntityEquipmentSlot.FEET);
     public static final ItemArmor LABATIUM_LEGGS = new ArmorBase("labatium_leggings", ARMOR_LABATIUM, 2, EntityEquipmentSlot.LEGS);
-    public static final ItemArmor LABATIUM_CHESTPLATE = new ArmorBase("labatium_chestplate", ARMOR_LABATIUM, 1, EntityEquipmentSlot.CHEST);
+    public static final ChestplateBase LABATIUM_CHESTPLATE = new ChestplateBase("labatium_chestplate", ARMOR_LABATIUM, 1, EntityEquipmentSlot.CHEST);
     public static final ItemArmor LABATIUM_HEAD = new ArmorBase("labatium_helmet", ARMOR_LABATIUM, 1, EntityEquipmentSlot.HEAD);
 
     //Seeds
@@ -61,6 +60,6 @@ public class ModItems {
     public static final Item LABATIUM_FRUIT = new ItemLabatiumFruit("labatium_fruit", 1, false);
     public static final Item MAZURIUM_FRUIT = new ItemMazuriumFruit("mazurium_fruit", 1, false);
     //Records
-    public static final Item UNTITLED_RECORD = new RecordBase("untitled_record", ModSounds.untitled_record);
+    public static final Item UNTITLED_RECORD = new UntitledRecord("untitled_record", ModSounds.untitledRecord);
 
 }

@@ -7,10 +7,10 @@ import ua.andrey08xtomyoll.mineadditions.init.ModItems;
 
 import java.util.Random;
 
-public class LabatiumBlock extends BlockBase
+public class ModOreBlock extends BlockBase
 {
 
-    public LabatiumBlock(String name, Material material)
+    public ModOreBlock(String name, Material material)
     {
         super(name, material);
         setHardness(6.0F);

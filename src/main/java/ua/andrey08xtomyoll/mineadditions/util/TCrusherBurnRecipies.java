@@ -12,7 +12,6 @@ import ua.andrey08xtomyoll.mineadditions.init.ModItems;
 public class TCrusherBurnRecipies
 {
 
-    // Исходные
     private static final ArrayList<List<Item>> inputList 			= new ArrayList<List<Item>>();
     // Основной результат
     private static final ArrayList<Item> resultList 				= new ArrayList<Item>();
@@ -23,7 +22,6 @@ public class TCrusherBurnRecipies
 
 
 
-    // Инициализируется в главном классе
     public static void init()
     {
 		/* Рецепты состоят из:
