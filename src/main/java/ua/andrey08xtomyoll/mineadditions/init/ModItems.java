@@ -1,10 +1,10 @@
 package ua.andrey08xtomyoll.mineadditions.init;
 
-import net.minecraft.init.Blocks;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.*;
 import net.minecraftforge.common.util.EnumHelper;
+import ua.andrey08xtomyoll.mineadditions.handlers.ConfigHandler;
 import ua.andrey08xtomyoll.mineadditions.items.*;
 import ua.andrey08xtomyoll.mineadditions.items.armor.ArmorBase;
 import ua.andrey08xtomyoll.mineadditions.items.armor.ChestplateBase;
@@ -21,10 +21,9 @@ import java.util.List;
 
 public class ModItems {
 
-    ModItems instance  = new ModItems();
-
     //Materials
     public static final Item.ToolMaterial MATERIAL_LABATIUM = EnumHelper.addToolMaterial("material_labatium", 4, 3000, 15.0F, 15.0F, 20);
+    public static final ItemArmor.ArmorMaterial ARMOR_LABATIUM = EnumHelper.addArmorMaterial("armormateral_labatium", "armormaterial_labatium", ConfigHandler.labatiumSettings.overallResistance, new int[]{ConfigHandler.labatiumSettings.helmetResistance, ConfigHandler.labatiumSettings.chestplateResistance, ConfigHandler.labatiumSettings.leggingsResistance, ConfigHandler.labatiumSettings.bootsResistance}, 7, SoundEvents.ITEM_ARMOR_EQUIP_IRON, ConfigHandler.labatiumSettings.overallToughness).setRepairItem(new ItemStack(ModItems.LABATIUM));
 
 
     //Items
@@ -46,7 +45,6 @@ public class ModItems {
     public static final ItemSpade LABATIUM_SHOVEL = new ToolSpade("labatium_shovel", MATERIAL_LABATIUM);
 
     //Armor
-    public static final ItemArmor.ArmorMaterial ARMOR_LABATIUM = EnumHelper.addArmorMaterial("armormateral_labatium", "armormaterial_labatium", 30, new int[]{10, 10, 10, 10}, 7, SoundEvents.ITEM_ARMOR_EQUIP_IRON, 10.0F).setRepairItem(new ItemStack(ModItems.LABATIUM));
     public static final ItemArmor LABATIUM_BOOTS = new ArmorBase("labatium_boots", ARMOR_LABATIUM, 1, EntityEquipmentSlot.FEET);
     public static final ItemArmor LABATIUM_LEGGS = new ArmorBase("labatium_leggings", ARMOR_LABATIUM, 2, EntityEquipmentSlot.LEGS);
     public static final ChestplateBase LABATIUM_CHESTPLATE = new ChestplateBase("labatium_chestplate", ARMOR_LABATIUM, 1, EntityEquipmentSlot.CHEST);

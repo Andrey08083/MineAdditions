@@ -10,7 +10,7 @@ public class RecordBase extends ItemRecord implements IHasModel {
     public RecordBase(String name, SoundEvent soundIn) {
         super(name, soundIn);
         setRegistryName(name);
-        setUnlocalizedName(name);
+        setTranslationKey(name);
         ModItems.ITEMS.add(this);
     }
 

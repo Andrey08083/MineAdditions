@@ -12,7 +12,7 @@ public class ArmorBase extends ItemArmor implements IHasModel
     {
         super(materialIn, renderIndexIn, equipmentSlotIn);
         this.setRegistryName(name);
-        this.setUnlocalizedName(name);
+        this.setTranslationKey(name);
         ModItems.ITEMS.add(this);
     }
 

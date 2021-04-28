@@ -40,7 +40,7 @@ public class BlockAlchemyExtractor extends BlockContainer implements IHasModel {
     public BlockAlchemyExtractor(String name, Material material, boolean isBurning)
     {
         super(material);
-        this.setUnlocalizedName(name);
+        this.setTranslationKey(name);
         this.setRegistryName(name);
         this.setCreativeTab(isBurning ? null : CreativeTabs.DECORATIONS);
         this.setLightLevel(isBurning ? 0.875F : 0.100F);
@@ -238,7 +238,7 @@ public class BlockAlchemyExtractor extends BlockContainer implements IHasModel {
      */
     public IBlockState getStateFromMeta(int meta)
     {
-        EnumFacing enumfacing = EnumFacing.getFront(meta);
+        EnumFacing enumfacing = EnumFacing.byIndex(meta);
 
         if (enumfacing.getAxis() == EnumFacing.Axis.Y)
         {
@@ -274,7 +274,6 @@ public class BlockAlchemyExtractor extends BlockContainer implements IHasModel {
         return state.withRotation(mirrorIn.toRotation(state.getValue(FACING)));
     }
 
-    @Override
     public BlockRenderLayer getBlockLayer() {
         return BlockRenderLayer.CUTOUT_MIPPED;
     }

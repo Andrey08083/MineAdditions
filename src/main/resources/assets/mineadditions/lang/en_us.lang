@@ -25,4 +25,7 @@ container.thermalcrusher=Thermal Crusher
 tile.alchemy_extractor.name=Alchemy Extractor
 
 #Entities
-entity.Van.name=Van
+
+untitled_record.tooltip=Тултіп
+
+container.alchemy_extractor=1entity.Van.name=Van

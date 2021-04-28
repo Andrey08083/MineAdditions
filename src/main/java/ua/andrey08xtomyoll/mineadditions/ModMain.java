@@ -8,7 +8,7 @@ import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
 import net.minecraftforge.fml.common.network.simpleimpl.SimpleNetworkWrapper;
 import net.minecraftforge.fml.common.registry.GameRegistry;
-import ua.andrey08xtomyoll.mineadditions.handlers.ConfigHandler;
+import ua.andrey08xtomyoll.mineadditions.handlers.DeprecatedConfigHandler;
 import ua.andrey08xtomyoll.mineadditions.network.NetworkUtils;
 import ua.andrey08xtomyoll.mineadditions.proxy.CommonProxy;
 import ua.andrey08xtomyoll.mineadditions.util.AlchemyExtractorRecipies;
@@ -32,7 +32,7 @@ public class ModMain
     public static void PreInit(FMLPreInitializationEvent event)
     {
         Reference.CONFIG_FOLDER = event.getModConfigurationDirectory().getAbsolutePath();
-        new ConfigHandler().initConfig();
+        //new DeprecatedConfigHandler().initConfig();
         GameRegistry.registerWorldGenerator(new ModWorldGen(), 3);
         
         // База для пакетной системы

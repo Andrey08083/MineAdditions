@@ -30,7 +30,7 @@ public class GachiDoor extends BlockDoor implements IHasModel
     public GachiDoor(String name, Material materialIn, CreativeTabs tab)
     {
         super(materialIn);
-        setUnlocalizedName(name);
+        setTranslationKey(name);
         setRegistryName(name);
         setCreativeTab(tab);
 
@@ -40,7 +40,7 @@ public class GachiDoor extends BlockDoor implements IHasModel
 
     @SideOnly(Side.CLIENT)
     public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
-        if (this.blockMaterial == Material.IRON) {
+        if (this.material == Material.IRON) {
             return false;
         } else {
             BlockPos blockpos = state.getValue(HALF) == BlockDoor.EnumDoorHalf.LOWER ? pos : pos.down();

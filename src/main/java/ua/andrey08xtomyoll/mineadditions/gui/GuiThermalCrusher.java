@@ -38,7 +38,7 @@ public class GuiThermalCrusher extends GuiContainer
 
     protected void drawGuiContainerForegroundLayer(int mouseX, int mouseY)
     {
-        String name = I18n.format(ModBlocks.THERMALCRUSHER.getUnlocalizedName() + ".name");
+        String name = I18n.format(ModBlocks.THERMALCRUSHER.getTranslationKey() + ".name");
         this.fontRenderer.drawString(name, 125 - this.fontRenderer.getStringWidth(name) / 2, 6, 4210752);
         this.fontRenderer.drawString(this.playerInventory.getDisplayName().getUnformattedText(), 8, this.ySize - 96 + 2, 4210752);
     }

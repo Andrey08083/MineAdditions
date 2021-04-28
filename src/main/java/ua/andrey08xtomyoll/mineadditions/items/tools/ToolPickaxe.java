@@ -2,18 +2,13 @@ package ua.andrey08xtomyoll.mineadditions.items.tools;
 
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.inventory.EntityEquipmentSlot;
-import net.minecraft.item.EnumAction;
 import net.minecraft.item.ItemPickaxe;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.EnumActionResult;
-import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.RayTraceResult;
-import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.text.TextComponentString;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
@@ -22,15 +17,12 @@ import ua.andrey08xtomyoll.mineadditions.ModMain;
 import ua.andrey08xtomyoll.mineadditions.init.ModItems;
 import ua.andrey08xtomyoll.mineadditions.util.IHasModel;
 
-import java.util.List;
-import java.util.Objects;
-
 public class ToolPickaxe extends ItemPickaxe implements IHasModel
 {
     public ToolPickaxe(String name, ToolMaterial material)
     {
         super(material);
-        setUnlocalizedName(name);
+        setTranslationKey(name);
         setRegistryName(name);
         setCreativeTab(CreativeTabs.TOOLS);
         ModItems.ITEMS.add(this);

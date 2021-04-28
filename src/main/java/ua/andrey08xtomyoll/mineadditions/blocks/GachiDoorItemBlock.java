@@ -37,8 +37,8 @@ public class GachiDoorItemBlock extends ItemBlock
             if(player.canPlayerEdit(pos, facing, stack) && this.block.canPlaceBlockAt(worldIn, pos))
             {
                 EnumFacing playerFacing = EnumFacing.fromAngle((double)player.rotationYaw);
-                int x = playerFacing.getFrontOffsetX();
-                int z = playerFacing.getFrontOffsetZ();
+                int x = playerFacing.getXOffset();
+                int z = playerFacing.getZOffset();
                 boolean flag = x < 0 && hitZ < 0.5f || x > 0 && hitZ > 0.5f || z < 0 && hitX < 0.5F || z > 0 && hitX > 0.5F;
                 placeDoor(worldIn, pos, playerFacing, this.block, flag);
 

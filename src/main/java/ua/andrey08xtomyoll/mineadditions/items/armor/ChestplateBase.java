@@ -6,6 +6,7 @@ import net.minecraft.item.ItemArmor;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 import ua.andrey08xtomyoll.mineadditions.ModMain;
+import ua.andrey08xtomyoll.mineadditions.init.ModItems;
 import ua.andrey08xtomyoll.mineadditions.util.IHasModel;
 
 import javax.annotation.Nonnull;
@@ -17,25 +18,11 @@ public class ChestplateBase extends ArmorBase implements IHasModel
     public ChestplateBase(String name, ItemArmor.ArmorMaterial materialIn, int renderIndexIn, EntityEquipmentSlot equipmentSlotIn)
     {
         super(name, materialIn, renderIndexIn, equipmentSlotIn);
-        /*this.maxStackSize = 1;
-        this.setMaxDamage(432);
-        this.addPropertyOverride(new ResourceLocation("broken"), new IItemPropertyGetter()
-        {
-            @SideOnly(Side.CLIENT)
-            public float apply(ItemStack stack, @Nullable World worldIn, @Nullable EntityLivingBase entityIn)
-            {
-                return ItemElytra.isUsable(stack) ? 0.0F : 1.0F;
-            }
-        });
-        BlockDispenser.DISPENSE_BEHAVIOR_REGISTRY.putObject(this, ItemArmor.DISPENSER_BEHAVIOR);*/
-        /*this.setRegistryName(name);
-        this.setUnlocalizedName(name);
-        ModItems.ITEMS.add(this);*/
     }
 
 
     public void onArmorTick(@Nonnull World world, @Nonnull EntityPlayer player, @Nonnull ItemStack stack) {
-        if (player.getItemStackFromSlot(EntityEquipmentSlot.CHEST).getUnlocalizedName().equals(this.getUnlocalizedName())) {
+        if (player.getItemStackFromSlot(EntityEquipmentSlot.CHEST).getTranslationKey().equals(this.getTranslationKey())) {
             player.capabilities.allowFlying = true;
             hasFlyMode = true;
         }

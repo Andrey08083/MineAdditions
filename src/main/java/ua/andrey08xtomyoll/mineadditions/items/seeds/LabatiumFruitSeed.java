@@ -23,7 +23,7 @@ public class LabatiumFruitSeed extends Item implements IHasModel, IPlantable
     public LabatiumFruitSeed(String name)
     {
         setRegistryName(name);
-        setUnlocalizedName(name);
+        setTranslationKey(name);
         setCreativeTab(CreativeTabs.MISC);
 
         ModItems.ITEMS.add(this);

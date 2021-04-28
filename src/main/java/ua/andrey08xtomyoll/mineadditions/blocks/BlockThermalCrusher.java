@@ -46,7 +46,7 @@ public class BlockThermalCrusher extends BlockContainer implements IHasModel{
 	public BlockThermalCrusher(String name, Material material, boolean isBurning)
     {
         super(material);
-        this.setUnlocalizedName(name);
+        this.setTranslationKey(name);
         this.setRegistryName(name);
         this.setCreativeTab(isBurning ? null : CreativeTabs.DECORATIONS);
         this.setLightLevel(isBurning ? 0.875F : 0.100F);
@@ -242,7 +242,7 @@ public class BlockThermalCrusher extends BlockContainer implements IHasModel{
      */
     public IBlockState getStateFromMeta(int meta)
     {
-        EnumFacing enumfacing = EnumFacing.getFront(meta);
+        EnumFacing enumfacing = EnumFacing.byIndex(meta);
 
         if (enumfacing.getAxis() == EnumFacing.Axis.Y)
         {

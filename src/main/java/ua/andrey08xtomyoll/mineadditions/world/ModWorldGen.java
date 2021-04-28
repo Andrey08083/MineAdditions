@@ -7,31 +7,28 @@ import net.minecraft.world.chunk.IChunkProvider;
 import net.minecraft.world.gen.IChunkGenerator;
 import net.minecraft.world.gen.feature.WorldGenMinable;
 import net.minecraftforge.fml.common.IWorldGenerator;
+import ua.andrey08xtomyoll.mineadditions.handlers.ConfigHandler;
 import ua.andrey08xtomyoll.mineadditions.init.ModBlocks;
 
 import java.util.Random;
 
-public class ModWorldGen implements IWorldGenerator
-{
+public class ModWorldGen implements IWorldGenerator {
+
     @Override
-    public void generate(Random random, int ChunkX, int ChunkZ, World world, IChunkGenerator chunkGenerator, IChunkProvider chunkProvider)
-    {
-        if(world.provider.getDimension() == 0)
-        {
+    public void generate(Random random, int ChunkX, int ChunkZ, World world, IChunkGenerator chunkGenerator, IChunkProvider chunkProvider) {
+        if (world.provider.getDimension() == 0) {
             generateOverworld(random, ChunkX, ChunkZ, world, chunkGenerator, chunkProvider);
         }
     }
 
-    private void generateOverworld(Random random, int ChunkX, int ChunkZ, World world, IChunkGenerator chunkGenerator, IChunkProvider chunkProvider)
-    {
-        generateOre(ModBlocks.LABATIUM_ORE.getDefaultState(), world, random, ChunkX * 16, ChunkZ * 16, 8, 35, random.nextInt(7) + 4, 10);
-        generateOre(ModBlocks.MAZURIUM_ORE.getDefaultState(), world, random, ChunkX * 16, ChunkZ * 16, 8, 35, random.nextInt(7) + 4, 10);
+    private void generateOverworld(Random random, int ChunkX, int ChunkZ, World world, IChunkGenerator chunkGenerator, IChunkProvider chunkProvider) {
+        generateOre(ModBlocks.LABATIUM_ORE.getDefaultState(), world, random, ChunkX * 16, ChunkZ * 16, ConfigHandler.oreGenSettings.labatiumMinHeight, ConfigHandler.oreGenSettings.labatiumMaxHeight, random.nextInt(7) + 4, ConfigHandler.oreGenSettings.labatiumPerChunkSpawn);
+        generateOre(ModBlocks.MAZURIUM_ORE.getDefaultState(), world, random, ChunkX * 16, ChunkZ * 16, ConfigHandler.oreGenSettings.mazuriumMinHeight, ConfigHandler.oreGenSettings.mazuriumMaxHeight, random.nextInt(7) + 4, ConfigHandler.oreGenSettings.mazuriumPerChunkSpawn);
     }
-    private void generateOre(IBlockState ore, World world, Random random, int x, int z, int minY, int maxY, int size, int chances)
-    {
-        int deltaY = maxY - minY;
-        for (int i = 0; i < chances; i++)
-        {
+
+    private void generateOre(IBlockState ore, World world, Random random, int x, int z, int minY, int maxY, int size, int chances) {
+        int deltaY = Math.abs(maxY - minY);
+        for (int i = 0; i < chances; i++) {
             BlockPos pos = new BlockPos(x + random.nextInt(16), minY + random.nextInt(deltaY), z + random.nextInt(16));
 
             WorldGenMinable generator = new WorldGenMinable(ore, size);

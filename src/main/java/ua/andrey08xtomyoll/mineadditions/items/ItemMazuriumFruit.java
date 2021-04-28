@@ -18,7 +18,7 @@ public class ItemMazuriumFruit extends ItemFood  implements IHasModel {
     {
         super(amount, isWolfFood);
         setRegistryName(name);
-        setUnlocalizedName(name);
+        setTranslationKey(name);
         setCreativeTab(CreativeTabs.FOOD);
 
         ModItems.ITEMS.add(this);
