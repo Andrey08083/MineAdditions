@@ -27,12 +27,12 @@ import java.util.Random;
 
 public class GachiDoor extends BlockDoor implements IHasModel
 {
-    public GachiDoor(String name, Material materialIn, CreativeTabs tab)
+    public GachiDoor(String name, Material materialIn)
     {
         super(materialIn);
         setTranslationKey(name);
         setRegistryName(name);
-        setCreativeTab(tab);
+        setCreativeTab(ModMain.creativeTab);
 
         ModBlocks.BLOCKS.add(this);
         ModItems.ITEMS.add(new GachiDoorItemBlock(this).setRegistryName(this.getRegistryName()));

@@ -48,7 +48,7 @@ public class BlockThermalCrusher extends BlockContainer implements IHasModel{
         super(material);
         this.setTranslationKey(name);
         this.setRegistryName(name);
-        this.setCreativeTab(isBurning ? null : CreativeTabs.DECORATIONS);
+        this.setCreativeTab(isBurning ? null : ModMain.creativeTab);
         this.setLightLevel(isBurning ? 0.875F : 0.100F);
         setHardness(6.0F);
         setResistance(50.0F);

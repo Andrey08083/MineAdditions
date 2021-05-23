@@ -7,16 +7,17 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import ua.andrey08xtomyoll.mineadditions.ModMain;
 import ua.andrey08xtomyoll.mineadditions.init.ModItems;
+import ua.andrey08xtomyoll.mineadditions.util.IHasEffect;
 import ua.andrey08xtomyoll.mineadditions.util.IHasModel;
 
-public class ToolSword extends ItemSword implements IHasModel
+public class ToolSword extends ItemSword implements IHasModel, IHasEffect
 {
     public ToolSword(String name, ToolMaterial material)
     {
         super(material);
         setTranslationKey(name);
         setRegistryName(name);
-        setCreativeTab(CreativeTabs.TOOLS);
+        setCreativeTab(ModMain.creativeTab);
         ModItems.ITEMS.add(this);
     }
 

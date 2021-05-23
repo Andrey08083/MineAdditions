@@ -26,6 +26,9 @@ tile.alchemy_extractor.name=Alchemy Extractor
 
 #Entities
 
-untitled_record.tooltip=Тултіп
 
-container.alchemy_extractor=1entity.Van.name=Van
+container.alchemy_extractor=1
+
+creative_tab.name=MineAdditions
+
+entity.Van.name=Van

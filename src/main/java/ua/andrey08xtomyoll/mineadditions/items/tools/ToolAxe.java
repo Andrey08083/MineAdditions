@@ -7,16 +7,17 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import ua.andrey08xtomyoll.mineadditions.ModMain;
 import ua.andrey08xtomyoll.mineadditions.init.ModItems;
+import ua.andrey08xtomyoll.mineadditions.util.IHasEffect;
 import ua.andrey08xtomyoll.mineadditions.util.IHasModel;
 
-public class ToolAxe extends ItemAxe implements IHasModel
+public class ToolAxe extends ItemAxe implements IHasModel, IHasEffect
 {
     public ToolAxe(String name, ToolMaterial material)
     {
         super(material, 15.0F, -1.5F);
         setTranslationKey(name);
         setRegistryName(name);
-        setCreativeTab(CreativeTabs.TOOLS);
+        setCreativeTab(ModMain.creativeTab);
         ModItems.ITEMS.add(this);
     }
 

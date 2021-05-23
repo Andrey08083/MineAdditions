@@ -3,6 +3,7 @@ package ua.andrey08xtomyoll.mineadditions.blocks;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.item.Item;
+import ua.andrey08xtomyoll.mineadditions.ModMain;
 import ua.andrey08xtomyoll.mineadditions.init.ModItems;
 
 import java.util.Random;
@@ -16,6 +17,8 @@ public class LabatiumOre extends BlockBase
         setHardness(5.0F);
         setResistance(35.0F);
         setHarvestLevel("pickaxe",3);
+        setCreativeTab(ModMain.creativeTab);
+
         this.lightValue = 4;
     }
 

@@ -7,12 +7,13 @@ import net.minecraft.util.SoundEvent;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import ua.andrey08xtomyoll.mineadditions.util.IHasEffect;
 import ua.andrey08xtomyoll.mineadditions.util.IHasModel;
 
 import javax.annotation.Nullable;
 import java.util.List;
 
-public class UntitledRecord extends RecordBase implements IHasModel {
+public class UntitledRecord extends RecordBase implements IHasModel, IHasEffect {
 
     public UntitledRecord(String name, SoundEvent soundIn) {
         super(name, soundIn);

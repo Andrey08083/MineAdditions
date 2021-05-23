@@ -100,4 +100,5 @@ shadowJar {
     classifier = 'Shaded'
 }
 //reobf { shadowJar { } }
+sourceSets { main { output.resourcesDir = output.classesDirs[0] } }
 

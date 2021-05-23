@@ -3,13 +3,17 @@ package ua.andrey08xtomyoll.mineadditions.handlers;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
+import net.minecraft.init.MobEffects;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.potion.PotionEffect;
+import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.util.math.Vec3d;
 import net.minecraftforge.event.entity.living.LivingEvent;
+import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.event.world.BlockEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -20,7 +24,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Mod.EventBusSubscriber
-public class ItemEventHandler {
+public class  ItemEventHandler {
 
     @SubscribeEvent
     public static void onArmorEquipped(LivingEvent.LivingUpdateEvent event) {
@@ -30,6 +34,19 @@ public class ItemEventHandler {
                 ((EntityPlayer) player).capabilities.isFlying = false;
                 ((EntityPlayer) player).capabilities.allowFlying = false;
                 ModItems.LABATIUM_CHESTPLATE.hasFlyMode = false;
+            }
+        }
+    }
+
+    @SubscribeEvent
+    public static void onPlayerBurn(LivingHurtEvent event) {
+        Entity player = event.getEntity();
+        if (player instanceof EntityPlayer) {
+            if ((((EntityPlayer) player).inventory.armorItemInSlot(2).getTranslationKey().equals(ModItems.LABATIUM_CHESTPLATE.getTranslationKey()))) {
+                if (event.getSource() == DamageSource.IN_FIRE || event.getSource() == DamageSource.LAVA){
+                    event.setCanceled(true);
+                    player.extinguish();
+                }
             }
         }
     }

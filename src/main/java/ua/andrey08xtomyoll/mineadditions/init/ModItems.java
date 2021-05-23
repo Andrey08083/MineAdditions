@@ -25,6 +25,9 @@ public class ModItems {
     public static final Item.ToolMaterial MATERIAL_LABATIUM = EnumHelper.addToolMaterial("material_labatium", 4, 3000, 15.0F, 15.0F, 20);
     public static final ItemArmor.ArmorMaterial ARMOR_LABATIUM = EnumHelper.addArmorMaterial("armormateral_labatium", "armormaterial_labatium", ConfigHandler.labatiumSettings.overallResistance, new int[]{ConfigHandler.labatiumSettings.helmetResistance, ConfigHandler.labatiumSettings.chestplateResistance, ConfigHandler.labatiumSettings.leggingsResistance, ConfigHandler.labatiumSettings.bootsResistance}, 7, SoundEvents.ITEM_ARMOR_EQUIP_IRON, ConfigHandler.labatiumSettings.overallToughness).setRepairItem(new ItemStack(ModItems.LABATIUM));
 
+    public static final Item.ToolMaterial MATERIAL_MAZURIUM = EnumHelper.addToolMaterial("material_mazurium", 4, 3000, 15.0F, 15.0F, 20);
+    public static final ItemArmor.ArmorMaterial ARMOR_MAZURIUM = EnumHelper.addArmorMaterial("armormateral_mazurium", "armormaterial_mazurium", ConfigHandler.mazuriumSettings.overallResistance, new int[]{ConfigHandler.mazuriumSettings.helmetResistance, ConfigHandler.mazuriumSettings.chestplateResistance, ConfigHandler.mazuriumSettings.leggingsResistance, ConfigHandler.mazuriumSettings.bootsResistance}, 7, SoundEvents.ITEM_ARMOR_EQUIP_IRON, ConfigHandler.mazuriumSettings.overallToughness).setRepairItem(new ItemStack(ModItems.MAZURIUM));
+
 
     //Items
     public static final List<Item> ITEMS = new ArrayList<Item>();
@@ -44,11 +47,22 @@ public class ModItems {
     public static final ItemAxe LABATIUM_AXE = new ToolAxe("labatium_axe", MATERIAL_LABATIUM);
     public static final ItemSpade LABATIUM_SHOVEL = new ToolSpade("labatium_shovel", MATERIAL_LABATIUM);
 
+    public static final ItemPickaxe MAZURIUM_PICKAXE = new ToolPickaxe("mazurium_pickaxe", MATERIAL_MAZURIUM);
+    public static final ItemPickaxe MAZURIUM_HOE = new ToolPickaxe("mazurium_hoe", MATERIAL_MAZURIUM);
+    public static final ItemSword MAZURIUM_SWORD = new ToolSword("mazurium_sword", MATERIAL_MAZURIUM);
+    public static final ItemAxe MAZURIUM_AXE = new ToolAxe("mazurium_axe", MATERIAL_MAZURIUM);
+    public static final ItemSpade MAZURIUM_SHOVEL = new ToolSpade("mazurium_shovel", MATERIAL_MAZURIUM);
+
     //Armor
     public static final ItemArmor LABATIUM_BOOTS = new ArmorBase("labatium_boots", ARMOR_LABATIUM, 1, EntityEquipmentSlot.FEET);
     public static final ItemArmor LABATIUM_LEGGS = new ArmorBase("labatium_leggings", ARMOR_LABATIUM, 2, EntityEquipmentSlot.LEGS);
     public static final ChestplateBase LABATIUM_CHESTPLATE = new ChestplateBase("labatium_chestplate", ARMOR_LABATIUM, 1, EntityEquipmentSlot.CHEST);
     public static final ItemArmor LABATIUM_HEAD = new ArmorBase("labatium_helmet", ARMOR_LABATIUM, 1, EntityEquipmentSlot.HEAD);
+
+    public static final ItemArmor MAZURIUM_BOOTS = new ArmorBase("mazurium_boots", ARMOR_MAZURIUM, 1, EntityEquipmentSlot.FEET);
+    public static final ItemArmor MAZURIUM_LEGGS = new ArmorBase("mazurium_leggings", ARMOR_MAZURIUM, 2, EntityEquipmentSlot.LEGS);
+    public static final ChestplateBase MAZURIUM_CHESTPLATE = new ChestplateBase("mazurium_chestplate", ARMOR_MAZURIUM, 1, EntityEquipmentSlot.CHEST);
+    public static final ItemArmor MAZURIUM_HEAD = new ArmorBase("mazurium_helmet", ARMOR_MAZURIUM, 1, EntityEquipmentSlot.HEAD);
 
     //Seeds
     public static final Item LABATIUM_FRUIT_SEED = new LabatiumFruitSeed("labatium_fruit_seed");

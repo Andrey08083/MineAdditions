@@ -11,7 +11,6 @@ public class ItemShoot extends Item implements IHasModel
     public ItemShoot(String name) {
         setTranslationKey(name);
         setRegistryName(name);
-        this.setCreativeTab(null);
         ModItems.ITEMS.add(this);
     }
 

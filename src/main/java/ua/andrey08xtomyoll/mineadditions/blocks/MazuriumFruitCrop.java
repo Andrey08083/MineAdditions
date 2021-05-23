@@ -10,6 +10,7 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import ua.andrey08xtomyoll.mineadditions.ModMain;
 import ua.andrey08xtomyoll.mineadditions.init.ModBlocks;
 import ua.andrey08xtomyoll.mineadditions.init.ModItems;
 
@@ -18,6 +19,7 @@ public class MazuriumFruitCrop extends LabatiumFruitCrop
     public MazuriumFruitCrop(String name)
     {
         super(name);
+        setCreativeTab(ModMain.creativeTab);
     }
 
     @Override

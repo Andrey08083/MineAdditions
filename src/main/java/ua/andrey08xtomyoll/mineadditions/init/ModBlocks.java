@@ -25,7 +25,7 @@ public class ModBlocks
     public static final Block MAZURIUM_FRUIT_CROP = new MazuriumFruitCrop("mazurium_fruit_crop");
     public static final Block ALCHEMY_EXTRACTOR = new BlockAlchemyExtractor("alchemy_extractor", Material.IRON, false);
     public static final Block ALCHEMY_EXTRACTOR_ON = new BlockAlchemyExtractor("alchemy_extractor_on", Material.IRON, true);
-    public static final Block GACHI_DOOR = new GachiDoor("gachi_door", Material.WOOD, CreativeTabs.BUILDING_BLOCKS);
+    public static final Block GACHI_DOOR = new GachiDoor("gachi_door", Material.WOOD);
 
     public static void register()
     {

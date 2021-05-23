@@ -41,7 +41,7 @@ public class LabatiumFruitCrop extends BlockCrops implements IHasModel
     {
         setRegistryName(name);
         setTranslationKey(name);
-
+        setCreativeTab(ModMain.creativeTab);
         ModBlocks.BLOCKS.add(this);
         ModItems.ITEMS.add(new ItemBlock(this).setRegistryName(getRegistryName()));
     }

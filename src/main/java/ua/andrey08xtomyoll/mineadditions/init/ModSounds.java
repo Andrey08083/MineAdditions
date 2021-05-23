@@ -10,7 +10,7 @@ import java.util.List;
 
 public class ModSounds {
 
-    public static List<SoundEvent> sounds = new ArrayList();
+    public static List<SoundEvent> sounds = new ArrayList<>();
 
     //Sounds
     public static SoundEvent untitledRecord = initSound("untitled_record", "untitled_record");

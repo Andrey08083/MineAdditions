@@ -11,6 +11,7 @@ public class RecordBase extends ItemRecord implements IHasModel {
         super(name, soundIn);
         setRegistryName(name);
         setTranslationKey(name);
+        setCreativeTab(ModMain.creativeTab);
         ModItems.ITEMS.add(this);
     }
 
