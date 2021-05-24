@@ -8,10 +8,10 @@ import ua.andrey08xtomyoll.mineadditions.init.ModItems;
 
 import java.util.Random;
 
-public class MazuriumOre extends BlockBase
+public class TomiumOre extends BlockBase
 {
 
-    public MazuriumOre(String name, Material material)
+    public TomiumOre(String name, Material material)
     {
         super(name, material);
         setHardness(5.0F);
@@ -24,7 +24,7 @@ public class MazuriumOre extends BlockBase
     @Override
     public Item getItemDropped(IBlockState state, Random rand, int fortune)
     {
-        return ModItems.MAZURIUM;
+        return ModItems.TOMIUM;
     }
 
     @Override

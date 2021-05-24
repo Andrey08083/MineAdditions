@@ -4,22 +4,20 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import ua.andrey08xtomyoll.mineadditions.ModMain;
-import ua.andrey08xtomyoll.mineadditions.init.ModBlocks;
 import ua.andrey08xtomyoll.mineadditions.init.ModItems;
 
-public class MazuriumFruitCrop extends LabatiumFruitCrop
+public class TomiumFruitCrop extends LabatiumFruitCrop
 {
-    public MazuriumFruitCrop(String name)
+    public TomiumFruitCrop(String name)
     {
         super(name);
-        setCreativeTab(ModMain.creativeTab);
+        setCreativeTab(null);
     }
 
     @Override
@@ -29,7 +27,7 @@ public class MazuriumFruitCrop extends LabatiumFruitCrop
         {
             if(this.isMaxAge(state))
             {
-                worldIn.spawnEntity(new EntityItem(worldIn, pos.getX(), pos.getY(), pos.getZ(), new ItemStack(ModItems.MAZURIUM_FRUIT, 1)));
+                worldIn.spawnEntity(new EntityItem(worldIn, pos.getX(), pos.getY(), pos.getZ(), new ItemStack(ModItems.TOMIUM_FRUIT, 1)));
                 worldIn.setBlockState(pos, withAge(0));
                 return true;
             }
@@ -41,6 +39,6 @@ public class MazuriumFruitCrop extends LabatiumFruitCrop
     @Override
     protected Item getCrop()
     {
-        return ModItems.MAZURIUM_FRUIT;
+        return ModItems.TOMIUM_FRUIT;
     }
 }

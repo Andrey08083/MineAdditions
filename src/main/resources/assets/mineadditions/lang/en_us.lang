@@ -1,34 +1,51 @@
 #Items
 item.labatium.name=Labatium
+item.tomium.name=Tomium
 item.labatium_dust.name=Labatium Dust
 item.little_labatium_dust.name=Tiny Pile Of Labatium Dust
-item.mazurium_dust.name=Mazurium Dust
-item.little_mazurium_dust.name=Tiny Pile Of Mazurium Dust
+item.tomium_dust.name=Tomium Dust
+item.little_tomium_dust.name=Tiny Pile Of Tomium Dust
 item.labatium_fruit.name=Labatium Fruit
-item.mazurium_fruit.name=Mazurium Fruit
+item.tomium_fruit.name=Tomium Fruit
 item.labatium_fruit_seed.name=Labatium Seed
-item.mazurium_fruit_seed.name=Mazurium Seed
+item.tomium_fruit_seed.name=Tomium Seed
 
 #Blocks
-
 tile.labatium_block.name=Labatium Block
 tile.labatium_ore.name=Labatium Ore
-tile.mazurium_ore.name=Mazurium Ore
+tile.tomium_ore.name=Tomium Ore
+tile.gachi_door.name=Strange Door
+tile.tomium_block.name=Tomium Block
 
 #Tools
-
 item.labatium_pickaxe.name=Labatium Pickaxe
+item.labatium_sword.name=Labatium Sword
+item.labatium_axe.name=Labatium Axe
+item.labatium_shovel.name=Labatium Shovel
+item.labatium_hoe.name=Labatium Hoe
+
+item.tomium_pickaxe.name=Tomium Pickaxe
+item.tomium_sword.name=Tomium Sword
+item.tomium_axe.name=Tomium Axe
+item.tomium_shovel.name=Tomium Shovel
+item.tomiu_hoe.name=Tomium Hoe
+
+#Armor
+item.labatium_boots.name=Labatium Boots
+item.labatium_leggins.name=Labatium Leggins
+item.labatium_chestplate.name=Labatium Chestplate
+item.labatium_helmet.name=Labatium Helmet
+
+item.tomium_boots.name=Tomium Bots
+item.tomium_leggins.name=Tomium Leggins
+item.tomium_chestplate.name=Tomium Chestplate
+item.tomium_helmet.name=Tomium Helmet
 
 #Machines
 tile.thermalcrusher.name=Thermal Crusher
 container.thermalcrusher=Thermal Crusher
 tile.alchemy_extractor.name=Alchemy Extractor
 
-#Entities
-
-
 container.alchemy_extractor=1
-
-creative_tab.name=MineAdditions
-
+itemGroup.creative_tab.name=MineAdditions
 entity.Van.name=Van

@@ -23,7 +23,7 @@ public class ModWorldGen implements IWorldGenerator {
 
     private void generateOverworld(Random random, int ChunkX, int ChunkZ, World world, IChunkGenerator chunkGenerator, IChunkProvider chunkProvider) {
         generateOre(ModBlocks.LABATIUM_ORE.getDefaultState(), world, random, ChunkX * 16, ChunkZ * 16, ConfigHandler.oreGenSettings.labatiumMinHeight, ConfigHandler.oreGenSettings.labatiumMaxHeight, random.nextInt(7) + 4, ConfigHandler.oreGenSettings.labatiumPerChunkSpawn);
-        generateOre(ModBlocks.MAZURIUM_ORE.getDefaultState(), world, random, ChunkX * 16, ChunkZ * 16, ConfigHandler.oreGenSettings.mazuriumMinHeight, ConfigHandler.oreGenSettings.mazuriumMaxHeight, random.nextInt(7) + 4, ConfigHandler.oreGenSettings.mazuriumPerChunkSpawn);
+        generateOre(ModBlocks.TOMIUM_ORE.getDefaultState(), world, random, ChunkX * 16, ChunkZ * 16, ConfigHandler.oreGenSettings.tomiumMinHeight, ConfigHandler.oreGenSettings.tomiumMaxHeight, random.nextInt(7) + 4, ConfigHandler.oreGenSettings.tomiumPerChunkSpawn);
     }
 
     private void generateOre(IBlockState ore, World world, Random random, int x, int z, int minY, int maxY, int size, int chances) {

@@ -1,12 +1,9 @@
 package ua.andrey08xtomyoll.mineadditions.util;
 
-import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemPotion;
 import net.minecraft.item.ItemStack;
 import ua.andrey08xtomyoll.mineadditions.ModMain;
-import ua.andrey08xtomyoll.mineadditions.init.ModBlocks;
 import ua.andrey08xtomyoll.mineadditions.init.ModItems;
 
 import java.util.ArrayList;
@@ -34,7 +31,7 @@ public class AlchemyExtractorRecipies {
 		- Руда типа 1 + Руда типа 2 за 200 тиков дают Кирпич + Порох + Камень
 		*/
         AlchemyExtractorRecipies.addFurnaceRecipeWithCookTime(500, new Item[]{(ModItems.LITTLE_LABATIUM_DUST), Items.WHEAT_SEEDS}, ModItems.LABATIUM_FRUIT_SEED, new Item[]{Items.GLASS_BOTTLE});
-        AlchemyExtractorRecipies.addFurnaceRecipeWithCookTime(500, new Item[]{(ModItems.LITTLE_MAZURIUM_DUST), Items.WHEAT_SEEDS}, ModItems.LABATIUM_FRUIT_SEED, new Item[]{Items.GLASS_BOTTLE});
+        AlchemyExtractorRecipies.addFurnaceRecipeWithCookTime(500, new Item[]{(ModItems.LITTLE_TOMIUM_DUST), Items.WHEAT_SEEDS}, ModItems.TOMIUM_FRUIT_SEED, new Item[]{Items.GLASS_BOTTLE});
 
     }
 

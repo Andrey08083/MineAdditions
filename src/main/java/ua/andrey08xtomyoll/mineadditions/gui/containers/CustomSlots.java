@@ -21,7 +21,7 @@ public class CustomSlots extends Slot
         {
             if (con_id == 0) {
                 return itemStack.getItem() == Item.getItemFromBlock(ModBlocks.LABATIUM_ORE) ||
-                        itemStack.getItem() == Item.getItemFromBlock(ModBlocks.MAZURIUM_ORE);
+                        itemStack.getItem() == Item.getItemFromBlock(ModBlocks.TOMIUM_ORE);
             }
             if(con_id == 1)
             {
@@ -34,7 +34,7 @@ public class CustomSlots extends Slot
             if (con_id == 3)
             {
                 return itemStack.getItem() == ModItems.LITTLE_LABATIUM_DUST ||
-                        itemStack.getItem() == ModItems.LITTLE_MAZURIUM_DUST;
+                        itemStack.getItem() == ModItems.LITTLE_TOMIUM_DUST;
             }
             else {
                 return itemStack.getItem() == Item.getItemFromBlock(ModBlocks.LABATIUM_ORE);

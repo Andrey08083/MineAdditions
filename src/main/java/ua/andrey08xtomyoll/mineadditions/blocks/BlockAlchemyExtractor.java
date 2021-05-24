@@ -26,7 +26,6 @@ import ua.andrey08xtomyoll.mineadditions.blocks.tiles.TileAlchemyExtractor;
 import ua.andrey08xtomyoll.mineadditions.handlers.GuiHandler;
 import ua.andrey08xtomyoll.mineadditions.init.ModBlocks;
 import ua.andrey08xtomyoll.mineadditions.init.ModItems;
-import ua.andrey08xtomyoll.mineadditions.init.ModSounds;
 import ua.andrey08xtomyoll.mineadditions.util.IHasModel;
 
 import java.util.Random;

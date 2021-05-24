@@ -31,7 +31,7 @@ public class TCrusherBurnRecipies
 		- Item[]{} список  суб-результатов (до 4х соответсвенно)
 		*/
         TCrusherBurnRecipies.addFurnaceRecipeWithCookTime(2000, new Item[]{Item.getItemFromBlock(ModBlocks.LABATIUM_ORE)}, ModItems.LITTLE_LABATIUM_DUST, new Item[]{});
-        TCrusherBurnRecipies.addFurnaceRecipeWithCookTime(2000, new Item[]{Item.getItemFromBlock(ModBlocks.MAZURIUM_ORE)}, ModItems.LITTLE_MAZURIUM_DUST, new Item[]{});
+        TCrusherBurnRecipies.addFurnaceRecipeWithCookTime(2000, new Item[]{Item.getItemFromBlock(ModBlocks.TOMIUM_ORE)}, ModItems.LITTLE_TOMIUM_DUST, new Item[]{});
     }
 
     // Добавление рецепта

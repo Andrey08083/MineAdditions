@@ -56,7 +56,7 @@ public class  ItemEventHandler {
         if (event.getEntityPlayer().isSneaking())
             return;
 
-        if (event.getItemStack().getTranslationKey().equals(ModItems.LABATIUM_HOE.getTranslationKey())) {
+        if (event.getItemStack().getTranslationKey().equals(ModItems.LABATIUM_HOE.getTranslationKey()) || event.getItemStack().getTranslationKey().equals(ModItems.TOMIUM_HOE.getTranslationKey())) {
             NBTTagCompound nbt = new NBTTagCompound();
             List<BlockPos> blocks = new ArrayList<>();
             if (event.getItemStack().hasTagCompound()) {

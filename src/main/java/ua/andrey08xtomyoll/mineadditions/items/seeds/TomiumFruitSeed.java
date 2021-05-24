@@ -11,9 +11,9 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import ua.andrey08xtomyoll.mineadditions.init.ModBlocks;
 
-public class MazuriumFruitSeed extends LabatiumFruitSeed
+public class TomiumFruitSeed extends LabatiumFruitSeed
 {
-    public MazuriumFruitSeed(String name) {
+    public TomiumFruitSeed(String name) {
         super(name);
     }
 
@@ -26,7 +26,7 @@ public class MazuriumFruitSeed extends LabatiumFruitSeed
                 && state.getBlock().canSustainPlant(state, worldIn, pos, EnumFacing.UP, this)
                 && worldIn.isAirBlock(pos.up()))
         {
-            worldIn.setBlockState(pos.up(), ModBlocks.MAZURIUM_FRUIT_CROP.getDefaultState());
+            worldIn.setBlockState(pos.up(), ModBlocks.TOMIUM_FRUIT_CROP.getDefaultState());
             stack.shrink(1);
             return EnumActionResult.SUCCESS;
         }
@@ -36,6 +36,6 @@ public class MazuriumFruitSeed extends LabatiumFruitSeed
     @Override
     public IBlockState getPlant(IBlockAccess world, BlockPos pos)
     {
-        return ModBlocks.MAZURIUM_FRUIT_CROP.getDefaultState();
+        return ModBlocks.TOMIUM_FRUIT_CROP.getDefaultState();
     }
 }

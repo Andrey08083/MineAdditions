@@ -5,9 +5,9 @@ public class DeprecatedConfigHandler {
     double damage;
     double digSpeed;
     double labatiumHelmetResistance, labatiumChestplateResistance, labatiumLeggingsResistance, labatiumBootsResistance;
-    double mazuriumHelmetResistance, mazuriumChestplateResistance, mazuriumLeggingsResistance, mazuriumBootsResistance;
+    double tomiumHelmetResistance, tomiumChestplateResistance, tomiumLeggingsResistance, tomiumBootsResistance;
     boolean canFly, needFillerOres, doAutoSmelt;
     int labatiumMinHeight, labatiumMaxHeight, labatiumPerChunkSpawn;
-    int mazuriumMinHeight, mazuriumMaxHeight, mazuriumPerChunkSpawn;
+    int tomiumMinHeight, tomiumMaxHeight, tomiumPerChunkSpawn;
 
 }

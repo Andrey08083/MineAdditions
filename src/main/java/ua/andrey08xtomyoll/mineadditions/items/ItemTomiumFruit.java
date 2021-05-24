@@ -12,9 +12,9 @@ import ua.andrey08xtomyoll.mineadditions.ModMain;
 import ua.andrey08xtomyoll.mineadditions.init.ModItems;
 import ua.andrey08xtomyoll.mineadditions.util.IHasModel;
 
-public class ItemMazuriumFruit extends ItemFood  implements IHasModel {
+public class ItemTomiumFruit extends ItemFood  implements IHasModel {
 
-    public ItemMazuriumFruit(String name, int amount, boolean isWolfFood)
+    public ItemTomiumFruit(String name, int amount, boolean isWolfFood)
     {
         super(amount, isWolfFood);
         setRegistryName(name);

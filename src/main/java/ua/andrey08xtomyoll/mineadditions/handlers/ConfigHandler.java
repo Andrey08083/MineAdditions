@@ -20,8 +20,8 @@ public class ConfigHandler {
     @Config.LangKey(Reference.MOD_ID + ".cfg.labatium_category")
     public static LabatiumSettings labatiumSettings = new LabatiumSettings();
 
-    @Config.LangKey(Reference.MOD_ID + ".cfg.mazurium_category")
-    public static MazuriumSettings mazuriumSettings = new MazuriumSettings();
+    @Config.LangKey(Reference.MOD_ID + ".cfg.tomium_category")
+    public static TomiumSettings tomiumSettings = new TomiumSettings();
 
     @Config.LangKey(Reference.MOD_ID + ".cfg.general_category")
     public static GeneralSettings generalSettings = new GeneralSettings();
@@ -86,7 +86,7 @@ public class ConfigHandler {
         public float overallToughness = 10;
     }
 
-    public static class MazuriumSettings {
+    public static class TomiumSettings {
 
         @Config.LangKey(Reference.MOD_ID + ".cfg.overall_resistance")
         public int overallResistance = 33;
@@ -112,14 +112,14 @@ public class ConfigHandler {
         @Config.LangKey(Reference.MOD_ID + ".cfg.labatium_per_chunk_spawn")
         public int labatiumPerChunkSpawn = 4;
 
-        @Config.LangKey(Reference.MOD_ID + ".cfg.mazurium_min_height")
+        @Config.LangKey(Reference.MOD_ID + ".cfg.tomium_min_height")
         @Config.RangeInt(min = 1, max = 255)
-        public int mazuriumMinHeight = 8;
-        @Config.LangKey(Reference.MOD_ID + ".cfg.mazurium_max_height")
+        public int tomiumMinHeight = 8;
+        @Config.LangKey(Reference.MOD_ID + ".cfg.tomium_max_height")
         @Config.RangeInt(min = 20, max = 255)
-        public int mazuriumMaxHeight = 20;
-        @Config.LangKey(Reference.MOD_ID + ".cfg.mazurium_per_chunk_spawn")
-        public int mazuriumPerChunkSpawn = 4;
+        public int tomiumMaxHeight = 20;
+        @Config.LangKey(Reference.MOD_ID + ".cfg.tomium_per_chunk_spawn")
+        public int tomiumPerChunkSpawn = 4;
 
     }
 

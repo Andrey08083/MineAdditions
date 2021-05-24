@@ -14,7 +14,8 @@ import ua.andrey08xtomyoll.mineadditions.init.ModBlocks;
 import ua.andrey08xtomyoll.mineadditions.util.Reference;
 
 @SideOnly(Side.CLIENT)
-public class GuiElchemyExtractor extends GuiContainer
+public class
+GuiElchemyExtractor extends GuiContainer
 {
     // Текстура
     // Всё остальное со стандартного GuiFurnace

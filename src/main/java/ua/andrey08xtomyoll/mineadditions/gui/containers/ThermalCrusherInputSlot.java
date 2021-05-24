@@ -16,6 +16,6 @@ public class ThermalCrusherInputSlot extends Slot
     public boolean isItemValid(ItemStack itemStack)
     {
         return itemStack.getItem() == Item.getItemFromBlock(ModBlocks.LABATIUM_ORE) ||
-                itemStack.getItem() == Item.getItemFromBlock(ModBlocks.MAZURIUM_ORE);
+                itemStack.getItem() == Item.getItemFromBlock(ModBlocks.TOMIUM_ORE);
     }
 }

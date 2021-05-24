@@ -1,18 +1,44 @@
 #Items
 item.labatium.name=Лабатіум
-item.labatium_dust.name=Лабатіумовий пил
+item.tomium.name=Томіум
+item.labatium_dust.name=Пил лабатіума
 item.little_labatium_dust.name=Крихітна купка лабатіумового пилу
-item.mazurium_dust.name=Мазуріумовий пил
-item.little_mazurium_dust.name=Крихітна купка мазуріумового пилу
+item.tomium_dust.name=Пил томіума
+item.little_tomium_dust.name=Крихітна купка томіумового пилу
 item.labatium_fruit.name=Лабатіумовий фрукт
-item.mazurium_fruit.name=Мазуріумовий фрукт
+item.tomium_fruit.name=Томовий фрукт
 item.labatium_fruit_seed.name=Лабатіумове насіння
-item.mazurium_fruit_seed.name=Мазуріумове насіння
+item.tomium_fruit_seed.name=Томіумове насіння
 #Blocks
-
+tile.gachi_door.name=Дивні двері
 tile.labatium_block.name=Лабатіумовий блок
 tile.labatium_ore.name=Лабатіумова руда
-tile.mazurium_ore.name=Мазуріумова руда
+tile.tomium_ore.name=Томіумова руда
+tile.tomium_block.name=Томіумовий блок
+
+#Tools
+item.labatium_pickaxe.name=Лабатіумова кирка
+item.labatium_sword.name=Лабатіумовий меч
+item.labatium_axe.name=Лабатіумова сокира
+item.labatium_shovel.name=Лабатіумова лопата
+item.labatium_hoe.name=Лабатіумова мотика
+
+item.tomium_pickaxe.name=Томіумова кирка
+item.tomium_sword.name=Томіумовий меч
+item.tomium_axe.name=Томіумова сокира
+item.tomium_shovel.name=Томіумова лопата
+item.tomium_hoe.name=Томіумова мотика
+
+#Armor
+item.labatium_boots.name=Лабатіумові ботфори
+item.labatium_leggins.name=Лабатіумові брюки
+item.labatium_chestplate.name=Лабатіумова кираса
+item.labatium_helmet.name=Лабатіумовий шолом
+
+item.tomium_boots.name=Томіумові ботфори
+item.tomium_leggins.name=Томіумові штани
+item.tomium_chestplate.name=Томіумова куртка
+item.tomium_helmet.name=Томіумовий шолом
 
 #Machines
 tile.thermalcrusher.name=Термічний подрібнювач
@@ -25,4 +51,7 @@ item.record.untitled_record.desc=Діалог
 untitled_record.tooltip=§5§oЯкщо прислухатися, то можна почути діалог. Що ж це за запис?
 tile.alchemy_extractor.name=Алхімічний екстрактор
 #Entities
+
+container.thermalcrusher=Thermal Crusher
+container.alchemy_extractor=1
 entity.Van.name=Вен

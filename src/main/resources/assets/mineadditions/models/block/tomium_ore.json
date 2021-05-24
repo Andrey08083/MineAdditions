@@ -1,6 +1,6 @@
 {
   "parent": "block/cube_all",
   "textures": {
-    "all": "mineadditions:blocks/mazurium_block"
+    "all": "mineadditions:blocks/tomium_ore"
   }
 }
