@@ -54,4 +54,7 @@ tile.alchemy_extractor.name=Алхімічний екстрактор
 
 container.thermalcrusher=Thermal Crusher
 container.alchemy_extractor=1
+
+item.tomium_hoe.name=Tomium Hoe
+itemGroup.creative_tab.name=MineAdditions
 entity.Van.name=Вен
