@@ -68,38 +68,41 @@ public class ConfigHandler {
 
         @Config.LangKey(Reference.MOD_ID + ".cfg.can_fly")
         public boolean canFly = true;
+
+        @Config.LangKey(Reference.MOD_ID + ".cfg.can_fly")
+        public int vanDamage = 5;
     }
 
     public static class LabatiumSettings {
 
         @Config.LangKey(Reference.MOD_ID + ".cfg.overall_resistance")
-        public int overallResistance = 33;
+        public int overallResistance = 80;
         @Config.LangKey(Reference.MOD_ID + ".cfg.helmet_resistance")
-        public int helmetResistance = 4;
+        public int helmetResistance = 20;
         @Config.LangKey(Reference.MOD_ID + ".cfg.chestplate_resistance")
-        public int chestplateResistance = 6;
+        public int chestplateResistance = 20;
         @Config.LangKey(Reference.MOD_ID + ".cfg.leggings_resistance")
-        public int leggingsResistance = 5;
+        public int leggingsResistance = 20;
         @Config.LangKey(Reference.MOD_ID + ".cfg.boots_resistance")
-        public int bootsResistance = 4;
+        public int bootsResistance = 20;
         @Config.LangKey(Reference.MOD_ID + ".cfg.overall_toughness")
-        public float overallToughness = 10;
+        public float overallToughness = 20;
     }
 
     public static class TomiumSettings {
 
         @Config.LangKey(Reference.MOD_ID + ".cfg.overall_resistance")
-        public int overallResistance = 33;
+        public int overallResistance = 80;
         @Config.LangKey(Reference.MOD_ID + ".cfg.helmet_resistance")
-        public int helmetResistance = 4;
+        public int helmetResistance = 20;
         @Config.LangKey(Reference.MOD_ID + ".cfg.chestplate_resistance")
-        public int chestplateResistance = 6;
+        public int chestplateResistance = 20;
         @Config.LangKey(Reference.MOD_ID + ".cfg.leggings_resistance")
-        public int leggingsResistance = 5;
+        public int leggingsResistance = 20;
         @Config.LangKey(Reference.MOD_ID + ".cfg.boots_resistance")
-        public int bootsResistance = 4;
+        public int bootsResistance = 20;
         @Config.LangKey(Reference.MOD_ID + ".cfg.overall_toughness")
-        public float overallToughness = 10;
+        public float overallToughness = 20;
     }
 
     public static class OreGenSettings {

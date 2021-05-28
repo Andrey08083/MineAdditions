@@ -1,6 +1,5 @@
 package ua.andrey08xtomyoll.mineadditions;
 
-import net.minecraft.client.resources.I18n;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.common.Mod;
@@ -23,7 +22,7 @@ import ua.andrey08xtomyoll.mineadditions.world.ModWorldGen;
 @Mod(modid = Reference.MOD_ID, name = Reference.NAME, version = Reference.VERSION)
 public class ModMain {
 
-    public static final CreativeTabs creativeTab = new CreativeTabs(I18n.format("creative_tab.name")) {
+    public static final CreativeTabs creativeTab = new CreativeTabs("MineAdditions") {
         @Override
         public ItemStack createIcon() {
             return new ItemStack(ModItems.ITEM_VAN_SHOOT);

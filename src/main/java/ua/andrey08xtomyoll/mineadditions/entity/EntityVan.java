@@ -20,6 +20,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import ua.andrey08xtomyoll.mineadditions.entity.ai.AiLookArround;
 import ua.andrey08xtomyoll.mineadditions.entity.ai.AiRandomFly;
 import ua.andrey08xtomyoll.mineadditions.entity.ai.GhastLikeMoveHelper;
+import ua.andrey08xtomyoll.mineadditions.handlers.ConfigHandler;
 import ua.andrey08xtomyoll.mineadditions.init.ModSounds;
 
 public class EntityVan extends EntityMob implements IRangedAttackMob, IMob {
@@ -140,7 +141,7 @@ public class EntityVan extends EntityMob implements IRangedAttackMob, IMob {
 
     public static class EntityVanShoot extends EntitySnowball {
         public EntityLivingBase shootingEntity;
-        public int ShootDamage = 10;
+        public int ShootDamage = ConfigHandler.generalSettings.vanDamage;
         public EntityVanShoot(World a) { super(a); }
 
         public EntityVanShoot(World worldIn, double x, double y, double z) {
