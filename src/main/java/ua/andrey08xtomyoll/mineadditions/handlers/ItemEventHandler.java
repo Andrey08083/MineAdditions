@@ -1,16 +1,10 @@
 package ua.andrey08xtomyoll.mineadditions.handlers;
 
-import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
-import net.minecraft.init.MobEffects;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.potion.Potion;
-import net.minecraft.potion.PotionEffect;
-import net.minecraft.potion.PotionHealth;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
@@ -22,14 +16,11 @@ import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.event.world.BlockEvent;
 import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.common.eventhandler.Cancelable;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.PlayerEvent;
-import org.lwjgl.Sys;
 import ua.andrey08xtomyoll.mineadditions.init.ModItems;
 import ua.andrey08xtomyoll.mineadditions.items.armor.ArmorBase;
 import ua.andrey08xtomyoll.mineadditions.items.armor.ChestplateBase;
-import ua.andrey08xtomyoll.mineadditions.items.tools.ToolAxe;
 import ua.andrey08xtomyoll.mineadditions.items.tools.ToolHoe;
 import ua.andrey08xtomyoll.mineadditions.items.tools.ToolPickaxe;
 import ua.andrey08xtomyoll.mineadditions.items.tools.ToolSpade;
@@ -44,9 +35,10 @@ public class ItemEventHandler {
     public static void onArmorEquipped(LivingEvent.LivingUpdateEvent event) {
         Entity player = event.getEntity();
         if (player instanceof EntityPlayer) {
-            if ((!(((EntityPlayer) player).inventory.armorItemInSlot(2).getItem() instanceof ChestplateBase))) {
+            if ((!(((EntityPlayer) player).inventory.armorItemInSlot(2).getItem() instanceof ChestplateBase)) && ModItems.LABATIUM_CHESTPLATE.isEquipped) {
                 ((EntityPlayer) player).capabilities.isFlying = false;
                 ((EntityPlayer) player).capabilities.allowFlying = false;
+                ModItems.LABATIUM_CHESTPLATE.isEquipped = false;
             }
         }
     }

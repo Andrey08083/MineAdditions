@@ -14,6 +14,7 @@ import javax.annotation.Nonnull;
 
 public class ChestplateBase extends ArmorBase implements IHasModel, IHasEffect {
 
+    public boolean isEquipped = false;
 
     public ChestplateBase(String name, ItemArmor.ArmorMaterial materialIn, int renderIndexIn, EntityEquipmentSlot equipmentSlotIn) {
         super(name, materialIn, renderIndexIn, equipmentSlotIn);
@@ -22,6 +23,7 @@ public class ChestplateBase extends ArmorBase implements IHasModel, IHasEffect {
 
     public void onArmorTick(@Nonnull World world, @Nonnull EntityPlayer player, @Nonnull ItemStack stack) {
         if (ConfigHandler.generalSettings.canFly) {
+            isEquipped = true;
             player.capabilities.allowFlying = true;
         }
     }
