@@ -60,6 +60,13 @@ public class ToolPickaxe extends ItemPickaxe implements IHasModel, IHasEffect
 
     }
 
+    @Override
+    public void onCreated(ItemStack stack, World worldIn, EntityPlayer playerIn) {
+        NBTTagCompound nbt = new NBTTagCompound();
+        nbt.setInteger("zone", 1);
+        stack.setTagCompound(nbt);
+    }
+
     /*Multitool feature
     @Override
     public Set<String> getToolClasses(ItemStack stack)

@@ -11,10 +11,7 @@ import ua.andrey08xtomyoll.mineadditions.items.armor.ChestplateBase;
 import ua.andrey08xtomyoll.mineadditions.items.records.UntitledRecord;
 import ua.andrey08xtomyoll.mineadditions.items.seeds.LabatiumFruitSeed;
 import ua.andrey08xtomyoll.mineadditions.items.seeds.TomiumFruitSeed;
-import ua.andrey08xtomyoll.mineadditions.items.tools.ToolAxe;
-import ua.andrey08xtomyoll.mineadditions.items.tools.ToolPickaxe;
-import ua.andrey08xtomyoll.mineadditions.items.tools.ToolSpade;
-import ua.andrey08xtomyoll.mineadditions.items.tools.ToolSword;
+import ua.andrey08xtomyoll.mineadditions.items.tools.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -42,13 +39,13 @@ public class ModItems {
 
     //Tools
     public static final ItemPickaxe LABATIUM_PICKAXE = new ToolPickaxe("labatium_pickaxe", MATERIAL_LABATIUM);
-    public static final ItemPickaxe LABATIUM_HOE = new ToolPickaxe("labatium_hoe", MATERIAL_LABATIUM);
+    public static final ToolHoe LABATIUM_HOE = new ToolHoe("labatium_hoe", MATERIAL_LABATIUM);
     public static final ItemSword LABATIUM_SWORD = new ToolSword("labatium_sword", MATERIAL_LABATIUM);
     public static final ItemAxe LABATIUM_AXE = new ToolAxe("labatium_axe", MATERIAL_LABATIUM);
     public static final ItemSpade LABATIUM_SHOVEL = new ToolSpade("labatium_shovel", MATERIAL_LABATIUM);
 
     public static final ItemPickaxe TOMIUM_PICKAXE = new ToolPickaxe("tomium_pickaxe", MATERIAL_TOMIUM);
-    public static final ItemPickaxe TOMIUM_HOE = new ToolPickaxe("tomium_hoe", MATERIAL_TOMIUM);
+    public static final ToolHoe TOMIUM_HOE = new ToolHoe("tomium_hoe", MATERIAL_TOMIUM);
     public static final ItemSword TOMIUM_SWORD = new ToolSword("tomium_sword", MATERIAL_TOMIUM);
     public static final ItemAxe TOMIUM_AXE = new ToolAxe("tomium_axe", MATERIAL_TOMIUM);
     public static final ItemSpade TOMIUM_SHOVEL = new ToolSpade("tomium_shovel", MATERIAL_TOMIUM);

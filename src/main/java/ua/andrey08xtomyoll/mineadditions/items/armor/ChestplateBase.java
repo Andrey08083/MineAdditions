@@ -14,7 +14,6 @@ import javax.annotation.Nonnull;
 
 public class ChestplateBase extends ArmorBase implements IHasModel, IHasEffect {
 
-    public boolean hasFlyMode = false;
 
     public ChestplateBase(String name, ItemArmor.ArmorMaterial materialIn, int renderIndexIn, EntityEquipmentSlot equipmentSlotIn) {
         super(name, materialIn, renderIndexIn, equipmentSlotIn);
@@ -22,9 +21,8 @@ public class ChestplateBase extends ArmorBase implements IHasModel, IHasEffect {
     }
 
     public void onArmorTick(@Nonnull World world, @Nonnull EntityPlayer player, @Nonnull ItemStack stack) {
-        if (player.getItemStackFromSlot(EntityEquipmentSlot.CHEST).getTranslationKey().equals(this.getTranslationKey()) && ConfigHandler.generalSettings.canFly) {
+        if (ConfigHandler.generalSettings.canFly) {
             player.capabilities.allowFlying = true;
-            hasFlyMode = true;
         }
     }
 
