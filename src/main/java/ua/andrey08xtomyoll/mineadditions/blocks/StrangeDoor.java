@@ -4,10 +4,8 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockDoor;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
@@ -25,9 +23,9 @@ import ua.andrey08xtomyoll.mineadditions.util.IHasModel;
 
 import java.util.Random;
 
-public class GachiDoor extends BlockDoor implements IHasModel
+public class StrangeDoor extends BlockDoor implements IHasModel
 {
-    public GachiDoor(String name, Material materialIn)
+    public StrangeDoor(String name, Material materialIn)
     {
         super(materialIn);
         setTranslationKey(name);
@@ -35,7 +33,7 @@ public class GachiDoor extends BlockDoor implements IHasModel
         setCreativeTab(ModMain.creativeTab);
 
         ModBlocks.BLOCKS.add(this);
-        ModItems.ITEMS.add(new GachiDoorItemBlock(this).setRegistryName(this.getRegistryName()));
+        ModItems.ITEMS.add(new StrangeDoorItemBlock(this).setRegistryName(this.getRegistryName()));
     }
 
     @SideOnly(Side.CLIENT)

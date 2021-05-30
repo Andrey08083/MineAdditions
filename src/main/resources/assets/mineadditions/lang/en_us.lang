@@ -14,7 +14,7 @@ item.tomium_fruit_seed.name=Tomium Seed
 tile.labatium_block.name=Labatium Block
 tile.labatium_ore.name=Labatium Ore
 tile.tomium_ore.name=Tomium Ore
-tile.gachi_door.name=Strange Door
+tile.strange_door.name=Strange Door
 tile.tomium_block.name=Tomium Block
 
 #Tools

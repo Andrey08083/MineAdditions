@@ -10,7 +10,7 @@ item.tomium_fruit.name=Томовий фрукт
 item.labatium_fruit_seed.name=Лабатіумове насіння
 item.tomium_fruit_seed.name=Томіумове насіння
 #Blocks
-tile.gachi_door.name=Дивні двері
+tile.strange_door.name=Дивні двері
 tile.labatium_block.name=Лабатіумовий блок
 tile.labatium_ore.name=Лабатіумова руда
 tile.tomium_ore.name=Томіумова руда
