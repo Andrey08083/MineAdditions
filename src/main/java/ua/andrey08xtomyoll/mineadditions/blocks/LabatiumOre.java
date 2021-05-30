@@ -4,6 +4,7 @@ import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.item.Item;
 import ua.andrey08xtomyoll.mineadditions.ModMain;
+import ua.andrey08xtomyoll.mineadditions.init.ModBlocks;
 import ua.andrey08xtomyoll.mineadditions.init.ModItems;
 
 import java.util.Random;
@@ -25,12 +26,12 @@ public class LabatiumOre extends BlockBase
     @Override
     public Item getItemDropped(IBlockState state, Random rand, int fortune)
     {
-        return ModItems.LABATIUM;
+        return Item.getItemFromBlock(ModBlocks.LABATIUM_ORE);
     }
 
     @Override
     public int quantityDropped(Random rand)
     {
-        return rand.nextInt(4) + 1;
+        return 1;
     }
 }

@@ -1,8 +1,0 @@
-{
-    "parent": "block/door_top_rh",
-    "textures":
-    {
-        "bottom": "mineadditions:blocks/gachi_door_bottom",
-        "top": "mineadditions:blocks/gachi_door_top"
-    }
-}

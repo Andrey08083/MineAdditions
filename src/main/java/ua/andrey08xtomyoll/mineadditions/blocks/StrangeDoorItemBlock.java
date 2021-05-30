@@ -15,9 +15,9 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import ua.andrey08xtomyoll.mineadditions.ModMain;
 
-public class GachiDoorItemBlock extends ItemBlock
+public class StrangeDoorItemBlock extends ItemBlock
 {
-    public GachiDoorItemBlock(Block block)
+    public StrangeDoorItemBlock(Block block)
     {
         super(block);
         setCreativeTab(ModMain.creativeTab);

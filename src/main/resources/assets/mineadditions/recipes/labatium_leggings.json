@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+
+  "pattern":
+  [
+    "LLL",
+    "L L",
+    "L L"
+  ],
+
+  "key":
+  {
+    "L":
+    {
+      "item": "mineadditions:labatium"
+    }
+  },
+
+  "result":
+  {
+    "item": "mineadditions:labatium_leggings",
+    "count": 1
+  }
+}

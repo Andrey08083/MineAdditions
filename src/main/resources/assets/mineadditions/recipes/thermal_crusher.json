@@ -1,0 +1,44 @@
+{
+  "type": "minecraft:crafting_shaped",
+
+  "pattern":
+  [
+    "DRD",
+    "PFP",
+    "TAT"
+  ],
+
+  "key":
+  {
+    "D":
+    {
+      "item": "mineadditions:tomium_dust"
+    },
+    "P":
+    {
+      "item": "minecraft:piston"
+    },
+    "F":
+    {
+      "item": "minecraft:furnace"
+    },
+    "R":
+    {
+      "item": "minecraft:redstone_block"
+    },
+    "T":
+    {
+      "item": "mineadditions:tomium_ore"
+    },
+    "A":
+    {
+      "item": "minecraft:anvil"
+    }
+  },
+
+  "result":
+  {
+    "item": "mineadditions:thermal_crusher",
+    "count": 1
+  }
+}

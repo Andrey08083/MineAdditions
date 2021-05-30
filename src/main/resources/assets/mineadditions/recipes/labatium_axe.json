@@ -1,0 +1,28 @@
+{
+  "type": "minecraft:crafting_shaped",
+
+  "pattern":
+  [
+    " LL",
+    " SL",
+    " S "
+  ],
+
+  "key":
+  {
+    "L":
+    {
+      "item": "mineadditions:labatium"
+    },
+    "S":
+    {
+      "item": "minecraft:stick"
+    }
+  },
+
+  "result":
+  {
+    "item": "mineadditions:labatium_axe",
+    "count": 1
+  }
+}

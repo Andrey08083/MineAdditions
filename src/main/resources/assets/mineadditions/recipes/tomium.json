@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shapeless",
+
+  "ingredients":
+  [
+
+    {
+      "item": "mineadditions:tomium_block"
+    }
+
+  ],
+
+  "result":
+  {
+    "item": "mineadditions:tomium",
+    "count": 9
+  }
+}

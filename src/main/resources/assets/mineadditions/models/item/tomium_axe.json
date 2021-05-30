@@ -1,0 +1,6 @@
+{
+  "parent": "item/handheld",
+  "textures": {
+    "layer0": "mineadditions:items/tomium_axe"
+  }
+}

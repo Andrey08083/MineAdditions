@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+
+  "pattern":
+  [
+    "TTT",
+    "T T",
+    "T T"
+  ],
+
+  "key":
+  {
+    "T":
+    {
+      "item": "mineadditions:tomium"
+    }
+  },
+
+  "result":
+  {
+    "item": "mineadditions:tomium_leggings",
+    "count": 1
+  }
+}

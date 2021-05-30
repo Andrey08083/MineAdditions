@@ -2,6 +2,6 @@
     "parent": "item/generated",
     "textures":
     {
-        "layer0": "tutorial:items/copper_door"
+        "layer0": "mineadditions:items/strange_door"
     }
 }

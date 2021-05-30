@@ -10,7 +10,7 @@ item.tomium_fruit.name=Томовий фрукт
 item.labatium_fruit_seed.name=Лабатіумове насіння
 item.tomium_fruit_seed.name=Томіумове насіння
 #Blocks
-tile.gachi_door.name=Дивні двері
+tile.strange_door.name=Дивні двері
 tile.labatium_block.name=Лабатіумовий блок
 tile.labatium_ore.name=Лабатіумова руда
 tile.tomium_ore.name=Томіумова руда
@@ -31,12 +31,12 @@ item.tomium_hoe.name=Томіумова мотика
 
 #Armor
 item.labatium_boots.name=Лабатіумові ботфори
-item.labatium_leggins.name=Лабатіумові брюки
+item.labatium_leggings.name=Лабатіумові брюки
 item.labatium_chestplate.name=Лабатіумова кираса
 item.labatium_helmet.name=Лабатіумовий шолом
 
 item.tomium_boots.name=Томіумові ботфори
-item.tomium_leggins.name=Томіумові штани
+item.tomium_leggings.name=Томіумові штани
 item.tomium_chestplate.name=Томіумова куртка
 item.tomium_helmet.name=Томіумовий шолом
 
@@ -55,6 +55,6 @@ tile.alchemy_extractor.name=Алхімічний екстрактор
 container.thermalcrusher=Thermal Crusher
 container.alchemy_extractor=1
 
-item.tomium_hoe.name=Tomium Hoe
 itemGroup.creative_tab.name=MineAdditions
+
 entity.Van.name=Вен

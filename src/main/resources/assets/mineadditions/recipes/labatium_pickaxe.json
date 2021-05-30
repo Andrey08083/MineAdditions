@@ -1,0 +1,28 @@
+{
+  "type": "minecraft:crafting_shaped",
+
+  "pattern":
+  [
+    "LLL",
+    " S ",
+    " S "
+  ],
+
+  "key":
+  {
+    "L":
+    {
+      "item": "mineadditions:labatium"
+    },
+    "S":
+    {
+      "item": "minecraft:stick"
+    }
+  },
+
+  "result":
+  {
+    "item": "mineadditions:labatium_pickaxe",
+    "count": 1
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "type": "minecraft:crafting_shaped",
+
+  "pattern":
+  [
+    " T ",
+    " S ",
+    " S "
+  ],
+
+  "key":
+  {
+    "T":
+    {
+      "item": "mineadditions:tomium"
+    },
+    "S":
+    {
+      "item": "minecraft:stick"
+    }
+  },
+
+  "result":
+  {
+    "item": "mineadditions:tomium_shovel",
+    "count": 1
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "type": "minecraft:crafting_shaped",
+
+  "pattern":
+  [
+    " L ",
+    " S ",
+    " S "
+  ],
+
+  "key":
+  {
+    "L":
+    {
+      "item": "mineadditions:labatium"
+    },
+    "S":
+    {
+      "item": "minecraft:stick"
+    }
+  },
+
+  "result":
+  {
+    "item": "mineadditions:labatium_shovel",
+    "count": 1
+  }
+}

@@ -52,12 +52,12 @@ public class ModItems {
 
     //Armor
     public static final ItemArmor LABATIUM_BOOTS = new ArmorBase("labatium_boots", ARMOR_LABATIUM, 1, EntityEquipmentSlot.FEET);
-    public static final ItemArmor LABATIUM_LEGGS = new ArmorBase("labatium_leggins", ARMOR_LABATIUM, 2, EntityEquipmentSlot.LEGS);
+    public static final ItemArmor LABATIUM_LEGGS = new ArmorBase("labatium_leggings", ARMOR_LABATIUM, 2, EntityEquipmentSlot.LEGS);
     public static final ChestplateBase LABATIUM_CHESTPLATE = new ChestplateBase("labatium_chestplate", ARMOR_LABATIUM, 1, EntityEquipmentSlot.CHEST);
     public static final ItemArmor LABATIUM_HEAD = new ArmorBase("labatium_helmet", ARMOR_LABATIUM, 1, EntityEquipmentSlot.HEAD);
 
     public static final ItemArmor TOMIUM_BOOTS = new ArmorBase("tomium_boots", ARMOR_TOMIUM, 1, EntityEquipmentSlot.FEET);
-    public static final ItemArmor TOMIUM_LEGGINGS = new ArmorBase("tomium_leggins", ARMOR_TOMIUM, 2, EntityEquipmentSlot.LEGS);
+    public static final ItemArmor TOMIUM_LEGGINGS = new ArmorBase("tomium_leggings", ARMOR_TOMIUM, 2, EntityEquipmentSlot.LEGS);
     public static final ChestplateBase TOMIUM_CHESTPLATE = new ChestplateBase("tomium_chestplate", ARMOR_TOMIUM, 1, EntityEquipmentSlot.CHEST);
     public static final ItemArmor TOMIUM_HELMET = new ArmorBase("tomium_helmet", ARMOR_TOMIUM, 1, EntityEquipmentSlot.HEAD);
 
