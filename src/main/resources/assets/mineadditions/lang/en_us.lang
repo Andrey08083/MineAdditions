@@ -55,5 +55,5 @@ container.thermalcrusher=Thermal Crusher
 tile.alchemy_extractor.name=Alchemy Extractor
 
 container.alchemy_extractor=1
-itemGroup.creative_tab.name=MineAdditions
+itemGroup.MineAdditions=MineAdditions
 entity.Van.name=Van
