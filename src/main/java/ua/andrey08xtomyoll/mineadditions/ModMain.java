@@ -16,7 +16,7 @@ import ua.andrey08xtomyoll.mineadditions.network.NetworkUtils;
 import ua.andrey08xtomyoll.mineadditions.proxy.CommonProxy;
 import ua.andrey08xtomyoll.mineadditions.util.AlchemyExtractorRecipies;
 import ua.andrey08xtomyoll.mineadditions.util.Reference;
-import ua.andrey08xtomyoll.mineadditions.util.TCrusherBurnRecipies;
+import ua.andrey08xtomyoll.mineadditions.util.TCrusherRecipies;
 import ua.andrey08xtomyoll.mineadditions.world.ModWorldGen;
 
 @Mod(modid = Reference.MOD_ID, name = Reference.NAME, version = Reference.VERSION)
@@ -55,7 +55,7 @@ public class ModMain {
 
     @Mod.EventHandler
     public static void postInit(FMLPostInitializationEvent event) {
-        TCrusherBurnRecipies.init();
+        TCrusherRecipies.init();
         AlchemyExtractorRecipies.init();
         proxy.postInit(event);
     }

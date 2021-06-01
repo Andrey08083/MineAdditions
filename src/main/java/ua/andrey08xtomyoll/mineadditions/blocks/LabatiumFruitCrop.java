@@ -65,7 +65,7 @@ public class LabatiumFruitCrop extends BlockCrops implements IHasModel
     @Override
     protected Item getSeed()
     {
-        return null;
+        return ModItems.LABATIUM_FRUIT_SEED;
     }
 
     @Override

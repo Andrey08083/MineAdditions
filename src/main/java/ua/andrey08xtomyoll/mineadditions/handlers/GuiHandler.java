@@ -4,7 +4,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.network.IGuiHandler;
-import ua.andrey08xtomyoll.mineadditions.blocks.tiles.ThermalCrusher;
+import ua.andrey08xtomyoll.mineadditions.blocks.tiles.TileThermalCrusher;
 import ua.andrey08xtomyoll.mineadditions.blocks.tiles.TileAlchemyExtractor;
 import ua.andrey08xtomyoll.mineadditions.gui.GuiElchemyExtractor;
 import ua.andrey08xtomyoll.mineadditions.gui.GuiThermalCrusher;
@@ -21,7 +21,7 @@ public class GuiHandler implements IGuiHandler {
 	public Object getServerGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z) {
 		if(ID == GUI_THERMAL_CRUSHER) {
 				System.out.println("[S] crusher != null");
-				return new ContainerThermalCrusher(player.inventory, (ThermalCrusher)world.getTileEntity(new BlockPos(x, y, z)));
+				return new ContainerThermalCrusher(player.inventory, (TileThermalCrusher)world.getTileEntity(new BlockPos(x, y, z)));
         }
 		else if(ID == GUI_ALCHEMY_EXTRACTOR)
 		{
@@ -35,7 +35,7 @@ public class GuiHandler implements IGuiHandler {
 	public Object getClientGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z) {
 		if(ID == GUI_THERMAL_CRUSHER) {
 			System.out.println("[C] GUI = ThermalCrusher");
-			return new GuiThermalCrusher(player.inventory, (ThermalCrusher)world.getTileEntity(new BlockPos(x, y, z)));
+			return new GuiThermalCrusher(player.inventory, (TileThermalCrusher)world.getTileEntity(new BlockPos(x, y, z)));
         }
 		else if(ID == GUI_ALCHEMY_EXTRACTOR)
 		{

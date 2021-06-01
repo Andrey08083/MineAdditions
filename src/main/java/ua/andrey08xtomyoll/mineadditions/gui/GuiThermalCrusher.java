@@ -8,7 +8,7 @@ import net.minecraft.inventory.IInventory;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import ua.andrey08xtomyoll.mineadditions.blocks.tiles.ThermalCrusher;
+import ua.andrey08xtomyoll.mineadditions.blocks.tiles.TileThermalCrusher;
 import ua.andrey08xtomyoll.mineadditions.gui.containers.ContainerThermalCrusher;
 import ua.andrey08xtomyoll.mineadditions.init.ModBlocks;
 import ua.andrey08xtomyoll.mineadditions.util.Reference;
@@ -51,7 +51,7 @@ public class GuiThermalCrusher extends GuiContainer
         int j = (this.height - this.ySize) / 2;
         this.drawTexturedModalRect(i, j, 0, 0, this.xSize, this.ySize);
 
-        if (ThermalCrusher.isBurning(this.tileinventory))
+        if (TileThermalCrusher.isBurning(this.tileinventory))
         {
             int k = this.getBurnLeftScaled(13);
             this.drawTexturedModalRect(i + 58, j + 36 + 12 - k, 176, 12 - k, 14, k + 1);

@@ -24,16 +24,15 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import ua.andrey08xtomyoll.mineadditions.ModMain;
 import ua.andrey08xtomyoll.mineadditions.blocks.BlockThermalCrusher;
 import ua.andrey08xtomyoll.mineadditions.gui.containers.ContainerThermalCrusher;
-import ua.andrey08xtomyoll.mineadditions.util.TCrusherBurnRecipies;
+import ua.andrey08xtomyoll.mineadditions.util.TCrusherRecipies;
 import ua.andrey08xtomyoll.mineadditions.util.Reference;
+import ua.andrey08xtomyoll.mineadditions.util.TilesFuel;
 
 import javax.annotation.Nonnull;
 
-import static ua.andrey08xtomyoll.mineadditions.util.TilesFuel.getItemBurnTime;
-
 
 @Nonnull
-public class ThermalCrusher extends TileEntity implements ITickable, ISidedInventory
+public class TileThermalCrusher extends TileEntity implements ITickable, ISidedInventory
 {
 
     /** Величины, которые задают кол-во слотов на выход/выход и соотвественно саму математику **/
@@ -105,7 +104,7 @@ public class ThermalCrusher extends TileEntity implements ITickable, ISidedInven
         // Сбрасываем время, если меняются входящие
         if (index >= 0 && index < slotsinput && !flag)
         {
-            this.totalCookTime = TCrusherBurnRecipies.getCookTimeForItems(getInputSlots());
+            this.totalCookTime = TCrusherRecipies.getCookTimeForItems(getInputSlots());
             this.cookTime = 0;
             this.markDirty();
         }
@@ -245,7 +244,7 @@ public class ThermalCrusher extends TileEntity implements ITickable, ISidedInven
                     if (this.cookTime == this.totalCookTime)
                     {
                         this.cookTime = 0;
-                        this.totalCookTime = TCrusherBurnRecipies.getCookTimeForItems(getInputSlots());
+                        this.totalCookTime = TCrusherRecipies.getCookTimeForItems(getInputSlots());
                         this.smeltItem();
                         flag1 = true;
                     }
@@ -302,7 +301,7 @@ public class ThermalCrusher extends TileEntity implements ITickable, ISidedInven
         if(!inputChecker)
             return false;
 
-        ItemStack result = new ItemStack(TCrusherBurnRecipies.getResultForItems(getInputSlots()));
+        ItemStack result = new ItemStack(TCrusherRecipies.getResultForItems(getInputSlots()));
 
         if (result.isEmpty()) return false;
         else
@@ -326,9 +325,9 @@ public class ThermalCrusher extends TileEntity implements ITickable, ISidedInven
         {
             int resultSlotId = slotsinput + 1;
             List<Item> input = getInputSlots();
-            ItemStack result = new ItemStack(TCrusherBurnRecipies.getResultForItems(input));
+            ItemStack result = new ItemStack(TCrusherRecipies.getResultForItems(input));
             ItemStack resultSlot = this.CrusherItemStacks.get(resultSlotId);
-            List<Item> output = TCrusherBurnRecipies.getSubsForItems(input);
+            List<Item> output = TCrusherRecipies.getSubsForItems(input);
 
             // Основной результат
             if (resultSlot.isEmpty())
@@ -369,7 +368,10 @@ public class ThermalCrusher extends TileEntity implements ITickable, ISidedInven
 
     // Время пережигания, вынесено в отдельный класс
 
-
+    public static int getItemBurnTime(ItemStack stack)
+    {
+        return TilesFuel.getFuelTime(stack, 1);
+    }
     public static boolean isItemFuel(ItemStack stack)
     {
         return getItemBurnTime(stack) > 0;
@@ -441,7 +443,7 @@ public class ThermalCrusher extends TileEntity implements ITickable, ISidedInven
         return true;
     }
 
-    public String getGuiID()
+   /* public String getGuiID()
     {
         return Reference.MOD_ID + ":thermalcrusher";
     }
@@ -449,7 +451,7 @@ public class ThermalCrusher extends TileEntity implements ITickable, ISidedInven
     public Container createContainer(InventoryPlayer playerInventory, EntityPlayer playerIn)
     {
         return new ContainerThermalCrusher(playerInventory, this);
-    }
+    }*/
 
     public int getField(int id)
     {

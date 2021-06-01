@@ -7,7 +7,7 @@ import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import ua.andrey08xtomyoll.mineadditions.blocks.*;
-import ua.andrey08xtomyoll.mineadditions.blocks.tiles.ThermalCrusher;
+import ua.andrey08xtomyoll.mineadditions.blocks.tiles.TileThermalCrusher;
 import ua.andrey08xtomyoll.mineadditions.blocks.tiles.TileAlchemyExtractor;
 
 public class ModBlocks
@@ -28,7 +28,7 @@ public class ModBlocks
 
     public static void register()
     {
-    	GameRegistry.registerTileEntity(ThermalCrusher.class, THERMALCRUSHER_ON.getRegistryName().toString());
+    	GameRegistry.registerTileEntity(TileThermalCrusher.class, THERMALCRUSHER_ON.getRegistryName().toString());
         GameRegistry.registerTileEntity(TileAlchemyExtractor.class, ALCHEMY_EXTRACTOR_ON.getRegistryName().toString());
 	}
 }

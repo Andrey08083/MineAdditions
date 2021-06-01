@@ -9,7 +9,7 @@ import ua.andrey08xtomyoll.mineadditions.ModMain;
 import ua.andrey08xtomyoll.mineadditions.init.ModBlocks;
 import ua.andrey08xtomyoll.mineadditions.init.ModItems;
 
-public class TCrusherBurnRecipies
+public class TCrusherRecipies
 {
 
     private static final ArrayList<List<Item>> inputList 			= new ArrayList<List<Item>>();
@@ -30,8 +30,8 @@ public class TCrusherBurnRecipies
 		- Item основной результат
 		- Item[]{} список  суб-результатов (до 4х соответсвенно)
 		*/
-        TCrusherBurnRecipies.addFurnaceRecipeWithCookTime(2000, new Item[]{Item.getItemFromBlock(ModBlocks.LABATIUM_ORE)}, ModItems.LITTLE_LABATIUM_DUST, new Item[]{});
-        TCrusherBurnRecipies.addFurnaceRecipeWithCookTime(2000, new Item[]{Item.getItemFromBlock(ModBlocks.TOMIUM_ORE)}, ModItems.LITTLE_TOMIUM_DUST, new Item[]{});
+        TCrusherRecipies.addFurnaceRecipeWithCookTime(2000, new Item[]{Item.getItemFromBlock(ModBlocks.LABATIUM_ORE)}, ModItems.LITTLE_LABATIUM_DUST, new Item[]{});
+        TCrusherRecipies.addFurnaceRecipeWithCookTime(2000, new Item[]{Item.getItemFromBlock(ModBlocks.TOMIUM_ORE)}, ModItems.LITTLE_TOMIUM_DUST, new Item[]{});
     }
 
     // Добавление рецепта

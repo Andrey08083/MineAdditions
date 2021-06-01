@@ -21,12 +21,11 @@ public class EntityRegistry
 {
     @SideOnly(Side.CLIENT)
     public static void initModels() {
-        RenderingRegistry.registerEntityRenderingHandler(EntityVan.EntityVanShoot.class, renderManager -> {
-            return new RenderSnowball<EntityVan.EntityVanShoot>(renderManager, null, Minecraft.getMinecraft().getRenderItem()) {
-                public ItemStack getStackToRender(EntityVan.EntityVanShoot entity) {
-                    return new ItemStack(ModItems.ITEM_VAN_SHOOT, (int) (1));
-                }
-            };
+        RenderingRegistry.registerEntityRenderingHandler(EntityVan.EntityVanShoot.class, renderManager ->
+                new RenderSnowball<EntityVan.EntityVanShoot>(renderManager, null, Minecraft.getMinecraft().getRenderItem()) {
+            public ItemStack getStackToRender(EntityVan.EntityVanShoot entity) {
+                return new ItemStack(ModItems.ITEM_VAN_SHOOT, (1));
+            }
         });
         RenderingRegistry.registerEntityRenderingHandler(EntityVan.class, RenderVan.FACTORY);
     }

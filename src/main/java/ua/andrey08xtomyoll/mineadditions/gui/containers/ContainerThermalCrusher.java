@@ -12,7 +12,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.FurnaceRecipes;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import ua.andrey08xtomyoll.mineadditions.blocks.tiles.ThermalCrusher;
+import ua.andrey08xtomyoll.mineadditions.blocks.tiles.TileThermalCrusher;
 
 public class ContainerThermalCrusher extends Container
 {
@@ -25,16 +25,15 @@ public class ContainerThermalCrusher extends Container
     public ContainerThermalCrusher(InventoryPlayer playerInventory, IInventory furnaceInventory)
     {
         this.tileentity = furnaceInventory;
-        ThermalCrusher thermalCrusher = (ThermalCrusher) tileentity;
-        // Входящие слоты (слева направо, в верхнем левом углу)
-        for(int i = 0; i < ThermalCrusher.slotsinput; i++){
+        // Входящие слоты
+        for(int i = 0; i < TileThermalCrusher.slotsinput; i++){
         	this.addSlotToContainer(new Slot(furnaceInventory, i, 57 + i * 18, 16));
         }
         // Топливо
-        this.addSlotToContainer(new SlotFurnaceFuel(furnaceInventory, ThermalCrusher.slotsinput, 57, 53));
+        this.addSlotToContainer(new SlotFurnaceFuel(furnaceInventory, TileThermalCrusher.slotsinput, 57, 53));
 
-        for(int n = (ThermalCrusher.slotsinput + 1); n < ThermalCrusher.slotscount; n++){
-        	this.addSlotToContainer(new SlotFurnaceOutput(playerInventory.player, furnaceInventory, n, 120, 44 - (n - (ThermalCrusher.slotsinput + 1)) * 18));
+        for(int n = (TileThermalCrusher.slotsinput + 1); n < TileThermalCrusher.slotscount; n++){
+        	this.addSlotToContainer(new SlotFurnaceOutput(playerInventory.player, furnaceInventory, n, 120, 44 - (n - (TileThermalCrusher.slotsinput + 1)) * 18));
         }
 
         // Слоты игрока
@@ -141,7 +140,7 @@ public class ContainerThermalCrusher extends Container
                         return ItemStack.EMPTY;
                     }
                 }
-                else if (ThermalCrusher.isItemFuel(itemstack1))
+                else if (TileThermalCrusher.isItemFuel(itemstack1))
                 {
                     if (!this.mergeItemStack(itemstack1, 1, 2, false))
                     {

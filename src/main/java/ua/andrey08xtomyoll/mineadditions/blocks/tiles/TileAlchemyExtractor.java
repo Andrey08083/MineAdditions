@@ -148,14 +148,6 @@ public class TileAlchemyExtractor extends TileEntity implements ITickable, ISide
         return compound;
     }
 
-
-    @Override
-    public ITextComponent getDisplayName()
-    {
-        return new TextComponentTranslation("container.alchemy_extractor");
-    }
-
-
     public int getInventoryStackLimit()
     {
         return 64;
@@ -280,11 +272,10 @@ public class TileAlchemyExtractor extends TileEntity implements ITickable, ISide
         return inputItemsStacks;
     }
 
-    public int getCookTime(NonNullList<Item> stacks)
+    /*public int getCookTime(NonNullList<Item> stacks)
     {
         return AlchemyExtractorRecipies.getCookTimeForItems(stacks);
-    }
-
+    }*/
 
     private boolean canSmelt()
     {
@@ -365,7 +356,7 @@ public class TileAlchemyExtractor extends TileEntity implements ITickable, ISide
 
     public static int getItemBurnTime(ItemStack stack)
     {
-        return TilesFuel.getFuelTime(stack);
+        return TilesFuel.getFuelTime(stack, 0);
     }
 
     public static boolean isItemFuel(ItemStack stack)

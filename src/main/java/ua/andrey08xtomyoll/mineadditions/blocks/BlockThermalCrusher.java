@@ -5,11 +5,9 @@ import java.util.Random;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.BlockHorizontal;
 import net.minecraft.block.material.Material;
-import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyDirection;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.SoundEvents;
@@ -31,7 +29,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import ua.andrey08xtomyoll.mineadditions.ModMain;
-import ua.andrey08xtomyoll.mineadditions.blocks.tiles.ThermalCrusher;
+import ua.andrey08xtomyoll.mineadditions.blocks.tiles.TileThermalCrusher;
 import ua.andrey08xtomyoll.mineadditions.handlers.GuiHandler;
 import ua.andrey08xtomyoll.mineadditions.init.ModBlocks;
 import ua.andrey08xtomyoll.mineadditions.init.ModItems;
@@ -142,7 +140,7 @@ public class BlockThermalCrusher extends BlockContainer implements IHasModel{
 	
 	@Override
 	public TileEntity createNewTileEntity(World worldIn, int meta) {
-		return new ThermalCrusher();
+		return new TileThermalCrusher();
 	}
 	
 	public static void setState(boolean active, World worldIn, BlockPos pos)
@@ -187,9 +185,9 @@ public class BlockThermalCrusher extends BlockContainer implements IHasModel{
         {
             TileEntity tileentity = worldIn.getTileEntity(pos);
 
-            if (tileentity instanceof ThermalCrusher)
+            if (tileentity instanceof TileThermalCrusher)
             {
-                ((ThermalCrusher)tileentity).setCustomInventoryName(stack.getDisplayName());
+                ((TileThermalCrusher)tileentity).setCustomInventoryName(stack.getDisplayName());
             }
         }
     }
@@ -203,9 +201,9 @@ public class BlockThermalCrusher extends BlockContainer implements IHasModel{
         {
             TileEntity tileentity = worldIn.getTileEntity(pos);
 
-            if (tileentity instanceof ThermalCrusher)
+            if (tileentity instanceof TileThermalCrusher)
             {
-                InventoryHelper.dropInventoryItems(worldIn, pos, (ThermalCrusher)tileentity);
+                InventoryHelper.dropInventoryItems(worldIn, pos, (TileThermalCrusher)tileentity);
                 worldIn.updateComparatorOutputLevel(pos, this);
             }
         }
