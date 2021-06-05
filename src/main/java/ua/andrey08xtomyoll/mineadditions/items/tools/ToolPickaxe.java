@@ -17,8 +17,16 @@ import ua.andrey08xtomyoll.mineadditions.init.ModItems;
 import ua.andrey08xtomyoll.mineadditions.util.IHasEffect;
 import ua.andrey08xtomyoll.mineadditions.util.IHasModel;
 
+/**
+ * Клас-конструктор кирки
+ */
 public class ToolPickaxe extends ItemPickaxe implements IHasModel, IHasEffect
 {
+    /**
+     * Конструктор кирки
+     * @param name реєстраційне ім'я інструменту
+     * @param material матеріал, від якого успадковуються властивості інструменту
+     */
     public ToolPickaxe(String name, ToolMaterial material)
     {
         super(material);
@@ -31,6 +39,10 @@ public class ToolPickaxe extends ItemPickaxe implements IHasModel, IHasEffect
     @SideOnly(Side.CLIENT)
     public boolean hasEffect(ItemStack stack){return true;}
 
+    /**
+     * Подія, яка виконується при використанні предмету правою кнопкою миші
+     * @return результат події
+     */
     @Override
     public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, EnumHand handIn) {
         NBTTagCompound nbt = new NBTTagCompound();
@@ -60,19 +72,18 @@ public class ToolPickaxe extends ItemPickaxe implements IHasModel, IHasEffect
 
     }
 
+    /**
+     * Подія, яка виконується при крафтингу предмета
+     * @param stack предмет
+     * @param worldIn світ
+     * @param playerIn гравець, який скрафтив предмет
+     */
     @Override
     public void onCreated(ItemStack stack, World worldIn, EntityPlayer playerIn) {
         NBTTagCompound nbt = new NBTTagCompound();
         nbt.setInteger("zone", 1);
         stack.setTagCompound(nbt);
     }
-
-    /*Multitool feature
-    @Override
-    public Set<String> getToolClasses(ItemStack stack)
-    {
-        return Sets.newHashSet("pickaxe", "axe", "shovel");
-    }*/
 
     @Override
     public void registerModels()

@@ -5,9 +5,16 @@ import ua.andrey08xtomyoll.mineadditions.ModMain;
 
 import java.util.Random;
 
+/**
+ * Клас блоків з руди (Лабатіум, Томіум)
+ */
 public class ModOreBlock extends BlockBase
 {
-
+    /**
+     * Конструктор блоку
+     * @param name реєстраційне ім'я блоку
+     * @param material матеріал, від якого наслідується поведінка
+     */
     public ModOreBlock(String name, Material material)
     {
         super(name, material);

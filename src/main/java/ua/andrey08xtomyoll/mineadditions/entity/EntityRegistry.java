@@ -16,9 +16,15 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import ua.andrey08xtomyoll.mineadditions.init.ModItems;
 import ua.andrey08xtomyoll.mineadditions.util.Reference;
 
+/**
+ * Клас реєстрації створення моба
+ */
 @Mod.EventBusSubscriber(modid = Reference.MOD_ID)
 public class EntityRegistry
 {
+    /**
+     * Метод ініціалізації моделей
+     */
     @SideOnly(Side.CLIENT)
     public static void initModels() {
         RenderingRegistry.registerEntityRenderingHandler(EntityVan.EntityVanShoot.class, renderManager ->
@@ -39,6 +45,9 @@ public class EntityRegistry
             .id("van_shoot", ID++)
             .tracker(64, 1, true).build();
 
+    /**
+     * Метод реєстрації моба і снаряду
+     */
     @SubscribeEvent
     public static void registryEntity(RegistryEvent.Register<EntityEntry> event) {
         event.getRegistry().registerAll(

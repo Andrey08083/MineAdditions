@@ -4,7 +4,6 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemHoe;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.util.ActionResult;
 import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
@@ -19,7 +18,16 @@ import ua.andrey08xtomyoll.mineadditions.init.ModItems;
 import ua.andrey08xtomyoll.mineadditions.util.IHasEffect;
 import ua.andrey08xtomyoll.mineadditions.util.IHasModel;
 
+/**
+ * Клас-конструктор мотики
+ */
 public class ToolHoe extends ItemHoe implements IHasModel, IHasEffect {
+
+    /**
+     * Конструктор мотики
+     * @param name реєстраційне ім'я інструменту
+     * @param material матеріал, від якого успадковуються властивості інструменту
+     */
     public ToolHoe(String name, ToolMaterial material) {
         super(material);
         setTranslationKey(name);
@@ -28,6 +36,12 @@ public class ToolHoe extends ItemHoe implements IHasModel, IHasEffect {
         ModItems.ITEMS.add(this);
     }
 
+    /**
+     * Подія, яка виконується при крафтингу предмета
+     * @param stack предмет
+     * @param worldIn світ
+     * @param playerIn гравець, який скрафтив предмет
+     */
     @Override
     public void onCreated(ItemStack stack, World worldIn, EntityPlayer playerIn) {
         NBTTagCompound nbt = new NBTTagCompound();
@@ -35,6 +49,10 @@ public class ToolHoe extends ItemHoe implements IHasModel, IHasEffect {
         stack.setTagCompound(nbt);
     }
 
+    /**
+     * Подія, яка виконується при використанні предмету правою кнопкою миші
+     * @return результат події
+     */
     @Override
     public EnumActionResult onItemUse(EntityPlayer player, World worldIn, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
         NBTTagCompound nbt = player.getHeldItem(EnumHand.MAIN_HAND).getTagCompound();

@@ -19,6 +19,9 @@ import ua.andrey08xtomyoll.mineadditions.util.Reference;
 import ua.andrey08xtomyoll.mineadditions.util.TCrusherRecipies;
 import ua.andrey08xtomyoll.mineadditions.world.ModWorldGen;
 
+/**
+ * Головний клас модифікації
+ */
 @Mod(modid = Reference.MOD_ID, name = Reference.NAME, version = Reference.VERSION)
 public class ModMain {
 
@@ -38,6 +41,10 @@ public class ModMain {
     @SidedProxy(clientSide = Reference.CLIENT_PROXY_CLASS, serverSide = Reference.COMMON_PROXY_CLASS)
     public static CommonProxy proxy;
 
+    /**
+     * Метод передініціалізації модифікації
+     * @param event параметри події
+     */
     @Mod.EventHandler
     public static void preInit(FMLPreInitializationEvent event) {
         GameRegistry.registerWorldGenerator(new ModWorldGen(), 3);
@@ -47,12 +54,20 @@ public class ModMain {
         proxy.preInit(event);
     }
 
+    /**
+     * Метод ініціалізації модифікації
+     * @param event параметри події
+     */
     @Mod.EventHandler
     public static void init(FMLInitializationEvent event) {
         proxy.init(event);
         ConfigHandler.initConfig();
     }
 
+    /**
+     * Метод постініціалізації модифікації
+     * @param event параметри події
+     */
     @Mod.EventHandler
     public static void postInit(FMLPostInitializationEvent event) {
         TCrusherRecipies.init();
@@ -60,6 +75,10 @@ public class ModMain {
         proxy.postInit(event);
     }
 
+    /**
+     * Метод логування дагих
+     * @param text текст для логування
+     */
     public static void log(String text) {
         if (Reference.DEBUG) {
             System.out.println(text);

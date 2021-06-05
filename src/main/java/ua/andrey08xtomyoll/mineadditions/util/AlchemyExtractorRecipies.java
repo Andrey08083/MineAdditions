@@ -9,6 +9,9 @@ import ua.andrey08xtomyoll.mineadditions.init.ModItems;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Клас рецептів алхімічного екстрактору
+ */
 public class AlchemyExtractorRecipies {
 
     private static final ArrayList<List<Item>> inputList = new ArrayList<List<Item>>();
@@ -19,7 +22,9 @@ public class AlchemyExtractorRecipies {
     // Время плавки
     private static final ArrayList<Integer> timeList = new ArrayList<Integer>();
 
-
+    /**
+     * Метод ініціалізації рецептів
+     */
     public static void init() {
 		/* Рецепты состоят из:
 		- int время плавления
@@ -35,7 +40,13 @@ public class AlchemyExtractorRecipies {
 
     }
 
-    // Добавляем рецепт
+    /**
+     * Метод додавання рецептів
+     * @param cookTime час готування
+     * @param inputRaw масив вхідних предметів
+     * @param result результат
+     * @param outputRaw масив побічних результатів
+     */
     public static void addFurnaceRecipeWithCookTime(int cookTime, Item[] inputRaw, Item result, Item[] outputRaw)
     {
         List<Item> input = new ArrayList<Item>();
@@ -60,7 +71,11 @@ public class AlchemyExtractorRecipies {
         subOutputList.add(output);
     }
 
-    // Получение времени приготовления по входящим
+    /**
+     * Геттер часу приготування з рецепту
+     * @param input масив вхідних предметів рецепту
+     * @return результат
+     */
     public static int getCookTimeForItems(List<Item> input)
     {
         boolean isEmpty = true;
@@ -99,7 +114,11 @@ public class AlchemyExtractorRecipies {
         return 200;
     }
 
-    // Получение результата по входящим
+    /**
+     * Геттер результатів з рецепту
+     * @param input масив вхідних предметів рецепту
+     * @return результат
+     */
     public static Item getResultForItems(List<Item> input)
     {
         boolean isEmpty = true;
@@ -139,6 +158,11 @@ public class AlchemyExtractorRecipies {
         return null;
     }
 
+    /**
+     * Геттер побічних результатів з рецепту
+     * @param input масив вхідних предметів рецепту
+     * @return масив побічних предметів
+     */
     public static List<Item> getSubsForItems(List<Item> input)
     {
         boolean isEmpty = true;

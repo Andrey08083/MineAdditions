@@ -26,15 +26,17 @@ import ua.andrey08xtomyoll.mineadditions.blocks.BlockThermalCrusher;
 import ua.andrey08xtomyoll.mineadditions.gui.containers.ContainerThermalCrusher;
 import ua.andrey08xtomyoll.mineadditions.util.TCrusherRecipies;
 import ua.andrey08xtomyoll.mineadditions.util.Reference;
-import ua.andrey08xtomyoll.mineadditions.util.TilesFuel;
 
 import javax.annotation.Nonnull;
 
+import static ua.andrey08xtomyoll.mineadditions.util.TilesFuel.getItemBurnTime;
 
+/**
+ * Клас блоку-сутності механізму Thermal Crusher
+ */
 @Nonnull
 public class TileThermalCrusher extends TileEntity implements ITickable, ISidedInventory
 {
-
     /** Величины, которые задают кол-во слотов на выход/выход и соотвественно саму математику **/
     // Общее кол-во слотов, не менее 3х, не более 11 (5 входящих + топливо + 5 на выходе)
     public static int slotscount = 4;
@@ -55,11 +57,19 @@ public class TileThermalCrusher extends TileEntity implements ITickable, ISidedI
     private int totalCookTime;
     private String CustomName;
 
+    /**
+     * Геттер, який повертає розмір інвентарю
+     * @return розмір інвентарю
+     */
     public int getSizeInventory()
     {
         return this.CrusherItemStacks.size();
     }
 
+    /**
+     * Метод перевірки на порожність
+     * @return true, якщо предметів нема, або false, якщо є хоча б один предмет
+     */
     public boolean isEmpty()
     {
         for (ItemStack itemstack : this.CrusherItemStacks)
@@ -73,24 +83,45 @@ public class TileThermalCrusher extends TileEntity implements ITickable, ISidedI
         return true;
     }
 
+    /**
+     * Метод отримання предмету з слоту
+     * @param index індекс слоту механізму
+     * @return предмет з слоту
+     */
     @Nonnull
     public ItemStack getStackInSlot(int index)
     {
         return this.CrusherItemStacks.get(index);
     }
 
+    /**
+     * Метод для розділення предметів в стаку
+     * @param index індекс слоту, в якому знаходиться стак
+     * @param count кількість
+     * @return розділений стак
+     */
     @Nonnull
     public ItemStack decrStackSize(int index, int count)
     {
         return ItemStackHelper.getAndSplit(this.CrusherItemStacks, index, count);
     }
 
+    /**
+     * Метод для забирання предмету з слоту
+     * @param index індекс слоту, в якому знаходиться стак
+     * @return стак без частини предметів
+     */
     @Nonnull
     public ItemStack removeStackFromSlot(int index)
     {
         return ItemStackHelper.getAndRemove(this.CrusherItemStacks, index);
     }
 
+    /**
+     * Сеттер стаку предметів по індексу в механізмі
+     * @param index індекс слоту в механізмі
+     * @param stack стак предметів
+     */
     public void setInventorySlotContents(int index, ItemStack stack)
     {
         ItemStack itemstack = this.CrusherItemStacks.get(index);
@@ -110,22 +141,38 @@ public class TileThermalCrusher extends TileEntity implements ITickable, ISidedI
         }
     }
 
+    /**
+     * Геттер імені механізму
+     * @return ім'я механізму
+     */
     @Nonnull
     public String getName()
     {
         return this.hasCustomName() ? this.CustomName : "container.thermal_crusher";
     }
 
+    /**
+     * Метод перевірки наявності модифікованого імені механізму
+     * @return true, якщо ім'я модифіковано, або false, якщо ім'я не відредаговано
+     */
     public boolean hasCustomName()
     {
         return this.CustomName != null && !this.CustomName.isEmpty();
     }
 
+    /**
+     * Сеттер модифікованого імені інвентаря механізму
+     * @param name ім'я механізму
+     */
     public void setCustomInventoryName(String name)
     {
         this.CustomName = name;
     }
 
+    /**
+     * Метод присвоєння даних з NBT-тегу
+     * @param compound NBT-тег
+     */
     public void readFromNBT(NBTTagCompound  compound)
     {
         super.readFromNBT(compound);
@@ -141,7 +188,10 @@ public class TileThermalCrusher extends TileEntity implements ITickable, ISidedI
             this.CustomName = compound.getString("CustomName");
         }
     }
-
+    /**
+     * Метод запису даних в NBT-тег
+     * @param compound NBT-тег
+     */
     @Nonnull
     public NBTTagCompound writeToNBT(NBTTagCompound compound)
     {
@@ -158,24 +208,37 @@ public class TileThermalCrusher extends TileEntity implements ITickable, ISidedI
 
         return compound;
     }
-
+    /**
+     * Геттер максимального ліміту предметів в стаку
+     */
     public int getInventoryStackLimit()
     {
         return 64;
     }
 
+    /**
+     * Метод перевірки на те, чи проводиться якийсь крафт в даний момент часу
+     * @return true, якщо так, або false, якщо ні
+     */
     public boolean isBurning()
     {
         return this.CrusherBurnTime > 0;
     }
 
+    /**
+     * Статичний метод перевірки на те, чи проводиться якийсь крафт в даний момент часу
+     * @return true, якщо так, або false, якщо ні
+     */
     @SideOnly(Side.CLIENT)
     public static boolean isBurning(IInventory inventory)
     {
         return inventory.getField(0) > 0;
     }
 
-    // Проверяем, есть ли что-то внутри
+    /**
+     * Метод перевірки на те, чи є якісь предмети в механізмі
+     * @return true, якщо так, або false, якщо ні
+     */
     private boolean isSomethingInput(){
         boolean isSomething = false;
         for(int i = 0; i < slotsinput; i++){
@@ -187,12 +250,17 @@ public class TileThermalCrusher extends TileEntity implements ITickable, ISidedI
         }
         return isSomething;
     }
-
+    /**
+     * Геттер ідентифікатору слоту для палива
+     * @return ідентифікатор слоту для палива
+     */
     private int getFuelSlotId(){
         return slotsinput;
     }
 
-    // Основной метод цикла
+    /**
+     * Метод, який виконується кожен ігровий тік
+     */
     public void update()
     {
         boolean flag = this.isBurning();
@@ -274,6 +342,10 @@ public class TileThermalCrusher extends TileEntity implements ITickable, ISidedI
         }
     }
 
+    /**
+     * Геттер списку активних слотів для вхідних інгрідієнтів
+     * @return список активних слотів для вхідних інгрідієнтів
+     */
     // Получаем список активных слотов входящих веществ
     private List<Item> getInputSlots(){
 
@@ -286,6 +358,10 @@ public class TileThermalCrusher extends TileEntity implements ITickable, ISidedI
         return inputItemsStacks;
     }
 
+    /**
+     * Перевірка на те, чи можна провести такий рецепт
+     * @return true, якщо так, або false, якщо ні
+     */
     // Проверка на то, можно ли провести такой рецепт
     private boolean canSmelt()
     {
@@ -318,6 +394,9 @@ public class TileThermalCrusher extends TileEntity implements ITickable, ISidedI
         }
     }
 
+    /**
+     * Метод завершення циклу переплавки
+     */
     // Конец переплавки (цикла)
     public void smeltItem()
     {
@@ -368,15 +447,21 @@ public class TileThermalCrusher extends TileEntity implements ITickable, ISidedI
 
     // Время пережигания, вынесено в отдельный класс
 
-    public static int getItemBurnTime(ItemStack stack)
-    {
-        return TilesFuel.getFuelTime(stack, 1);
-    }
+    /**
+     * Метод перевірки на те, чи являється предмет в слоті для палива, паливом
+     * @param stack вхідний предмет
+     * @return true, якщо предмет - паливо, або false, якщо предмет - не паливо
+     */
     public static boolean isItemFuel(ItemStack stack)
     {
         return getItemBurnTime(stack) > 0;
     }
 
+    /**
+     * Метод перевірки на те, чи може бути цей блок аикористаний гравцем
+     * @param player гравець
+     * @return true, якщо гравець знаходиться на дозволеній відстані, або false, якщо гравець занадто далеко
+     */
     public boolean isUsableByPlayer(EntityPlayer player)
     {
         if (this.world.getTileEntity(this.pos) != this)
@@ -389,14 +474,28 @@ public class TileThermalCrusher extends TileEntity implements ITickable, ISidedI
         }
     }
 
+    /**
+     * Метод відкриття інвентарю гравцем (повинен бути реалізований, так як наслідується від абстрактного класу)
+     * @param player гравець
+     */
     public void openInventory(EntityPlayer player)
     {
     }
 
+    /**
+     * Метод закриття інвентарю гравцем (повинен бути реалізований, так як наслідується від абстрактного класу)
+     * @param player гравець
+     */
     public void closeInventory(EntityPlayer player)
     {
     }
 
+    /**
+     * Метод перевірки на те, чи може цей предмет бути в даному слоті
+     * @param index індекс слоту
+     * @param stack предмет
+     * @return true, якщо так, або false, якщо ні
+     */
     public boolean isItemValidForSlot(int index, ItemStack stack)
     {
         if (index == 2)
@@ -414,6 +513,11 @@ public class TileThermalCrusher extends TileEntity implements ITickable, ISidedI
         }
     }
 
+    /**
+     * Метод отримання слотів, які можуть бути доступними з різних сторін (потрібно для воронки і подібних блоків)
+     * @param side сторона, до якої приєднаний блок
+     * @return масив індексів комірок, які доступні для блоку
+     */
     public int[] getSlotsForFace(EnumFacing side)
     {
         if (side == EnumFacing.DOWN)
@@ -426,11 +530,25 @@ public class TileThermalCrusher extends TileEntity implements ITickable, ISidedI
         }
     }
 
+    /**
+     * Метод перевірки на те, чи може цей предмет потрапити в механізм
+     * @param index індекс комірки
+     * @param itemStackIn предмет
+     * @param direction сторона блоку
+     * @return true, якщо так, або false, якщо ні
+     */
     public boolean canInsertItem(int index, ItemStack itemStackIn, EnumFacing direction)
     {
         return this.isItemValidForSlot(index, itemStackIn);
     }
 
+    /**
+     * Метод перевірки на те, чи може цей предмет покинути механізм
+     * @param index індекс комірки
+     * @param stack предмет
+     * @param direction сторона блоку
+     * @return true, якщо так, або false, якщо ні
+     */
     public boolean canExtractItem(int index, ItemStack stack, EnumFacing direction)
     {
         if (direction == EnumFacing.DOWN && index == 1)
@@ -443,7 +561,7 @@ public class TileThermalCrusher extends TileEntity implements ITickable, ISidedI
         return true;
     }
 
-   /* public String getGuiID()
+    public String getGuiID()
     {
         return Reference.MOD_ID + ":thermalcrusher";
     }
@@ -451,7 +569,7 @@ public class TileThermalCrusher extends TileEntity implements ITickable, ISidedI
     public Container createContainer(InventoryPlayer playerInventory, EntityPlayer playerIn)
     {
         return new ContainerThermalCrusher(playerInventory, this);
-    }*/
+    }
 
     public int getField(int id)
     {
@@ -469,7 +587,11 @@ public class TileThermalCrusher extends TileEntity implements ITickable, ISidedI
                 return 0;
         }
     }
-
+    /**
+     * Сеттер поля класу по ідентифікатору
+     * @param id ідентифікатор
+     * @param value значення
+     */
     public void setField(int id, int value)
     {
         switch (id)
@@ -488,11 +610,18 @@ public class TileThermalCrusher extends TileEntity implements ITickable, ISidedI
         }
     }
 
+    /**
+     * Геттер кількості полей
+     * @return кількість полей
+     */
     public int getFieldCount()
     {
         return 4;
     }
 
+    /**
+     * Метод очистки комірок механізму
+     */
     public void clear()
     {
         this.CrusherItemStacks.clear();
@@ -502,6 +631,13 @@ public class TileThermalCrusher extends TileEntity implements ITickable, ISidedI
     net.minecraftforge.items.IItemHandler handlerBottom = new net.minecraftforge.items.wrapper.SidedInvWrapper(this, net.minecraft.util.EnumFacing.DOWN);
     net.minecraftforge.items.IItemHandler handlerSide = new net.minecraftforge.items.wrapper.SidedInvWrapper(this, net.minecraft.util.EnumFacing.WEST);
 
+    /**
+     * Метод отримання властивостей відносно сторони механізму, з якої зроблено звернення до нього
+     * @param capability властивість
+     * @param facing сторона
+     * @param <T> об'єкт, який реалізує інтерфейс IItemHandler
+     * @return об'єкт, який реалізує інтерфейс IItemHandler
+     */
     @SuppressWarnings("unchecked")
     @Override
     @javax.annotation.Nullable

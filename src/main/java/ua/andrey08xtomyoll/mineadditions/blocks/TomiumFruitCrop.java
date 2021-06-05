@@ -12,14 +12,26 @@ import net.minecraft.world.World;
 import ua.andrey08xtomyoll.mineadditions.ModMain;
 import ua.andrey08xtomyoll.mineadditions.init.ModItems;
 
+/**
+ * Клас Томіумового фрукту
+ */
 public class TomiumFruitCrop extends LabatiumFruitCrop
 {
+    /**
+     * Конструктор Томіумового фрукту
+     * @param name реєстраційне ім'я
+     */
     public TomiumFruitCrop(String name)
     {
         super(name);
         setCreativeTab(null);
     }
 
+    /**
+     * Метод взаємодії з блоком рослини
+     * При взаємодії на останній стадії росту, можна отримати фрукт з рослини
+     * @return true, якщо це остання стадія росту, або false, якщо не остання стадія росту
+     */
     @Override
     public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
     {
@@ -36,6 +48,10 @@ public class TomiumFruitCrop extends LabatiumFruitCrop
         return false;
     }
 
+    /**
+     * Геттер врожаю
+     * @return Томіумовий фрукт
+     */
     @Override
     protected Item getCrop()
     {

@@ -5,6 +5,9 @@ import ua.andrey08xtomyoll.mineadditions.ModMain;
 import ua.andrey08xtomyoll.mineadditions.init.ModItems;
 import ua.andrey08xtomyoll.mineadditions.util.IHasModel;
 
+/**
+ * Клас снаряду Вена
+ */
 public class ItemShoot extends Item implements IHasModel
 {
 

@@ -13,6 +13,9 @@ import java.util.List;
 import java.util.Set;
 import java.util.TreeSet;
 
+/**
+ * Головний конфігураційний клас модифікації
+ */
 @Config(modid = Reference.MOD_ID)
 @Mod.EventBusSubscriber(modid = Reference.MOD_ID)
 public class ConfigHandler {
@@ -29,7 +32,10 @@ public class ConfigHandler {
     @Config.LangKey(Reference.MOD_ID + ".cfg.ore_gen_category")
     public static OreGenSettings oreGenSettings = new OreGenSettings();
 
-
+    /**
+     * Подія, яка викликається при оновленні значень конфігурації в грі
+     * @param event дані події
+     */
     @SubscribeEvent
     public static void onConfigChanged(ConfigChangedEvent.OnConfigChangedEvent event) {
         if (event.getModID().equals(Reference.MOD_ID)) {
@@ -38,7 +44,9 @@ public class ConfigHandler {
         }
     }
 
-
+    /**
+     * Метод оновлення даних в масиві режимів глибини копання
+     */
     public static void initConfig() {
         GeneralSettings.depthModesArray = new ArrayList<>();
         GeneralSettings.depthModesArray.add(1);
@@ -50,6 +58,11 @@ public class ConfigHandler {
         GeneralSettings.depthModesArray = new ArrayList<>(tempSet);
     }
 
+    /**
+     * Метод перевірки числа на можливість парсингу
+     * @param num число у форматі String
+     * @return true, якщо це число у правильному форматі, або false, якщо це не число
+     */
     public static boolean canBeParsed(String num) {
         try {
             Integer.parseInt(num);
@@ -60,6 +73,9 @@ public class ConfigHandler {
         return true;
     }
 
+    /**
+     * Вкладений клас спільних налаштувань
+     */
     public static class GeneralSettings {
         @Config.LangKey(Reference.MOD_ID + ".cfg.depth_modes")
         @Config.Comment("Split values by | symbol")
@@ -73,8 +89,10 @@ public class ConfigHandler {
         public int vanDamage = 5;
     }
 
+    /**
+     * Вкладений клас налаштувань Лабатіумової броні та інструментів
+     */
     public static class LabatiumSettings {
-
         @Config.LangKey(Reference.MOD_ID + ".cfg.overall_resistance")
         public int overallResistance = 80;
         @Config.LangKey(Reference.MOD_ID + ".cfg.helmet_resistance")
@@ -89,8 +107,10 @@ public class ConfigHandler {
         public float overallToughness = 20;
     }
 
+    /**
+     * Вкладений клас налаштувань Томіумової броні та інструментів
+     */
     public static class TomiumSettings {
-
         @Config.LangKey(Reference.MOD_ID + ".cfg.overall_resistance")
         public int overallResistance = 80;
         @Config.LangKey(Reference.MOD_ID + ".cfg.helmet_resistance")
@@ -105,6 +125,9 @@ public class ConfigHandler {
         public float overallToughness = 20;
     }
 
+    /**
+     * Вкладений клас налаштувань Генерації руди
+     */
     public static class OreGenSettings {
         @Config.LangKey(Reference.MOD_ID + ".cfg.labatium_min_height")
         @Config.RangeInt(min = 1, max = 255)

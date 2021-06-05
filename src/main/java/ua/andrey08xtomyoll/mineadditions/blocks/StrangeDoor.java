@@ -23,8 +23,16 @@ import ua.andrey08xtomyoll.mineadditions.util.IHasModel;
 
 import java.util.Random;
 
+/**
+ * Клас дивних дверей
+ */
 public class StrangeDoor extends BlockDoor implements IHasModel
 {
+    /**
+     * Конструктор класу дивних дверей
+     * @param name реєстраційне ім'я блоку
+     * @param materialIn матеріал, від якого наслідується повідінка
+     */
     public StrangeDoor(String name, Material materialIn)
     {
         super(materialIn);
@@ -36,6 +44,10 @@ public class StrangeDoor extends BlockDoor implements IHasModel
         ModItems.ITEMS.add(new StrangeDoorItemBlock(this).setRegistryName(this.getRegistryName()));
     }
 
+    /**
+     * Метод, який виконується при взаємодії з дверима
+     * @return true, якщо можна провести взаєомодію, або false, якщо не можна
+     */
     @SideOnly(Side.CLIENT)
     public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
         if (this.material == Material.IRON) {
@@ -56,6 +68,9 @@ public class StrangeDoor extends BlockDoor implements IHasModel
         }
     }
 
+    /**
+     * Метод, який викликається при зміні стану однієї з половини дверей
+     */
     @SideOnly(Side.CLIENT)
     public void neighborChanged(IBlockState state, World worldIn, BlockPos pos, Block blockIn, BlockPos fromPos)
     {
@@ -122,6 +137,12 @@ public class StrangeDoor extends BlockDoor implements IHasModel
         }
     }
 
+    /**
+     * Метод, який викликається при зміні стану активації дверей
+     * @param worldIn світ, в якому відбулася зміна стану
+     * @param pos позиція блоку
+     * @param open попередній стан блоку
+     */
     @SideOnly(Side.CLIENT)
     public void toggleDoor(World worldIn, BlockPos pos, boolean open)
     {
@@ -141,13 +162,20 @@ public class StrangeDoor extends BlockDoor implements IHasModel
         }
     }
 
-
+    /**
+     * Геттер блоку, який має випасти при поломці
+     * @return блок дивних дверей
+     */
     @Override
     public Item getItemDropped(IBlockState state, Random rand, int fortune)
     {
         return Item.getItemFromBlock(this);
     }
 
+    /**
+     * Геттер блоку, який повинен бути повернутий при натисканні середньої кнопки миші в режимі креативу
+     * @return блок дивних дверей
+     */
     @Override
     public ItemStack getPickBlock(IBlockState state, RayTraceResult target, World world, BlockPos pos, EntityPlayer player)
     {

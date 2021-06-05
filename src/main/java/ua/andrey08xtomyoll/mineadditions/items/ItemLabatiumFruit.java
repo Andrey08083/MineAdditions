@@ -1,21 +1,27 @@
 package ua.andrey08xtomyoll.mineadditions.items;
 
-import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.MobEffects;
 import net.minecraft.item.EnumAction;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemFood;
 import net.minecraft.item.ItemStack;
-import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.world.World;
 import ua.andrey08xtomyoll.mineadditions.ModMain;
 import ua.andrey08xtomyoll.mineadditions.init.ModItems;
 import ua.andrey08xtomyoll.mineadditions.util.IHasModel;
 
+/**
+ * Клас лабатіумового фрукту
+ */
 public class ItemLabatiumFruit extends ItemFood implements IHasModel
 {
+    /**
+     * Конструктор лабатіумового фрукту
+     * @param name реєстраційне ім'я їжі
+     * @param amount кількість голоду, який відновлюється за один з'їдений фрукт
+     * @param isWolfFood чи можна цією їжею годувати диких тварин
+     */
     public ItemLabatiumFruit(String name, int amount, boolean isWolfFood)
     {
         super(amount, isWolfFood);

@@ -28,9 +28,16 @@ import ua.andrey08xtomyoll.mineadditions.items.tools.ToolSpade;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Клас подій, які зв'язані з предметами
+ */
 @Mod.EventBusSubscriber
 public class ItemEventHandler {
 
+    /**
+     * Подія, яка виконується кожний ігровий тік (20 разів за секунду) і перевіряє наявність броні на гравці
+     * @param event параметр події
+     */
     @SubscribeEvent
     public static void onArmorEquipped(LivingEvent.LivingUpdateEvent event) {
         Entity player = event.getEntity();
@@ -43,6 +50,10 @@ public class ItemEventHandler {
         }
     }
 
+    /**
+     * Метод, який виконується кожен раз, коли гравець отримує пошкодження
+     * @param event параметр події
+     */
     @SubscribeEvent
     public static void onPlayerBurn(LivingHurtEvent event) {
         Entity player = event.getEntity();
@@ -57,16 +68,23 @@ public class ItemEventHandler {
         }
     }
 
+    /**
+     * Подія, яка відбувається кожен раз, коли гравець крафтить предмет
+     * @param event параметр події
+     */
     @SubscribeEvent
     public static void onItemCraft(PlayerEvent.ItemCraftedEvent event) {
         if (event.crafting.getItem() instanceof ToolPickaxe || event.crafting.getItem() instanceof ToolHoe || event.crafting.getItem() instanceof ToolSpade) {
-            ItemStack item = event.crafting;
             NBTTagCompound nbt = new NBTTagCompound();
             nbt.setInteger("zone", 1);
-            item.setTagCompound(nbt);
+            event.crafting.setTagCompound(nbt);
         }
     }
 
+    /**
+     *
+     * @param event
+     */
     @SubscribeEvent
     public static void onRightClick(PlayerInteractEvent.RightClickItem event) {
         if (event.getEntityPlayer().isSneaking())

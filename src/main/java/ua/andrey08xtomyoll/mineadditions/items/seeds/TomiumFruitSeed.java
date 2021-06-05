@@ -11,12 +11,19 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import ua.andrey08xtomyoll.mineadditions.init.ModBlocks;
 
+/**
+ * Клас-конструктор Томіумового зерна
+ */
 public class TomiumFruitSeed extends LabatiumFruitSeed
 {
     public TomiumFruitSeed(String name) {
         super(name);
     }
 
+    /**
+     * Подія, яка виконується при використанні предмету
+     * @return результат події
+     */
     @Override
     public EnumActionResult onItemUse(EntityPlayer player, World worldIn, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
     {
@@ -33,6 +40,12 @@ public class TomiumFruitSeed extends LabatiumFruitSeed
         else return EnumActionResult.FAIL;
     }
 
+    /**
+     * Геттер типу вже посадженої рослини
+     * @param world світ
+     * @param pos позиція
+     * @return тип рослини
+     */
     @Override
     public IBlockState getPlant(IBlockAccess world, BlockPos pos)
     {

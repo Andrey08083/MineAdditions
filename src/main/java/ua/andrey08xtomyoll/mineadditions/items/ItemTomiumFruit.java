@@ -1,6 +1,5 @@
 package ua.andrey08xtomyoll.mineadditions.items;
 
-import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.MobEffects;
 import net.minecraft.item.EnumAction;
@@ -12,8 +11,17 @@ import ua.andrey08xtomyoll.mineadditions.ModMain;
 import ua.andrey08xtomyoll.mineadditions.init.ModItems;
 import ua.andrey08xtomyoll.mineadditions.util.IHasModel;
 
+/**
+ * Клас томіумового фрукту
+ */
 public class ItemTomiumFruit extends ItemFood  implements IHasModel {
 
+    /**
+     * Конструктор томіумового фрукту
+     * @param name реєстраційне ім'я їжі
+     * @param amount кількість голоду, який відновлюється за один з'їдений фрукт
+     * @param isWolfFood чи можна цією їжею годувати диких тварин
+     */
     public ItemTomiumFruit(String name, int amount, boolean isWolfFood)
     {
         super(amount, isWolfFood);

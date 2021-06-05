@@ -6,7 +6,16 @@ import ua.andrey08xtomyoll.mineadditions.ModMain;
 import ua.andrey08xtomyoll.mineadditions.init.ModItems;
 import ua.andrey08xtomyoll.mineadditions.util.IHasModel;
 
+/**
+ * Клас-конструктор платівок з базовим функціоналом
+ */
 public class RecordBase extends ItemRecord implements IHasModel {
+
+    /**
+     * Конструктор платівки
+     * @param name реєстраційне ім'я
+     * @param soundIn звук, який буде програватись при використанні пластинки
+     */
     public RecordBase(String name, SoundEvent soundIn) {
         super(name, soundIn);
         setRegistryName(name);

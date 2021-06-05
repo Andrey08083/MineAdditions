@@ -16,6 +16,9 @@ import ua.andrey08xtomyoll.mineadditions.items.tools.*;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Клас з предметами
+ */
 public class ModItems {
 
     //Materials

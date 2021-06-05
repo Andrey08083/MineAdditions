@@ -1,6 +1,5 @@
 package ua.andrey08xtomyoll.mineadditions.items.tools;
 
-import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemSword;
 import net.minecraftforge.fml.relauncher.Side;
@@ -10,8 +9,16 @@ import ua.andrey08xtomyoll.mineadditions.init.ModItems;
 import ua.andrey08xtomyoll.mineadditions.util.IHasEffect;
 import ua.andrey08xtomyoll.mineadditions.util.IHasModel;
 
+/**
+ * Клас-конструктор меча
+ */
 public class ToolSword extends ItemSword implements IHasModel, IHasEffect
 {
+    /**
+     * Конструктор меча
+     * @param name реєстраційне ім'я інструменту
+     * @param material матеріал, від якого успадковуються властивості інструменту
+     */
     public ToolSword(String name, ToolMaterial material)
     {
         super(material);

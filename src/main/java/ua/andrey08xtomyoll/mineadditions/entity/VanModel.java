@@ -8,51 +8,54 @@ import net.minecraft.client.model.ModelBox;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
 
+/**
+ * Клас моделі Вена
+ */
 public class VanModel extends ModelBase {
-	 final ModelRenderer Body;
-	 final ModelRenderer cube_r1;
-	 final ModelRenderer cube_r2;
-	 final ModelRenderer cube_r3;
+	final ModelRenderer Body;
+	final ModelRenderer cube_r1;
+	final ModelRenderer cube_r2;
+	final ModelRenderer cube_r3;
 	final ModelRenderer cube_r4;
-	 final ModelRenderer cube_r5;
-	 final ModelRenderer cube_r6;
-	 final ModelRenderer cube_r7;
-	 final ModelRenderer cube_r8;
-	 final ModelRenderer cube_r9;
-	 final ModelRenderer cube_r10;
-	 final ModelRenderer cube_r11;
-	 final ModelRenderer cube_r12;
-	 final ModelRenderer cube_r13;
-	 final ModelRenderer cube_r14;
-	 ModelRenderer cube_r15;
-	 final ModelRenderer cube_r16;
-	 final ModelRenderer Fronttintakle;
-	 final ModelRenderer cube_r17;
-	 final ModelRenderer cube_r18;
-	 final ModelRenderer cube_r19;
-	 final ModelRenderer cube_r20;
-	 final ModelRenderer cube_r21;
-	 final ModelRenderer cube_r22;
-	 final ModelRenderer cube_r23;
-	 final ModelRenderer cube_r24;
-	 final ModelRenderer cube_r25;
-	 final ModelRenderer cube_r26;
-	 final ModelRenderer cube_r27;
-	 final ModelRenderer cube_r28;
-	 final ModelRenderer Boddy;
-	 final ModelRenderer bb_main;
-	 final ModelRenderer cube_r29;
-	 final ModelRenderer cube_r30;
-	 final ModelRenderer cube_r31;
-	 final ModelRenderer cube_r32;
-	 final ModelRenderer cube_r33;
-	 final ModelRenderer cube_r34;
-	 final ModelRenderer cube_r35;
-	 final ModelRenderer cube_r36;
-	 final ModelRenderer cube_r37;
-	 final ModelRenderer cube_r38;
-	 final ModelRenderer cube_r39;
-	 final ModelRenderer cube_r40;
+	final ModelRenderer cube_r5;
+	final ModelRenderer cube_r6;
+	final ModelRenderer cube_r7;
+	final ModelRenderer cube_r8;
+	final ModelRenderer cube_r9;
+	final ModelRenderer cube_r10;
+	final ModelRenderer cube_r11;
+	final ModelRenderer cube_r12;
+	final ModelRenderer cube_r13;
+	final ModelRenderer cube_r14;
+	ModelRenderer cube_r15;
+	final ModelRenderer cube_r16;
+	final ModelRenderer Fronttintakle;
+	final ModelRenderer cube_r17;
+	final ModelRenderer cube_r18;
+	final ModelRenderer cube_r19;
+	final ModelRenderer cube_r20;
+	final ModelRenderer cube_r21;
+	final ModelRenderer cube_r22;
+	final ModelRenderer cube_r23;
+	final ModelRenderer cube_r24;
+	final ModelRenderer cube_r25;
+	final ModelRenderer cube_r26;
+	final ModelRenderer cube_r27;
+	final ModelRenderer cube_r28;
+	final ModelRenderer Boddy;
+	final ModelRenderer bb_main;
+	final ModelRenderer cube_r29;
+	final ModelRenderer cube_r30;
+	final ModelRenderer cube_r31;
+	final ModelRenderer cube_r32;
+	final ModelRenderer cube_r33;
+	final ModelRenderer cube_r34;
+	final ModelRenderer cube_r35;
+	final ModelRenderer cube_r36;
+	final ModelRenderer cube_r37;
+	final ModelRenderer cube_r38;
+	final ModelRenderer cube_r39;
+	final ModelRenderer cube_r40;
 
 	public VanModel() {
 		textureWidth = 64;
@@ -321,6 +324,10 @@ public class VanModel extends ModelBase {
 		cube_r40.cubeList.add(new ModelBox(cube_r40, 45, 18, -1.0F, -1.0F, -1.0F, 2, 1, 3, 2.0F, false));
 	}
 
+	/**
+	 * Метод рендеру моделі
+	 * @param entity екземпляр сутності
+	 */
 	@Override
 	public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5) {
 		Body.render(f5);
@@ -328,6 +335,13 @@ public class VanModel extends ModelBase {
 		bb_main.render(f5);
 	}
 
+	/**
+	 * Сеттер повороту моделі
+	 * @param modelRenderer екземпляр моделі
+	 * @param x кут повороту по осі X
+	 * @param y кут повороту по осі Y
+	 * @param z кут повороту по осі Z
+	 */
 	public void setRotationAngle(ModelRenderer modelRenderer, float x, float y, float z) {
 		modelRenderer.rotateAngleX = x;
 		modelRenderer.rotateAngleY = y;

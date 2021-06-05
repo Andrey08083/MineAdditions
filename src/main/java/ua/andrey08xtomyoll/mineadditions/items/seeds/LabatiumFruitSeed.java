@@ -18,8 +18,14 @@ import ua.andrey08xtomyoll.mineadditions.init.ModBlocks;
 import ua.andrey08xtomyoll.mineadditions.init.ModItems;
 import ua.andrey08xtomyoll.mineadditions.util.IHasModel;
 
+/**
+ * Клас-конструктор Лабатіумового зерна
+ */
 public class LabatiumFruitSeed extends Item implements IHasModel, IPlantable
 {
+    /**
+     * Конструктор Лабатіумового зерна
+     */
     public LabatiumFruitSeed(String name)
     {
         setRegistryName(name);
@@ -29,6 +35,10 @@ public class LabatiumFruitSeed extends Item implements IHasModel, IPlantable
         ModItems.ITEMS.add(this);
     }
 
+    /**
+     * Подія, яка виконується при використанні предмету
+     * @return результат події
+     */
     @Override
     public EnumActionResult onItemUse(EntityPlayer player, World worldIn, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
     {
@@ -45,12 +55,24 @@ public class LabatiumFruitSeed extends Item implements IHasModel, IPlantable
         else return EnumActionResult.FAIL;
     }
 
+    /**
+     * Геттер типу рослини
+     * @param world світ
+     * @param pos позиція
+     * @return тип рослини
+     */
     @Override
     public EnumPlantType getPlantType(IBlockAccess world, BlockPos pos)
     {
         return EnumPlantType.Crop;
     }
 
+    /**
+     * Геттер типу вже посадженої рослини
+     * @param world світ
+     * @param pos позиція
+     * @return тип рослини
+     */
     public IBlockState getPlant(IBlockAccess world, BlockPos pos)
     {
         return ModBlocks.LABATIUM_FRUIT_CROP.getDefaultState();

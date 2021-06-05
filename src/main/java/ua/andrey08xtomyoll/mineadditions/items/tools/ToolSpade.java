@@ -17,8 +17,16 @@ import ua.andrey08xtomyoll.mineadditions.init.ModItems;
 import ua.andrey08xtomyoll.mineadditions.util.IHasEffect;
 import ua.andrey08xtomyoll.mineadditions.util.IHasModel;
 
+/**
+ * Клас-конструктор лопати
+ */
 public class ToolSpade extends ItemSpade implements IHasModel, IHasEffect
 {
+    /**
+     * Конструктор лопати
+     * @param name реєстраційне ім'я інструменту
+     * @param material матеріал, від якого успадковуються властивості інструменту
+     */
     public ToolSpade(String name, ToolMaterial material)
     {
         super(material);
@@ -29,9 +37,14 @@ public class ToolSpade extends ItemSpade implements IHasModel, IHasEffect
     }
 
     @SideOnly(Side.CLIENT)
-    public boolean hasEffect(ItemStack stack){return true;}
+    public boolean hasEffect(ItemStack stack){
+        return true;
+    }
 
-
+    /**
+     * Подія, яка виконується при використанні предмету правою кнопкою миші
+     * @return результат події
+     */
     @Override
     public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, EnumHand handIn) {
         NBTTagCompound nbt = new NBTTagCompound();
@@ -60,8 +73,6 @@ public class ToolSpade extends ItemSpade implements IHasModel, IHasEffect
             return new ActionResult<>(EnumActionResult.FAIL, playerIn.getHeldItem(handIn));
 
     }
-
-
 
     @Override
     public void registerModels()

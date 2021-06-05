@@ -1,6 +1,5 @@
 package ua.andrey08xtomyoll.mineadditions.items.tools;
 
-import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemAxe;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.relauncher.Side;
@@ -10,8 +9,16 @@ import ua.andrey08xtomyoll.mineadditions.init.ModItems;
 import ua.andrey08xtomyoll.mineadditions.util.IHasEffect;
 import ua.andrey08xtomyoll.mineadditions.util.IHasModel;
 
+/**
+ * Клас-конструтор сокири
+ */
 public class ToolAxe extends ItemAxe implements IHasModel, IHasEffect
 {
+    /**
+     * Конструктор сокири
+     * @param name реєстраційне ім'я інструменту
+     * @param material матеріал, від якого успадковуються властивості інструменту
+     */
     public ToolAxe(String name, ToolMaterial material)
     {
         super(material, 15.0F, -1.5F);

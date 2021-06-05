@@ -2,7 +2,6 @@ package ua.andrey08xtomyoll.mineadditions.blocks;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockDoor;
-import net.minecraft.block.SoundType;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemBlock;
@@ -10,19 +9,29 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
-import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import ua.andrey08xtomyoll.mineadditions.ModMain;
 
+/**
+ * Клас блоку-предмету дверей
+ */
 public class StrangeDoorItemBlock extends ItemBlock
 {
+    /**
+     * Конструктор класу блоку-предмету дверей
+     * @param block блок дверей
+     */
     public StrangeDoorItemBlock(Block block)
     {
         super(block);
         setCreativeTab(ModMain.creativeTab);
     }
 
+    /**
+     * Подія, яка виконується при використанні предмету в руках
+     * @return результат події
+     */
     @Override
     public EnumActionResult onItemUse(EntityPlayer player, World worldIn, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
     {
@@ -53,7 +62,10 @@ public class StrangeDoorItemBlock extends ItemBlock
         }
     }
 
-    private static void placeDoor(World worldIn, BlockPos bottomDoorPos, EnumFacing playerFacing, Block door, boolean isRightHinge)
+    /**
+     * Метод установки дверей у світі
+     */
+    private void placeDoor(World worldIn, BlockPos bottomDoorPos, EnumFacing playerFacing, Block door, boolean isRightHinge)
     {
         BlockPos posYClockwise = bottomDoorPos.offset(playerFacing.rotateY());
         BlockPos posYAntiClockwise = bottomDoorPos.offset(playerFacing.rotateYCCW());

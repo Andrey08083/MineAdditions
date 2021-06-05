@@ -10,6 +10,9 @@ import ua.andrey08xtomyoll.mineadditions.blocks.*;
 import ua.andrey08xtomyoll.mineadditions.blocks.tiles.TileThermalCrusher;
 import ua.andrey08xtomyoll.mineadditions.blocks.tiles.TileAlchemyExtractor;
 
+/**
+ * Клас з блоками
+ */
 public class ModBlocks
 {
     public static final List<Block> BLOCKS = new ArrayList<Block>();
@@ -26,6 +29,9 @@ public class ModBlocks
     public static final Block ALCHEMY_EXTRACTOR_ON = new BlockAlchemyExtractor("alchemy_extractor_on", Material.IRON, true);
     public static final Block STRANGE_DOOR = new StrangeDoor("strange_door", Material.WOOD);
 
+    /**
+     * Метод реєстрації механізмів
+     */
     public static void register()
     {
     	GameRegistry.registerTileEntity(TileThermalCrusher.class, THERMALCRUSHER_ON.getRegistryName().toString());

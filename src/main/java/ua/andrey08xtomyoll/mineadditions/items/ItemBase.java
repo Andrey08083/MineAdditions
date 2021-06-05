@@ -5,8 +5,15 @@ import ua.andrey08xtomyoll.mineadditions.ModMain;
 import ua.andrey08xtomyoll.mineadditions.init.ModItems;
 import ua.andrey08xtomyoll.mineadditions.util.IHasModel;
 
+/**
+ * Клас-конструктор предмету
+ */
 public class ItemBase extends Item implements IHasModel
 {
+    /**
+     * Конструктор предмету
+     * @param name реєстраційне ім'я предмету
+     */
     public ItemBase(String name)
     {
         setTranslationKey(name);
