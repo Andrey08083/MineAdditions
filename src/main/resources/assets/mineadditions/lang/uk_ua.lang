@@ -1,47 +1,47 @@
 #Items
-item.labatium.name=Лабатіум
-item.tomium.name=Томіум
-item.labatium_dust.name=Пил лабатіума
-item.little_labatium_dust.name=Крихітна купка лабатіумового пилу
-item.tomium_dust.name=Пил томіума
-item.little_tomium_dust.name=Крихітна купка томіумового пилу
-item.labatium_fruit.name=Лабатіумовий фрукт
-item.tomium_fruit.name=Томовий фрукт
-item.labatium_fruit_seed.name=Лабатіумове насіння
-item.tomium_fruit_seed.name=Томіумове насіння
+item.labatium.name=§b§lЛабатіум
+item.tomium.name=§6§lТоміум
+item.labatium_dust.name=§5§lПил лабатіума
+item.little_labatium_dust.name=§5§lКрихітна купка лабатіумового пилу
+item.tomium_dust.name=§5§lПил томіума
+item.little_tomium_dust.name=§5§lКрихітна купка томіумового пилу
+item.labatium_fruit.name=§5§lЛабатіумовий фрукт
+item.tomium_fruit.name=§5§lТомовий фрукт
+item.labatium_fruit_seed.name=§5§lЛабатіумове насіння
+item.tomium_fruit_seed.name=§5§lТоміумове насіння
 #Blocks
 tile.strange_door.name=Дивні двері
-tile.labatium_block.name=Лабатіумовий блок
-tile.labatium_ore.name=Лабатіумова руда
-tile.tomium_ore.name=Томіумова руда
-tile.tomium_block.name=Томіумовий блок
+tile.labatium_block.name=§5§lЛабатіумовий блок
+tile.labatium_ore.name=§5§lЛабатіумова руда
+tile.tomium_ore.name=§5§lТоміумова руда
+tile.tomium_block.name=§5§lТоміумовий блок
 
 #Tools
-item.labatium_pickaxe.name=Лабатіумова кирка
-item.labatium_sword.name=Лабатіумовий меч
-item.labatium_axe.name=Лабатіумова сокира
-item.labatium_shovel.name=Лабатіумова лопата
-item.labatium_hoe.name=Лабатіумова мотика
+item.labatium_pickaxe.name=§b§lЛабатіумова кирка
+item.labatium_sword.name=§b§lЛабатіумовий меч
+item.labatium_axe.name=§b§lЛабатіумова сокира
+item.labatium_shovel.name=§b§lЛабатіумова лопата
+item.labatium_hoe.name=§b§lЛабатіумова мотика
 
-item.tomium_pickaxe.name=Томіумова кирка
-item.tomium_sword.name=Томіумовий меч
-item.tomium_axe.name=Томіумова сокира
-item.tomium_shovel.name=Томіумова лопата
-item.tomium_hoe.name=Томіумова мотика
+item.tomium_pickaxe.name=§6§lТоміумова кирка
+item.tomium_sword.name=§6§lТоміумовий меч
+item.tomium_axe.name=§6§lТоміумова сокира
+item.tomium_shovel.name=§6§lТоміумова лопата
+item.tomium_hoe.name=§6§lТоміумова мотика
 
 #Armor
-item.labatium_boots.name=Лабатіумові ботфори
-item.labatium_leggings.name=Лабатіумові брюки
-item.labatium_chestplate.name=Лабатіумова кираса
-item.labatium_helmet.name=Лабатіумовий шолом
+item.labatium_boots.name=§b§lЛабатіумові ботфори
+item.labatium_leggings.name=§b§lЛабатіумові брюки
+item.labatium_chestplate.name=§b§lЛабатіумова кираса
+item.labatium_helmet.name=§b§lЛабатіумовий шолом
 
-item.tomium_boots.name=Томіумові ботфори
-item.tomium_leggings.name=Томіумові штани
-item.tomium_chestplate.name=Томіумова куртка
-item.tomium_helmet.name=Томіумовий шолом
+item.tomium_boots.name=§6§lТоміумові ботфори
+item.tomium_leggings.name=§6§lТоміумові штани
+item.tomium_chestplate.name=§6§lТоміумова куртка
+item.tomium_helmet.name=§6§lТоміумовий шолом
 
 #Machines
-tile.thermalcrusher.name=Термічний подрібнювач
+tile.thermalcrusher.name=§5§lТермічний подрібнювач
 
 #Records
 item.untitled_record.name=Покрита пилом стара пластинка
@@ -49,7 +49,7 @@ item.record.untitled_record.desc=Діалог
 
 #Tooltips
 untitled_record.tooltip=§5§oЯкщо прислухатися, то можна почути діалог. Що ж це за запис?
-tile.alchemy_extractor.name=Алхімічний екстрактор
+tile.alchemy_extractor.name=§5§lАлхімічний екстрактор
 #Entities
 
 container.thermalcrusher=Thermal Crusher
