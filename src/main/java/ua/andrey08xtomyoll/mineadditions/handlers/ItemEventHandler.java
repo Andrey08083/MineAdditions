@@ -1,8 +1,9 @@
 package ua.andrey08xtomyoll.mineadditions.handlers;
 
-import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.DamageSource;
@@ -26,6 +27,7 @@ import ua.andrey08xtomyoll.mineadditions.items.tools.ToolPickaxe;
 import ua.andrey08xtomyoll.mineadditions.items.tools.ToolSpade;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -36,13 +38,14 @@ public class ItemEventHandler {
 
     /**
      * Подія, яка виконується кожний ігровий тік (20 разів за секунду) і перевіряє наявність броні на гравці
+     *
      * @param event параметр події
      */
     @SubscribeEvent
     public static void onArmorEquipped(LivingEvent.LivingUpdateEvent event) {
-        Entity player = event.getEntity();
+        EntityLivingBase player = event.getEntityLiving();
         if (player instanceof EntityPlayer) {
-            if ((!(((EntityPlayer) player).inventory.armorItemInSlot(2).getItem() instanceof ChestplateBase)) && ModItems.LABATIUM_CHESTPLATE.isEquipped) {
+            if ((!(PlayerUtils.getPlayerArmorInventory(player, 2) instanceof ChestplateBase)) && ModItems.LABATIUM_CHESTPLATE.isEquipped) {
                 ((EntityPlayer) player).capabilities.isFlying = false;
                 ((EntityPlayer) player).capabilities.allowFlying = false;
                 ModItems.LABATIUM_CHESTPLATE.isEquipped = false;
@@ -56,9 +59,9 @@ public class ItemEventHandler {
      */
     @SubscribeEvent
     public static void onPlayerBurn(LivingHurtEvent event) {
-        Entity player = event.getEntity();
+        EntityLivingBase player = event.getEntityLiving();
         if (player instanceof EntityPlayer) {
-            if ((((EntityPlayer) player).inventory.armorItemInSlot(2).getItem() instanceof ArmorBase)) {
+            if (PlayerUtils.isAllArmorEqual(player)) {
                 if (event.getSource() == DamageSource.IN_FIRE || event.getSource() == DamageSource.LAVA) {
                     event.setAmount(0);
                     player.extinguish();
@@ -82,8 +85,8 @@ public class ItemEventHandler {
     }
 
     /**
-     *
-     * @param event
+     * Подія, яка відбувається при натисканні правої кнопи миші
+     * @param event параметр події
      */
     @SubscribeEvent
     public static void onRightClick(PlayerInteractEvent.RightClickItem event) {
@@ -145,7 +148,10 @@ public class ItemEventHandler {
         }
     }
 
-
+    /**
+     * Подія, яка відбувається при ламанні блоку
+     * @param event параметр події
+     */
     @SubscribeEvent
     public static void onBlockBreak(BlockEvent.BreakEvent event) {
         if ((event.getPlayer().getHeldItem(EnumHand.MAIN_HAND).getItem() instanceof ToolPickaxe || event.getPlayer().getHeldItem(EnumHand.MAIN_HAND).getItem() instanceof ToolSpade) && event.getPlayer().getHeldItem(EnumHand.MAIN_HAND).hasTagCompound()) {
@@ -195,6 +201,23 @@ public class ItemEventHandler {
                     }
                 }
             }
+        }
+    }
+     static class PlayerUtils {
+        public static Item getPlayerArmorInventory(EntityLivingBase player, int slotIndex) {
+            List<ItemStack> list = new ArrayList<>();
+            for (ItemStack itemStack : player.getArmorInventoryList()) {
+                list.add(itemStack);
+            }
+            return list.get(slotIndex).getItem();
+        }
+
+        public static boolean isAllArmorEqual(EntityLivingBase player) {
+            for (ItemStack itemStack : player.getArmorInventoryList()) {
+                if (!(itemStack.getItem() instanceof ArmorBase))
+                    return false;
+            }
+            return true;
         }
     }
 }
