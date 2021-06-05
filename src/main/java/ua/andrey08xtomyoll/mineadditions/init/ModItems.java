@@ -12,6 +12,7 @@ import ua.andrey08xtomyoll.mineadditions.items.records.UntitledRecord;
 import ua.andrey08xtomyoll.mineadditions.items.seeds.LabatiumFruitSeed;
 import ua.andrey08xtomyoll.mineadditions.items.seeds.TomiumFruitSeed;
 import ua.andrey08xtomyoll.mineadditions.items.tools.*;
+import ua.andrey08xtomyoll.mineadditions.util.Reference;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,10 +24,10 @@ public class ModItems {
 
     //Materials
     public static final Item.ToolMaterial MATERIAL_LABATIUM = EnumHelper.addToolMaterial("material_labatium", 4, 3000, 15.0F, 15.0F, 20);
-    public static final ItemArmor.ArmorMaterial ARMOR_LABATIUM = EnumHelper.addArmorMaterial("armormateral_labatium", "armormaterial_labatium", ConfigHandler.labatiumSettings.overallResistance, new int[]{ConfigHandler.labatiumSettings.helmetResistance, ConfigHandler.labatiumSettings.chestplateResistance, ConfigHandler.labatiumSettings.leggingsResistance, ConfigHandler.labatiumSettings.bootsResistance}, 7, SoundEvents.ITEM_ARMOR_EQUIP_IRON, ConfigHandler.labatiumSettings.overallToughness).setRepairItem(new ItemStack(ModItems.LABATIUM));
+    public static final ItemArmor.ArmorMaterial ARMOR_LABATIUM = EnumHelper.addArmorMaterial("armormateral_labatium", Reference.MOD_ID + ":armormaterial_labatium", ConfigHandler.labatiumSettings.overallResistance, new int[]{ConfigHandler.labatiumSettings.helmetResistance, ConfigHandler.labatiumSettings.chestplateResistance, ConfigHandler.labatiumSettings.leggingsResistance, ConfigHandler.labatiumSettings.bootsResistance}, 7, SoundEvents.ITEM_ARMOR_EQUIP_IRON, ConfigHandler.labatiumSettings.overallToughness).setRepairItem(new ItemStack(ModItems.LABATIUM));
 
     public static final Item.ToolMaterial MATERIAL_TOMIUM = EnumHelper.addToolMaterial("material_tomium", 4, 3000, 15.0F, 15.0F, 20);
-    public static final ItemArmor.ArmorMaterial ARMOR_TOMIUM = EnumHelper.addArmorMaterial("armormateral_tomium", "armormaterial_tomium", ConfigHandler.tomiumSettings.overallResistance, new int[]{ConfigHandler.tomiumSettings.helmetResistance, ConfigHandler.tomiumSettings.chestplateResistance, ConfigHandler.tomiumSettings.leggingsResistance, ConfigHandler.tomiumSettings.bootsResistance}, 7, SoundEvents.ITEM_ARMOR_EQUIP_IRON, ConfigHandler.tomiumSettings.overallToughness).setRepairItem(new ItemStack(ModItems.TOMIUM));
+    public static final ItemArmor.ArmorMaterial ARMOR_TOMIUM = EnumHelper.addArmorMaterial("armormateral_tomium", Reference.MOD_ID+ ":armormaterial_tomium", ConfigHandler.tomiumSettings.overallResistance, new int[]{ConfigHandler.tomiumSettings.helmetResistance, ConfigHandler.tomiumSettings.chestplateResistance, ConfigHandler.tomiumSettings.leggingsResistance, ConfigHandler.tomiumSettings.bootsResistance}, 7, SoundEvents.ITEM_ARMOR_EQUIP_IRON, ConfigHandler.tomiumSettings.overallToughness).setRepairItem(new ItemStack(ModItems.TOMIUM));
 
 
     //Items
