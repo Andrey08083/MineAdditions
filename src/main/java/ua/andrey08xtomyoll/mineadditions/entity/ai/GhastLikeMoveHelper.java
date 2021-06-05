@@ -5,15 +5,26 @@ import net.minecraft.entity.ai.EntityMoveHelper;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.MathHelper;
 
+/**
+ * Клас, який реалізує політ моба, схожий на політ гаста
+ */
+
 public class GhastLikeMoveHelper extends EntityMoveHelper {
     private final EntityLiving parentEntity;
     private int courseChangeCooldown;
 
+    /**
+     * Конструктор класу
+     * @param ghast моб, для якого встановлено таск
+     */
     public GhastLikeMoveHelper(EntityLiving ghast) {
         super(ghast);
         this.parentEntity = ghast;
     }
 
+    /**
+     * Метод, яктй постійно виконується та рорзраховує шлях польоту
+     */
     public void onUpdateMoveHelper() {
         if (this.action == EntityMoveHelper.Action.MOVE_TO) {
             double d0 = this.posX - this.parentEntity.posX;
@@ -39,13 +50,21 @@ public class GhastLikeMoveHelper extends EntityMoveHelper {
     /**
      * Checks if entity bounding box is not colliding with terrain
      */
-    private boolean isNotColliding(double x, double y, double z, double p_179926_7_) {
-        double d0 = (x - this.parentEntity.posX) / p_179926_7_;
-        double d1 = (y - this.parentEntity.posY) / p_179926_7_;
-        double d2 = (z - this.parentEntity.posZ) / p_179926_7_;
+    /**
+     * Перевіряє, чи не стикається моб з чимось
+     * @param x
+     * @param y
+     * @param z
+     * @param dist дистанція між мобом, та сутністю з якою він стикається
+     * @return true, якщо моб стикнувся з чимос, false, якщо ні
+     */
+    private boolean isNotColliding(double x, double y, double z, double dist) {
+        double d0 = (x - this.parentEntity.posX) / dist;
+        double d1 = (y - this.parentEntity.posY) / dist;
+        double d2 = (z - this.parentEntity.posZ) / dist;
         AxisAlignedBB axisalignedbb = this.parentEntity.getEntityBoundingBox();
 
-        for (int i = 1; (double) i < p_179926_7_; ++i) {
+        for (int i = 1; (double) i < dist; ++i) {
             axisalignedbb = axisalignedbb.offset(d0, d1, d2);
 
             if (!this.parentEntity.world.getCollisionBoxes(this.parentEntity, axisalignedbb).isEmpty()) {

@@ -16,12 +16,15 @@ import ua.andrey08xtomyoll.mineadditions.util.Reference;
 @SideOnly(Side.CLIENT)
 public class GuiThermalCrusher extends GuiContainer
 {
-    // Текстура
-    // Всё остальное со стандартного GuiFurnace
     private static final ResourceLocation CRUSHER_GUI_TEXTURES = new ResourceLocation(Reference.MOD_ID + ":textures/gui/thermalcrusher.png");
     private final InventoryPlayer playerInventory;
     private final IInventory tileinventory;
 
+    /**
+     * Конструктор класу
+     * @param playerInv інвентар гравця
+     * @param furnaceInv інвентар тайла
+     */
     public GuiThermalCrusher(InventoryPlayer playerInv, IInventory furnaceInv)
     {
         super(new ContainerThermalCrusher(playerInv, furnaceInv));
@@ -29,6 +32,12 @@ public class GuiThermalCrusher extends GuiContainer
         this.tileinventory = furnaceInv;
     }
 
+    /**
+     * Малює GUI
+     * @param mouseX Х позиція миші
+     * @param mouseY Y позиція миші
+     * @param partialTicks грові тіки (необхідно для синхронізації)
+     */
     public void drawScreen(int mouseX, int mouseY, float partialTicks)
     {
         this.drawDefaultBackground();
@@ -36,6 +45,11 @@ public class GuiThermalCrusher extends GuiContainer
         this.renderHoveredToolTip(mouseX, mouseY);
     }
 
+    /**
+     * Малює передній план GUI
+     * @param mouseX X позиція миші
+     * @param mouseY Y позиція миші
+     */
     protected void drawGuiContainerForegroundLayer(int mouseX, int mouseY)
     {
         String name = I18n.format(ModBlocks.THERMALCRUSHER.getTranslationKey() + ".name");
@@ -43,6 +57,12 @@ public class GuiThermalCrusher extends GuiContainer
         this.fontRenderer.drawString(this.playerInventory.getDisplayName().getUnformattedText(), 8, this.ySize - 96 + 2, 4210752);
     }
 
+    /**
+     * Малює передній план GUI
+     * @param partialTicks ігрові тіки (необхідно для синхронізації)
+     * @param mouseX X позиція миші
+     * @param mouseY Y позиція миші
+     */
     protected void drawGuiContainerBackgroundLayer(float partialTicks, int mouseX, int mouseY)
     {
         GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
@@ -60,14 +80,22 @@ public class GuiThermalCrusher extends GuiContainer
         int l = this.getCookProgressScaled(36);
         this.drawTexturedModalRect(i + 77, j + 39, 176, 14, l, 16);
     }
-
+    /**
+     * Розраховує, на скільки пікселів необхідно зсунути прогресбар
+     * @param pixels ширина прогрессбара
+     * @return на скільки пікселів необхідно зсунути
+     */
     private int getCookProgressScaled(int pixels)
     {
         int i = this.tileinventory.getField(2);
         int j = this.tileinventory.getField(3);
         return j != 0 && i != 0 ? i * pixels / j : 0;
     }
-
+    /**
+     * Розраховує, на скільки пікселів необхідно зсунути прогресбар топлива
+     * @param pixels ширина прогрессбара топлива
+     * @return на скільки пікселів необхідно зсунути
+     */
     private int getBurnLeftScaled(int pixels)
     {
         int i = this.tileinventory.getField(1);

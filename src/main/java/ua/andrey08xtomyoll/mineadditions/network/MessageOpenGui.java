@@ -8,7 +8,7 @@ import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
 import ua.andrey08xtomyoll.mineadditions.ModMain;
 
 /**
- * Клас серверного повідомлення (на даний момент не використовується)
+ * Клас серверного повідомлення для GUI
  */
 public class MessageOpenGui implements IMessage {
 

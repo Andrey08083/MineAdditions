@@ -32,6 +32,12 @@ public class ItemTomiumFruit extends ItemFood  implements IHasModel {
         ModItems.ITEMS.add(this);
     }
 
+    /**
+     * Метод визначає, що відбувається, коли гравець з'їв фрукт
+     * @param stack стек з фруктом
+     * @param worldIn світ
+     * @param player гравець
+     */
     @Override
     protected void onFoodEaten(ItemStack stack, World worldIn, EntityPlayer player)
     {
@@ -47,6 +53,9 @@ public class ItemTomiumFruit extends ItemFood  implements IHasModel {
         return EnumAction.EAT;
     }
 
+    /**
+     * Реєстрація моеделй
+     */
     public void registerModels()
     {
         ModMain.proxy.registerItemRenderer(this,0,"inventory");

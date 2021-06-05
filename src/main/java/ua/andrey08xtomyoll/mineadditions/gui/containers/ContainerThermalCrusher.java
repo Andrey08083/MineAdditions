@@ -14,6 +14,10 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import ua.andrey08xtomyoll.mineadditions.blocks.tiles.TileThermalCrusher;
 
+/**
+ * Клас контейнера тайла AlchemyExtractor
+ */
+
 public class ContainerThermalCrusher extends Container
 {
     private final IInventory tileentity;
@@ -25,18 +29,19 @@ public class ContainerThermalCrusher extends Container
     public ContainerThermalCrusher(InventoryPlayer playerInventory, IInventory furnaceInventory)
     {
         this.tileentity = furnaceInventory;
-        // Входящие слоты
+        // Входячі слоти
         for(int i = 0; i < TileThermalCrusher.slotsinput; i++){
         	this.addSlotToContainer(new Slot(furnaceInventory, i, 57 + i * 18, 16));
         }
-        // Топливо
+        // Паливо
         this.addSlotToContainer(new SlotFurnaceFuel(furnaceInventory, TileThermalCrusher.slotsinput, 57, 53));
 
+        // Вихідні слоти
         for(int n = (TileThermalCrusher.slotsinput + 1); n < TileThermalCrusher.slotscount; n++){
         	this.addSlotToContainer(new SlotFurnaceOutput(playerInventory.player, furnaceInventory, n, 120, 44 - (n - (TileThermalCrusher.slotsinput + 1)) * 18));
         }
 
-        // Слоты игрока
+        // Слоти гравця
         for (int i = 0; i < 3; ++i)
         {
             for (int j = 0; j < 9; ++j)
@@ -51,7 +56,10 @@ public class ContainerThermalCrusher extends Container
             this.addSlotToContainer(new Slot(playerInventory, k, 8 + k * 18, 142));
         }
     }
-
+    /**
+     * Метод відслідковує зміну розмірів вікна інвентаря тайлу
+     * @param listener прослуховувач
+     */
     public void addListener(IContainerListener listener)
     {
         super.addListener(listener);
@@ -59,7 +67,7 @@ public class ContainerThermalCrusher extends Container
     }
 
     /**
-     * Looks for changes made in the container, sends them to every listener.
+     * Шукає зміни, внесені в контейнер, надсилає їх кожному слухачеві.
      */
     public void detectAndSendChanges()
     {
@@ -101,7 +109,9 @@ public class ContainerThermalCrusher extends Container
     }
 
     /**
-     * Determines whether supplied player can use this container
+     * Визначає, чи може гравець використовувати цей контейнер
+     * @param playerIn гравець
+     * @return користувач може використвувати контейнер
      */
     public boolean canInteractWith(EntityPlayer playerIn)
     {
@@ -109,8 +119,10 @@ public class ContainerThermalCrusher extends Container
     }
 
     /**
-     * Handle when the stack in slot {@code index} is shift-clicked. Normally this moves the stack between the player
-     * inventory and the other inventory(s).
+     * Метод визначає поведінку слотів при переносі стеків за допомогою shift
+     * @param playerIn гравець
+     * @param index індекс слота
+     * @return стек
      */
     public ItemStack transferStackInSlot(EntityPlayer playerIn, int index)
     {

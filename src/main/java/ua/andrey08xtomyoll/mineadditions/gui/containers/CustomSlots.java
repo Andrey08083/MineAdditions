@@ -8,14 +8,32 @@ import net.minecraft.item.ItemStack;
 import ua.andrey08xtomyoll.mineadditions.init.ModBlocks;
 import ua.andrey08xtomyoll.mineadditions.init.ModItems;
 
+/**
+ * Клас, в якому налаштовуються спеціальні слоти
+ */
+
 public class CustomSlots extends Slot
 {
     int con_id;
+
+    /**
+     * Конструктор класу
+     * @param inventoryIn інвентар
+     * @param index індекс слота
+     * @param xPosition позиція Х
+     * @param yPosition позиція Y
+     * @param containerId індекс контейнера
+     */
     public CustomSlots(IInventory inventoryIn, int index, int xPosition, int yPosition, int containerId) {
         super(inventoryIn, index, xPosition, yPosition);
         con_id = containerId;
     }
 
+    /**
+     * Визначає, які предмети можна помістити в цей слот
+     * @param itemStack стек
+     * @return true для вказаного предмета
+     */
     public boolean isItemValid(ItemStack itemStack)
     {
         {
@@ -40,9 +58,5 @@ public class CustomSlots extends Slot
                 return itemStack.getItem() == Item.getItemFromBlock(ModBlocks.LABATIUM_ORE);
             }
         }
-    }
-
-    public static boolean isBucket(ItemStack stack) {
-        return (new ItemStack(Items.POTIONITEM, (int) (1)).getItem() == stack.getItem());
     }
 }

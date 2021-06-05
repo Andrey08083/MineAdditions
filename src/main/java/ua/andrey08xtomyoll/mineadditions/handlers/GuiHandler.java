@@ -16,7 +16,17 @@ public class GuiHandler implements IGuiHandler {
 	public static int id = 0;
 	public static final int GUI_THERMAL_CRUSHER = id++;
 	public static final int GUI_ALCHEMY_EXTRACTOR = id++;
-	
+
+	/**
+	 * Повертає контейнер на стороні сервера (не GUI)
+	 * @param ID ідентифікатор GUI тайла
+	 * @param player гравець
+	 * @param world світ
+	 * @param x
+	 * @param y
+	 * @param z
+	 * @return контейнер
+	 */
 	@Override
 	public Object getServerGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z) {
 		if(ID == GUI_THERMAL_CRUSHER) {
@@ -31,6 +41,16 @@ public class GuiHandler implements IGuiHandler {
 		return null;
 	}
 
+	/**
+	 * Повертає GUI на стороні клієнта (не контейнер)
+	 * @param ID ідентифікатор GUI тайла
+	 * @param player гравець
+	 * @param world світ
+	 * @param x
+	 * @param y
+	 * @param z
+	 * @return GUI
+	 */
 	@Override
 	public Object getClientGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z) {
 		if(ID == GUI_THERMAL_CRUSHER) {

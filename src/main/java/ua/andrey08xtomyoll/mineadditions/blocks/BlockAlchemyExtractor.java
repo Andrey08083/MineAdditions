@@ -6,7 +6,6 @@ import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.PropertyDirection;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.SoundEvents;
@@ -30,12 +29,22 @@ import ua.andrey08xtomyoll.mineadditions.util.IHasModel;
 
 import java.util.Random;
 
+/**
+ * Кллас блоку механізму AlchemyExtractor
+ */
+
 public class BlockAlchemyExtractor extends BlockContainer implements IHasModel {
 
     public static final PropertyDirection FACING = BlockHorizontal.FACING;
     private final boolean isBurning;
     private static boolean keepInventory;
 
+    /**
+     * Конструктор блоку
+     * @param name ім'я блоку
+     * @param material матеріал
+     * @param isBurning чи проводить блок крафт
+     */
     public BlockAlchemyExtractor(String name, Material material, boolean isBurning)
     {
         super(material);
@@ -52,18 +61,37 @@ public class BlockAlchemyExtractor extends BlockContainer implements IHasModel {
         ModItems.ITEMS.add(new ItemBlock(this).setRegistryName(this.getRegistryName()));
     }
 
+    /**
+     * Геттер, визначає, які предмети будуть випадати з блока, коли він буде зламаний
+     * @param state стан блоку
+     * @param rand випадкове значення
+     * @param fortune рівень зачарування удачі предмета, яким ламається блок
+     * @return
+     */
     @Override
     public Item getItemDropped(IBlockState state, Random rand, int fortune)
     {
         return Item.getItemFromBlock(ModBlocks.ALCHEMY_EXTRACTOR);
     }
 
+    /**
+     * Метод визначає поведінку блока, коли він поставлений в світі
+     * @param worldIn світ
+     * @param pos позиція
+     * @param state стан блоку
+     */
     @Override
     public void onBlockAdded(World worldIn, BlockPos pos, IBlockState state)
     {
         this.setDefaultFacing(worldIn, pos, state);
     }
 
+    /**
+     * Метод визначає стандартний стан блока
+     * @param worldIn світ
+     * @param pos позиція
+     * @param state стан блоку
+     */
     private void setDefaultFacing(World worldIn, BlockPos pos, IBlockState state)
     {
         if (!worldIn.isRemote)
@@ -95,6 +123,14 @@ public class BlockAlchemyExtractor extends BlockContainer implements IHasModel {
         }
     }
 
+    /**
+     * Метод виконується завжди, з короткими випадковоми інтервалами.
+     * Використовується для малювання частинок диму та бульбашок
+     * @param stateIn стан блоку
+     * @param worldIn світ
+     * @param pos позиція
+     * @param rand випадкове значення
+     */
     @SideOnly(Side.CLIENT)
     @SuppressWarnings("incomplete-switch")
     public void randomDisplayTick(IBlockState stateIn, World worldIn, BlockPos pos, Random rand)
@@ -125,7 +161,17 @@ public class BlockAlchemyExtractor extends BlockContainer implements IHasModel {
     }
 
     /**
-     * Called when the block is right clicked by a player.
+     * Викликається, коли гравець натиснув ПКМ по блоку
+     * @param worldIn світ
+     * @param pos позиція
+     * @param state стан блоку
+     * @param playerIn гравець
+     * @param hand рука гравця
+     * @param facing сторона блоку
+     * @param hitX Х координата, точки на яку натиснув гравець
+     * @param hitY Y координата, точки на яку натиснув гравець
+     * @param hitZ Z координата, точки на яку натиснув гравець
+     * @return чи може грацевь взаємодыяти з блоком
      */
     public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
     {
@@ -133,12 +179,24 @@ public class BlockAlchemyExtractor extends BlockContainer implements IHasModel {
         return true;
     }
 
-
+    /**
+     * Створення тайла для блока
+     * @param worldIn світ
+     * @param meta метаданні тайла
+     * @return тайл
+     */
     @Override
     public TileEntity createNewTileEntity(World worldIn, int meta) {
         return new TileAlchemyExtractor();
     }
 
+    /**
+     * Змінює блок на його працюючу або не працюючу версію.
+     * Викликається в тайлі при крафті предметів
+     * @param active чи проводиться крафт
+     * @param worldIn світ
+     * @param pos позиція
+     */
     public static void setState(boolean active, World worldIn, BlockPos pos)
     {
         IBlockState iblockstate = worldIn.getBlockState(pos);
@@ -166,13 +224,30 @@ public class BlockAlchemyExtractor extends BlockContainer implements IHasModel {
         }
     }
 
+    /**
+     * Метод визачає, який стан потрібно призачити блоку при його втсановленні
+     * @param worldIn світ
+     * @param pos позиція
+     * @param facing сторона блока
+     * @param hitX на скільки потрібно розвернути блок по Х
+     * @param hitY на скільки потрібно розвернути блок по Y
+     * @param hitZ на скільки потрібно розвернути блок по Z
+     * @param meta метаданні
+     * @param placer сутність, яка встановила блок
+     * @return стан блоку
+     */
     public IBlockState getStateForPlacement(World worldIn, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer)
     {
         return this.getDefaultState().withProperty(FACING, placer.getHorizontalFacing().getOpposite());
     }
 
     /**
-     * Called by ItemBlocks after a block is set in the world, to allow post-place logic
+     * Прив'язує тайл до блоку
+     * @param worldIn світ
+     * @param pos позиція
+     * @param state стан
+     * @param placer сутність, яка встановила блок
+     * @param stack стек
      */
     public void onBlockPlacedBy(World worldIn, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack stack)
     {
@@ -190,7 +265,10 @@ public class BlockAlchemyExtractor extends BlockContainer implements IHasModel {
     }
 
     /**
-     * Called serverside after this block is replaced with another in Chunk, but before the Tile Entity is updated
+     * Викликається, коли цей блок був замінений іншим
+     * @param worldIn світ
+     * @param pos позиція
+     * @param state стан
      */
     public void breakBlock(World worldIn, BlockPos pos, IBlockState state)
     {
@@ -218,14 +296,22 @@ public class BlockAlchemyExtractor extends BlockContainer implements IHasModel {
         return Container.calcRedstone(worldIn.getTileEntity(pos));
     }
 
+    /**
+     * Визначає, який предмет буде отримано, коли гравець бере блок з креативу за допомогою середньої кнопки маші
+     * @param worldIn
+     * @param pos
+     * @param state
+     * @return
+     */
     public ItemStack getItem(World worldIn, BlockPos pos, IBlockState state)
     {
         return new ItemStack(ModBlocks.ALCHEMY_EXTRACTOR);
     }
 
     /**
-     * The type of render function called. MODEL for mixed tesr and static model, MODELBLOCK_ANIMATED for TESR-only,
-     * LIQUID for vanilla liquids, INVISIBLE to skip all rendering
+     * Тип рендера для блока
+     * @param state стан
+     * @return модельний тип рандера
      */
     public EnumBlockRenderType getRenderType(IBlockState state)
     {
@@ -233,7 +319,9 @@ public class BlockAlchemyExtractor extends BlockContainer implements IHasModel {
     }
 
     /**
-     * Convert the given metadata into a BlockState for this Block
+     * Конвертує метаданні в стан блока
+     * @param meta метаданні
+     * @return стан блока
      */
     public IBlockState getStateFromMeta(int meta)
     {
@@ -248,7 +336,9 @@ public class BlockAlchemyExtractor extends BlockContainer implements IHasModel {
     }
 
     /**
-     * Convert the BlockState into the correct metadata value
+     * Конвертує стан блока в метаданні
+     * @param state стан
+     * @return метаданні
      */
     public int getMetaFromState(IBlockState state)
     {
@@ -256,8 +346,10 @@ public class BlockAlchemyExtractor extends BlockContainer implements IHasModel {
     }
 
     /**
-     * Returns the blockstate with the given rotation from the passed blockstate. If inapplicable, returns the passed
-     * blockstate.
+     * Повертає стан блоку із заданим обертанням із переданого стану блоку.
+     * @param state стан
+     * @param rot кут обертання
+     * @return стан блоку
      */
     public IBlockState withRotation(IBlockState state, Rotation rot)
     {
@@ -265,8 +357,10 @@ public class BlockAlchemyExtractor extends BlockContainer implements IHasModel {
     }
 
     /**
-     * Returns the blockstate with the given mirror of the passed blockstate. If inapplicable, returns the passed
-     * blockstate.
+     * Визачає, як потрібно повернути блок для отримання дзеркальної сторони
+     * @param state стан
+     * @param mirrorIn дзеркало
+     * @return сторона блока
      */
     public IBlockState withMirror(IBlockState state, Mirror mirrorIn)
     {
@@ -277,21 +371,36 @@ public class BlockAlchemyExtractor extends BlockContainer implements IHasModel {
         return BlockRenderLayer.CUTOUT_MIPPED;
     }
 
+    /**
+     * Чи цей блок непрозорий
+     * @param state стан блока
+     * @return блок не прозорий
+     */
     @Override
     public boolean isOpaqueCube(IBlockState state)
     {
         return false;
     }
+
+    /**
+     * Чи це повний куб
+     * @param state стан блоку
+     * @return true
+     */
     @Override
     public boolean isFullCube(IBlockState state)
     {
         return true;
     }
+
     protected BlockStateContainer createBlockState()
     {
         return new BlockStateContainer(this, FACING);
     }
 
+    /**
+     * Реєстрація моделі предмета блкоа
+     */
     @Override
     public void registerModels()
     {

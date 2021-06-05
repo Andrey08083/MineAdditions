@@ -16,11 +16,11 @@ public class TCrusherRecipies
 {
 
     private static final ArrayList<List<Item>> inputList 			= new ArrayList<List<Item>>();
-    // Основной результат
+    // Основний результат
     private static final ArrayList<Item> resultList 				= new ArrayList<Item>();
-    // Суб-продукты
+    // Суб-результат
     private static final ArrayList<List<Item>> subOutputList 		= new ArrayList<List<Item>>();
-    // Время плавки
+    // Час крафту
     private static final ArrayList<Integer> timeList 				= new ArrayList<Integer>();
 
 
@@ -29,11 +29,11 @@ public class TCrusherRecipies
      */
     public static void init()
     {
-		/* Рецепты состоят из:
-		- int время плавления
-		- Item[]{} список  исходных (до 5 соответсвенно)
-		- Item основной результат
-		- Item[]{} список  суб-результатов (до 4х соответсвенно)
+		/* Рецепти складаються з:
+		- int час крафту
+		- Item[]{} список  вихідних предметів (до 5)
+		- Item основний результат
+		- Item[]{} список  суб-результатів (до 4)
 		*/
         TCrusherRecipies.addFurnaceRecipeWithCookTime(2000, new Item[]{Item.getItemFromBlock(ModBlocks.LABATIUM_ORE)}, ModItems.LITTLE_LABATIUM_DUST, new Item[]{});
         TCrusherRecipies.addFurnaceRecipeWithCookTime(2000, new Item[]{Item.getItemFromBlock(ModBlocks.TOMIUM_ORE)}, ModItems.LITTLE_TOMIUM_DUST, new Item[]{});
@@ -56,7 +56,6 @@ public class TCrusherRecipies
         for(int i = 0; i < outputRaw.length; i++)
             output.add(outputRaw[i]);
 
-        // Проверяем, что входящие и результат существуют
         if (result == null)
             return;
         for(int i = 0; i < input.size(); i++){

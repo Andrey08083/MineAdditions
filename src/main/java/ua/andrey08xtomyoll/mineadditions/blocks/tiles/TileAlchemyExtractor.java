@@ -42,17 +42,21 @@ import ua.andrey08xtomyoll.mineadditions.util.TilesFuel;
 
 import javax.annotation.Nullable;
 
+/**
+ * Клас тайла механізма AlchemyExtractor
+ * Реалізує логіку роботи маханізма
+ */
+
 public class TileAlchemyExtractor extends TileEntity implements ITickable, ISidedInventory {
-    // Общее кол-во слотов, не менее 3х, не более 11 (5 входящих + топливо + 5 на выходе)
+    // Загальна кількусть слотів, не меньше 3-х, не більше 11 (5 на віхд + паливо + 5 на виході
     public static int slotscount = 5;
-    // Кол-во входящих (от 1 до 5, с ориентацией на общее кол-во)
+    // Кількість слотів на вхід ( від 1 до 5)
     public static int slotsinput = 2;
 
     private static final int[] SLOTS_TOP = new int[]{0};
     private static final int[] SLOTS_BOTTOM = new int[]{slotsinput + 1, slotsinput};
     private static final int[] SLOTS_SIDES = new int[]{slotsinput};
 
-    // Все слоты. Сначала входящие, затем топливо, затем результат, затем суб-продукты
     public NonNullList<ItemStack> ExtractorItemStacks = NonNullList.<ItemStack>withSize(slotscount, ItemStack.EMPTY);
 
     private int ExtratctorBurnTime;
@@ -62,10 +66,18 @@ public class TileAlchemyExtractor extends TileEntity implements ITickable, ISide
     private String CustomName;
     boolean endburn = false;
 
+    /**
+     * Геттер, який повертає розмір інвентаря
+     * @return розмір інвентаря
+     */
     public int getSizeInventory() {
         return this.ExtractorItemStacks.size();
     }
 
+    /**
+     * Метод перевірки на порожність
+     * @return true, якщо предметів нема, або false, якщо є хоча б один предмет
+     */
     public boolean isEmpty() {
         for (ItemStack itemstack : this.ExtractorItemStacks) {
             if (!itemstack.isEmpty()) {
@@ -76,18 +88,39 @@ public class TileAlchemyExtractor extends TileEntity implements ITickable, ISide
         return true;
     }
 
+    /**
+     * Метод отримання предмету з слоту
+     * @param index індекс слоту механізму
+     * @return стек предметів з слоту
+     */
     public ItemStack getStackInSlot(int index) {
         return this.ExtractorItemStacks.get(index);
     }
 
+    /**
+     * Зменшує розмір стека в слоті
+     * @param index індекс слота
+     * @param count на скільки потрібно зменьшити розмір
+     * @return стек зі зменшеним розміром
+     */
     public ItemStack decrStackSize(int index, int count) {
         return ItemStackHelper.getAndSplit(this.ExtractorItemStacks, index, count);
     }
 
+    /**
+     * Видаляє весь стек предметів зі слота
+     * @param index індекс слота
+     * @return видалення слота
+     */
     public ItemStack removeStackFromSlot(int index) {
         return ItemStackHelper.getAndRemove(this.ExtractorItemStacks, index);
     }
 
+    /**
+     * Сеттер стеку предметів по індексу в механізмі
+     * @param index індекс слоту в механізмі
+     * @param stack стек предметів
+     */
     public void setInventorySlotContents(int index, ItemStack stack) {
         ItemStack itemstack = this.ExtractorItemStacks.get(index);
         boolean flag = !stack.isEmpty() && stack.isItemEqual(itemstack) && ItemStack.areItemStackTagsEqual(stack, itemstack);
@@ -104,22 +137,34 @@ public class TileAlchemyExtractor extends TileEntity implements ITickable, ISide
         }
     }
 
+    /**
+     * Отримує назву контейнера
+     * @return якщо назви для контейнера не встановлено, йому дається вказана назва
+     */
     public String getName() {
         return this.hasCustomName() ? this.CustomName : "container.alchemy_extractor";
     }
 
+    /**
+     * Метод перевірки наявності модифікованого імені механізму
+     * @return true, якщо ім'я модифіковано, або false, якщо ім'я не відредаговано
+     */
     public boolean hasCustomName() {
         return this.CustomName != null && !this.CustomName.isEmpty();
     }
-
+    /**
+     * Сеттер модифікованого імені інвентаря механізму
+     * @param name ім'я механізму
+     */
     public void setCustomInventoryName(String name) {
         this.CustomName = name;
     }
 
-    public static void registerFixesFurnace(DataFixer fixer) {
-        fixer.registerWalker(FixTypes.BLOCK_ENTITY, new ItemStackDataLists(TileAlchemyExtractor.class, new String[]{"Items"}));
-    }
 
+    /**
+     * Читає стан параметрів тайла з NBT
+     * @param compound NBT-тег, з якого необхідно отримати параметри
+     */
     public void readFromNBT(NBTTagCompound compound) {
         super.readFromNBT(compound);
         this.ExtractorItemStacks = NonNullList.<ItemStack>withSize(this.getSizeInventory(), ItemStack.EMPTY);
@@ -133,7 +178,10 @@ public class TileAlchemyExtractor extends TileEntity implements ITickable, ISide
             this.CustomName = compound.getString("CustomName");
         }
     }
-
+    /**
+     * Записує стан параметрів тайла в NBT
+     * @param compound NBT-тег, в який необхідно записати параметри
+     */
     public NBTTagCompound writeToNBT(NBTTagCompound compound) {
         super.writeToNBT(compound);
         compound.setInteger("BurnTime", (short) this.ExtratctorBurnTime);
@@ -148,22 +196,37 @@ public class TileAlchemyExtractor extends TileEntity implements ITickable, ISide
         return compound;
     }
 
+    /**
+     * Геттер максимального ліміту предметів в стаку
+     */
     public int getInventoryStackLimit()
     {
         return 64;
     }
 
+    /**
+     * Метод перевірки на те, чи проводиться якийсь крафт в даний момент часу
+     * @return true, якщо так, або false, якщо ні
+     */
     public boolean isBurning()
     {
         return this.ExtratctorBurnTime > 0;
     }
 
+    /**
+     * Статичний метод перевірки на те, чи проводиться якийсь крафт в даний момент часу
+     * @return true, якщо так, або false, якщо ні
+     */
     @SideOnly(Side.CLIENT)
     public static boolean isBurning(IInventory inventory)
     {
         return inventory.getField(0) > 0;
     }
 
+    /**
+     * Метод визначає, чи є сировина у вхідних слотах
+     * @return чи є сировина в слотах
+     */
     private boolean isSomethingInput(){
         boolean isSomething = false;
         for(int i = 0; i < this.slotsinput; i++){
@@ -176,16 +239,24 @@ public class TileAlchemyExtractor extends TileEntity implements ITickable, ISide
         return isSomething;
     }
 
+    /**
+     * Геттер ідентифікатору слоту для палива
+     * @return ідентифікатор слоту для палива
+     */
     private int getFuelSlotId(){
         return this.slotsinput;
     }
 
+    /**
+     * Оновлює стан тайла кожен тік.
+     */
     public void update()
     {
 
         boolean flag = this.isBurning();
         boolean flag1 = false;
 
+        // Якщо тайл працює, повільно витрачаємо паливо
         if (this.isBurning())
         {
             --this.ExtratctorBurnTime;
@@ -193,12 +264,12 @@ public class TileAlchemyExtractor extends TileEntity implements ITickable, ISide
 
         if (!this.world.isRemote)
         {
-
+            // Отриуємо стек палива
             ItemStack fuel = this.ExtractorItemStacks.get(getFuelSlotId());
 
             if (this.isBurning() || !fuel.isEmpty() && isSomethingInput())
             {
-
+                // Якщо тайл працює і рецепт проходить перевірку, то повільно витарчаємо паливо
                 if (!this.isBurning() && this.canSmelt())
                 {
                     this.ExtratctorBurnTime = getItemBurnTime(fuel);
@@ -224,7 +295,7 @@ public class TileAlchemyExtractor extends TileEntity implements ITickable, ISide
                 if (this.isBurning() && this.canSmelt())
                 {
 
-                    ModMain.log("Процесс плавления: " + this.cookTime + " из " + this.totalCookTime);
+                    ModMain.log("Процесс крафту: " + this.cookTime + " з " + this.totalCookTime);
                     ++this.cookTime;
 
                     if (this.cookTime == this.totalCookTime)
@@ -238,7 +309,7 @@ public class TileAlchemyExtractor extends TileEntity implements ITickable, ISide
                 else
                 {
 
-                    ModMain.log("Печь не горит, либо невозможно произвести прцоесс");
+                    ModMain.log("Тайл не працює, або неможливо провести процес");
                     this.cookTime = 0;
                 }
             }
@@ -260,7 +331,10 @@ public class TileAlchemyExtractor extends TileEntity implements ITickable, ISide
         }
     }
 
-
+    /**
+     * Геттер списку активних слотів для вхідних інгрідієнтів
+     * @return список активних слотів для вхідних інгрідієнтів
+     */
     private List<Item> getInputSlots(){
 
         ArrayList<Item> inputItemsStacks = new ArrayList<Item>();
@@ -272,11 +346,10 @@ public class TileAlchemyExtractor extends TileEntity implements ITickable, ISide
         return inputItemsStacks;
     }
 
-    /*public int getCookTime(NonNullList<Item> stacks)
-    {
-        return AlchemyExtractorRecipies.getCookTimeForItems(stacks);
-    }*/
-
+    /**
+     * Перевірка на те, чи можна провести такий рецепт
+     * @return true, якщо так, або false, якщо ні
+     */
     private boolean canSmelt()
     {
         boolean inputChecker = false;
@@ -312,6 +385,9 @@ public class TileAlchemyExtractor extends TileEntity implements ITickable, ISide
         }
     }
 
+    /**
+     * Метод завершення циклу крафту
+     */
     public void smeltItem()
     {
         if (this.canSmelt())
@@ -322,6 +398,7 @@ public class TileAlchemyExtractor extends TileEntity implements ITickable, ISide
             ItemStack resultSlot = this.ExtractorItemStacks.get(resultSlotId);
             List<Item> output = AlchemyExtractorRecipies.getSubsForItems(input);
 
+            // Основний результат
             if (resultSlot.isEmpty())
             {
                 this.ExtractorItemStacks.set(resultSlotId, result.copy());
@@ -331,6 +408,7 @@ public class TileAlchemyExtractor extends TileEntity implements ITickable, ISide
                 resultSlot.grow(result.getCount());
             }
 
+            // Суб-результат
             for(int item = 0; item < output.size(); item++){
                 if(output.get(item) == null)
                     continue;
@@ -354,16 +432,31 @@ public class TileAlchemyExtractor extends TileEntity implements ITickable, ISide
         }
     }
 
+    /**
+     * Визначає, скільки може горіти паливо
+     * @param stack стек паливо
+     * @return повертає час горіння для даного палива
+     */
     public static int getItemBurnTime(ItemStack stack)
     {
         return TilesFuel.getFuelTime(stack, 0);
     }
 
+    /**
+     * Метод перевірки на те, чи являється предмет в слоті для палива, паливом
+     * @param stack вхідний предмет
+     * @return true, якщо предмет - паливо, або false, якщо предмет - не паливо
+     */
     public static boolean isItemFuel(ItemStack stack)
     {
         return getItemBurnTime(stack) > 0;
     }
 
+    /**
+     * Метод перевірки на те, чи може бути цей блок використаний гравцем
+     * @param player гравець
+     * @return true, якщо гравець знаходиться на дозволеній відстані, або false, якщо гравець занадто далеко
+     */
     public boolean isUsableByPlayer(EntityPlayer player)
     {
         if (this.world.getTileEntity(this.pos) != this)
@@ -376,14 +469,28 @@ public class TileAlchemyExtractor extends TileEntity implements ITickable, ISide
         }
     }
 
+    /**
+     * Метод відкриття інвентарю гравцем (повинен бути реалізований, так як наслідується від інтерфейсу)
+     * @param player гравець
+     */
     public void openInventory(EntityPlayer player)
     {
     }
 
+    /**
+     * Метод закриття інвентаря гравцем (повинен бути реалізований, так як наслідується від інтерфйесу)
+     * @param player гравець
+     */
     public void closeInventory(EntityPlayer player)
     {
     }
 
+    /**
+     * Метод перевірки на те, чи може цей предмет бути в даному слоті
+     * @param index індекс слоту
+     * @param stack предмет
+     * @return true, якщо так, або false, якщо ні
+     */
     public boolean isItemValidForSlot(int index, ItemStack stack)
     {
 
@@ -402,6 +509,11 @@ public class TileAlchemyExtractor extends TileEntity implements ITickable, ISide
         }
     }
 
+    /**
+     * Метод отримання слотів, які можуть бути доступними з різних сторін (потрібно для воронки і подібних блоків)
+     * @param side сторона, до якої приєднаний блок
+     * @return масив індексів слотів, які доступні для блоку
+     */
     public int[] getSlotsForFace(EnumFacing side)
     {
         if (side == EnumFacing.DOWN)
@@ -414,11 +526,25 @@ public class TileAlchemyExtractor extends TileEntity implements ITickable, ISide
         }
     }
 
+    /**
+     * Метод перевірки на те, чи може цей предмет потрапити в механізм
+     * @param index індекс слота
+     * @param itemStackIn предмет
+     * @param direction сторона блоку
+     * @return true, якщо так, або false, якщо ні
+     */
     public boolean canInsertItem(int index, ItemStack itemStackIn, EnumFacing direction)
     {
         return this.isItemValidForSlot(index, itemStackIn);
     }
 
+    /**
+     * Метод перевірки на те, чи може цей предмет покинути механізм
+     * @param index індекс комірки
+     * @param stack предмет
+     * @param direction сторона блоку
+     * @return true, якщо так, або false, якщо ні
+     */
     public boolean canExtractItem(int index, ItemStack stack, EnumFacing direction)
     {
         if (direction == EnumFacing.DOWN && index == 1)
@@ -434,11 +560,11 @@ public class TileAlchemyExtractor extends TileEntity implements ITickable, ISide
         return true;
     }
 
-    public Container createContainer(InventoryPlayer playerInventory, EntityPlayer playerIn)
-    {
-        return new ContainerAlchemyExtractor(playerInventory, this);
-    }
-
+    /**
+     * Отримаує параметри тайла за індексом
+     * @param id номер індекса
+     * @return поле, яке відповідає даному індексу
+     */
     public int getField(int id)
     {
         switch (id)
@@ -456,6 +582,11 @@ public class TileAlchemyExtractor extends TileEntity implements ITickable, ISide
         }
     }
 
+    /**
+     * Встановлює індекси для параметрів тайла, а також значення полів
+     * @param id індекс
+     * @param value значення
+     */
     public void setField(int id, int value)
     {
         switch (id)
@@ -474,11 +605,18 @@ public class TileAlchemyExtractor extends TileEntity implements ITickable, ISide
         }
     }
 
+    /**
+     * Метод визначає, скільки полів параметрів є у тайла
+     * @return кількість параметрів
+     */
     public int getFieldCount()
     {
         return 4;
     }
 
+    /**
+     * Очищає всі слоти від стеків
+     */
     public void clear()
     {
         this.ExtractorItemStacks.clear();
@@ -488,6 +626,13 @@ public class TileAlchemyExtractor extends TileEntity implements ITickable, ISide
     net.minecraftforge.items.IItemHandler handlerBottom = new net.minecraftforge.items.wrapper.SidedInvWrapper(this, net.minecraft.util.EnumFacing.DOWN);
     net.minecraftforge.items.IItemHandler handlerSide = new net.minecraftforge.items.wrapper.SidedInvWrapper(this, net.minecraft.util.EnumFacing.WEST);
 
+    /**
+     * Метод отримання властивостей відносно сторони механізму, з якої зроблено звернення до нього
+     * @param capability властивість
+     * @param facing сторона
+     * @param <T> об'єкт, який реалізує інтерфейс IItemHandler
+     * @return об'єкт, який реалізує інтерфейс IItemHandler
+     */
     @SuppressWarnings("unchecked")
     @Override
     @javax.annotation.Nullable
@@ -502,7 +647,7 @@ public class TileAlchemyExtractor extends TileEntity implements ITickable, ISide
                 return (T) handlerSide;
         return super.getCapability(capability, facing);
     }
-
+/*
     @Override
     @Nullable
     public SPacketUpdateTileEntity getUpdatePacket() {
@@ -523,4 +668,5 @@ public class TileAlchemyExtractor extends TileEntity implements ITickable, ISide
 
         this.handleUpdateTag(packet.getNbtCompound());
     }
+    */
 }

@@ -13,16 +13,23 @@ import ua.andrey08xtomyoll.mineadditions.gui.containers.ContainerAlchemyExtracto
 import ua.andrey08xtomyoll.mineadditions.init.ModBlocks;
 import ua.andrey08xtomyoll.mineadditions.util.Reference;
 
+/**
+ * В цьому класі малюється графічний інтерфейс тайла AlchemyExtractor
+ */
+
 @SideOnly(Side.CLIENT)
 public class
 GuiElchemyExtractor extends GuiContainer
 {
-    // Текстура
-    // Всё остальное со стандартного GuiFurnace
     private static final ResourceLocation EXTRACTOR_GUI_TEXTURES = new ResourceLocation(Reference.MOD_ID + ":textures/gui/alchemy_extractor.png");
     private final InventoryPlayer playerInventory;
     private final IInventory tileinventory;
 
+    /**
+     * Конструктор класу
+     * @param playerInv інвентар гравця
+     * @param furnaceInv інвентар тайла
+     */
     public GuiElchemyExtractor(InventoryPlayer playerInv, IInventory furnaceInv)
     {
         super(new ContainerAlchemyExtractor(playerInv, furnaceInv));
@@ -30,6 +37,12 @@ GuiElchemyExtractor extends GuiContainer
         this.tileinventory = furnaceInv;
     }
 
+    /**
+     * Малює GUI
+     * @param mouseX Х позиція миші
+     * @param mouseY Y позиція миші
+     * @param partialTicks грові тіки (необхідно для синхронізації)
+     */
     public void drawScreen(int mouseX, int mouseY, float partialTicks)
     {
         this.drawDefaultBackground();
@@ -37,6 +50,11 @@ GuiElchemyExtractor extends GuiContainer
         this.renderHoveredToolTip(mouseX, mouseY);
     }
 
+    /**
+     * Малює передній план GUI
+     * @param mouseX X позиція миші
+     * @param mouseY Y позиція миші
+     */
     protected void drawGuiContainerForegroundLayer(int mouseX, int mouseY)
     {
         String name = I18n.format(ModBlocks.ALCHEMY_EXTRACTOR.getTranslationKey() + ".name");
@@ -44,6 +62,12 @@ GuiElchemyExtractor extends GuiContainer
         this.fontRenderer.drawString(this.playerInventory.getDisplayName().getUnformattedText(), 8, this.ySize - 96 + 2, 4210752);
     }
 
+    /**
+     * Малює передній план GUI
+     * @param partialTicks ігрові тіки (необхідно для синхронізації)
+     * @param mouseX X позиція миші
+     * @param mouseY Y позиція миші
+     */
     protected void drawGuiContainerBackgroundLayer(float partialTicks, int mouseX, int mouseY)
     {
         GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
@@ -54,14 +78,19 @@ GuiElchemyExtractor extends GuiContainer
         int l;
         if (TileAlchemyExtractor.isBurning(this.tileinventory))
         {
-         int k = this.getBurnLeftScaled(19); //Ширина от края gui
+         int k = this.getBurnLeftScaled(19); //Ширина від края GUI
         this.drawTexturedModalRect( i + 29,   j + 51 - k, 176, 19 - k,  7, k);
         }
 
-        l = this.getCookProgressScaled(64);//Ширина от края gui
+        l = this.getCookProgressScaled(64); //Ширина від края GUI
         this.drawTexturedModalRect(i + 59, j + 20, 176 + 8, 18, l, 49);
     }
 
+    /**
+     * Розраховує, на скільки пікселів необхідно зсунути прогресбар
+     * @param pixels ширина прогрессбара
+     * @return на скільки пікселів необхідно зсунути
+     */
     private int getCookProgressScaled(int pixels)
     {
         int i = this.tileinventory.getField(2);
@@ -69,6 +98,11 @@ GuiElchemyExtractor extends GuiContainer
         return j != 0 && i != 0 ? i * pixels / j : 0;
     }
 
+    /**
+     * Розраховує, на скільки пікселів необхідно зсунути прогресбар топлива
+     * @param pixels ширина прогрессбара топлива
+     * @return на скільки пікселів необхідно зсунути
+     */
     private int getBurnLeftScaled(int pixels)
     {
         int i = this.tileinventory.getField(1);

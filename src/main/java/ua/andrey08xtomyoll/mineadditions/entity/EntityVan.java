@@ -15,17 +15,23 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.EnumDifficulty;
 import net.minecraft.world.World;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
 import ua.andrey08xtomyoll.mineadditions.entity.ai.AiLookArround;
 import ua.andrey08xtomyoll.mineadditions.entity.ai.AiRandomFly;
 import ua.andrey08xtomyoll.mineadditions.entity.ai.GhastLikeMoveHelper;
 import ua.andrey08xtomyoll.mineadditions.handlers.ConfigHandler;
 import ua.andrey08xtomyoll.mineadditions.init.ModSounds;
 
+/**
+ * Клас моба Van
+ */
 public class EntityVan extends EntityMob implements IRangedAttackMob, IMob {
     private int heightOffsetUpdateTime;
     private final float inAccurate = 0.1F;
+
+    /**
+     * Конструктор класу
+     * @param world світ
+     */
     public EntityVan(World world) {
         super(world);
         setSize(1F, 2F);
@@ -33,7 +39,12 @@ public class EntityVan extends EntityMob implements IRangedAttackMob, IMob {
         this.moveHelper = new GhastLikeMoveHelper(this);
     }
 
-
+    /**
+     * Метод визначає, що може нанести пошкодження мобу крім кгравця
+     * @param source джерело пошкодження
+     * @param amount сила пошкодження
+     * @return true, якщо це джерело може пошкодити моба, false, якщо ні
+     */
     @Override
     public boolean attackEntityFrom(DamageSource source, float amount) {
         if (source.getImmediateSource() instanceof EntityPotion)
@@ -49,6 +60,9 @@ public class EntityVan extends EntityMob implements IRangedAttackMob, IMob {
         return super.attackEntityFrom(source, amount);
     }
 
+    /**
+     * Визначення ключових параметрів моба
+     */
     @Override
     protected void applyEntityAttributes() {
         super.applyEntityAttributes();
@@ -60,6 +74,9 @@ public class EntityVan extends EntityMob implements IRangedAttackMob, IMob {
         this.getEntityAttribute(SharedMonsterAttributes.FLYING_SPEED).setBaseValue(0.5D);
     }
 
+    /**
+     * Ініціалізація AI тасків моба
+     */
     @Override
     protected void initEntityAI() {
         super.initEntityAI();
@@ -70,6 +87,9 @@ public class EntityVan extends EntityMob implements IRangedAttackMob, IMob {
 
     }
 
+    /**
+     * Метод визначає життєвий цикл моба
+     */
     @Override
     public void onLivingUpdate() {
         super.onLivingUpdate();
@@ -80,8 +100,12 @@ public class EntityVan extends EntityMob implements IRangedAttackMob, IMob {
                 this.setDead();
             }}}
 
+    /**
+     * Метод визначає атакування інших сутностей мобом
+     * @param target ціль
+     * @param flval
+     */
     public void attackEntityWithRangedAttack(EntityLivingBase target, float flval) {
-
         EntityVanShoot van_shoot = new EntityVanShoot(this.world, this);
         double d0 = target.posY + (double)target.getEyeHeight() - 1.100000023841858D;
         double d1 = target.posX - this.posX;
@@ -93,12 +117,18 @@ public class EntityVan extends EntityMob implements IRangedAttackMob, IMob {
         this.world.spawnEntity(van_shoot);
     }
 
+    /**
+     * Метод, який виконується завжди. Встановює нульову гравітацію для моба
+     */
     @Override
     public void onUpdate() {
         super.onUpdate();
         this.setNoGravity(true);
     }
 
+    /**
+     * Оновлення AI тасків
+     */
     @Override
     protected void updateAITasks() {
         if (this.isWet()) {
@@ -112,33 +142,62 @@ public class EntityVan extends EntityMob implements IRangedAttackMob, IMob {
         super.updateAITasks();
     }
 
+    /**
+     * Звук, який зазвичай видає моб
+     * @return звук
+     */
     @Override
     protected SoundEvent getAmbientSound() {
         return ModSounds.van_ambient_sound;
     }
+
+    /**
+     * Звук, який видає моб, коли його атакують
+     * @param source джерело атаки
+     * @return звук
+     */
     @Override
     protected SoundEvent getHurtSound(DamageSource source) {
         return ModSounds.van_hurt_sound;
     }
+
+    /**
+     * Звук, який видає моб при смерті
+     * @return звук
+     */
     @Override
     protected SoundEvent getDeathSound() {
         return ModSounds.van_death_sound;
     }
 
-
+    /**
+     * Скільки мобів може заспавнитися в одному чанку
+     * @return
+     */
     @Override
     public int getMaxSpawnedInChunk() {
         return 1;
     }
 
+    /**
+     * Метод, який визначає, як змінюється модель моба при плаванні
+     * @param swingingArms чи плаває моб
+     */
     @Override
     public void setSwingingArms(boolean swingingArms) {
     }
 
+    /**
+     * Висота "очей" моба.
+     * @return висота очей
+     */
     public float getEyeHeight() {
         return 1.7F;
     }
 
+    /**
+     * Клас вистрілу моба Van
+     */
     public static class EntityVanShoot extends EntitySnowball {
         public EntityLivingBase shootingEntity;
         public int ShootDamage = ConfigHandler.generalSettings.vanDamage;
@@ -148,11 +207,20 @@ public class EntityVan extends EntityMob implements IRangedAttackMob, IMob {
             super(worldIn, x, y, z);
         }
 
+        /**
+         * Конструктор класу
+         * @param worldIn світ
+         * @param shooter стрілець
+         */
         public EntityVanShoot(World worldIn, EntityLivingBase shooter)
         {
             super(worldIn, shooter);
         }
 
+        /**
+         * Метод визначає, що відбувається, коли снаряд в щось влучив
+         * @param result момент зіткнення
+         */
         @Override
         protected void onImpact(RayTraceResult result) {
             if (result.entityHit != null) {
@@ -169,6 +237,10 @@ public class EntityVan extends EntityMob implements IRangedAttackMob, IMob {
                 }
             }
         }
+
+        /**
+         * Метод який виконується завжди. Малює частинки по траекторії польту снаряда
+         */
         @Override
         public void onUpdate() {
             if (this.world.isRemote || (this.shootingEntity == null || !this.shootingEntity.isDead) && this.world.isBlockLoaded(new BlockPos(this))) {

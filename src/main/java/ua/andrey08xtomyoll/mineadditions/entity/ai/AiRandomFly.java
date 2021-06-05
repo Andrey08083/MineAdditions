@@ -6,16 +6,25 @@ import net.minecraft.entity.ai.EntityMoveHelper;
 
 import java.util.Random;
 
+/**
+ * Клас реалізує випадковий напрямок польоту для моба, коли він не слідує за гравцем
+ */
+
 public class AiRandomFly extends EntityAIBase {
     private final EntityLiving parentEntity;
 
+    /**
+     * Конструктор класу
+     * @param ghast моб, для якого встановлено таск
+     */
     public AiRandomFly(EntityLiving ghast) {
         this.parentEntity = ghast;
         this.setMutexBits(1);
     }
 
     /**
-     * Returns whether the EntityAIBase should begin execution.
+     * Чи потрібно розпочати виконання EntityAIBase
+     * @return дистанція польоту
      */
     public boolean shouldExecute() {
         EntityMoveHelper entitymovehelper = this.parentEntity.getMoveHelper();
@@ -31,15 +40,13 @@ public class AiRandomFly extends EntityAIBase {
         }
     }
 
-    /**
-     * Returns whether an in-progress EntityAIBase should continue executing
-     */
+
     public boolean shouldContinueExecuting() {
         return false;
     }
 
     /**
-     * Execute a one shot task or start executing a continuous task
+     * Старт виконання AI таску
      */
     public void startExecuting() {
         Random random = this.parentEntity.getRNG();

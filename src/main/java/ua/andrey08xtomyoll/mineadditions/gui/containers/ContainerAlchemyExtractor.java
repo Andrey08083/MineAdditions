@@ -8,31 +8,38 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import ua.andrey08xtomyoll.mineadditions.blocks.tiles.TileAlchemyExtractor;
 
+/**
+ * Клас контейнера тайла AlchemyExtractor
+ */
+
 public class ContainerAlchemyExtractor extends Container
 {
     private final IInventory tileentity;
-    private final TileAlchemyExtractor extractor;
     private int cookTime;
     private int totalCookTime;
     private int BurnTime;
     private int currentItemBurnTime;
 
-    public ContainerAlchemyExtractor(InventoryPlayer playerInventory, IInventory furnaceInventory)
+    /**
+     * Конструктор класу
+     * @param playerInventory інвентар гравця
+     * @param TileInventory інвентар тайла
+     */
+    public ContainerAlchemyExtractor(InventoryPlayer playerInventory, IInventory TileInventory)
     {
-        this.tileentity = furnaceInventory;
-        this.extractor = (TileAlchemyExtractor) tileentity;
-        //семена
-        this.addSlotToContainer(new CustomSlots(furnaceInventory, 0, 25, 14, 2));
-        //пыль
-        this.addSlotToContainer(new CustomSlots(furnaceInventory, 1, 10, 53, 3));
-        //топливо
-        this.addSlotToContainer(new CustomSlots(furnaceInventory, 2, 39, 53, 1));
-        //семена
-        this.addSlotToContainer(new SlotFurnaceOutput(playerInventory.player, furnaceInventory, 3, 120, 53));
-        //бутылка
-        this.addSlotToContainer(new SlotFurnaceOutput(playerInventory.player, furnaceInventory, 4, 120, 23));
+        this.tileentity = TileInventory;
+        // насіння пшениці
+        this.addSlotToContainer(new CustomSlots(TileInventory, 0, 25, 14, 2));
+        // Пил
+        this.addSlotToContainer(new CustomSlots(TileInventory, 1, 10, 53, 3));
+        // Паливо
+        this.addSlotToContainer(new CustomSlots(TileInventory, 2, 39, 53, 1));
+        // Насіння фрукта
+        this.addSlotToContainer(new SlotFurnaceOutput(playerInventory.player, TileInventory, 3, 120, 53));
+        // Вода
+        this.addSlotToContainer(new SlotFurnaceOutput(playerInventory.player, TileInventory, 4, 120, 23));
 
-        // Слоты игрока
+        // Слоти гравця
         for (int i = 0; i < 3; ++i)
         {
             for (int j = 0; j < 9; ++j)
@@ -48,12 +55,19 @@ public class ContainerAlchemyExtractor extends Container
         }
     }
 
+    /**
+     * Метод відслідковує зміну розмірів вікна інвентаря тайлу
+     * @param listener прослуховувач
+     */
     public void addListener(IContainerListener listener)
     {
         super.addListener(listener);
         listener.sendAllWindowProperties(this, this.tileentity);
     }
 
+    /**
+     * Шукає зміни, внесені в контейнер, надсилає їх кожному слухачеві.
+     */
     public void detectAndSendChanges()
     {
         super.detectAndSendChanges();
@@ -95,11 +109,22 @@ public class ContainerAlchemyExtractor extends Container
         this.tileentity.setField(id, data);
     }
 
+    /**
+     * Визначає, чи може гравець використовувати цей контейнер
+     * @param playerIn гравець
+     * @return користувач може використвувати контейнер
+     */
     public boolean canInteractWith(EntityPlayer playerIn)
     {
         return this.tileentity.isUsableByPlayer(playerIn);
     }
 
+    /**
+     * Метод визначає поведінку слотів при переносі стеків за допомогою shift
+     * @param playerIn гравець
+     * @param index індекс слота
+     * @return стек
+     */
     @Override
     public ItemStack transferStackInSlot(EntityPlayer playerIn, int index) {
         ItemStack itemstack = ItemStack.EMPTY;
@@ -138,4 +163,5 @@ public class ContainerAlchemyExtractor extends Container
     }
 
 }
+
 

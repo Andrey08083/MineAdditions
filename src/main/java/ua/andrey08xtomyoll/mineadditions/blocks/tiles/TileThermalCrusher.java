@@ -4,9 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.init.Items;
-import net.minecraft.inventory.Container;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.inventory.ItemStackHelper;
@@ -23,31 +21,28 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import ua.andrey08xtomyoll.mineadditions.ModMain;
 import ua.andrey08xtomyoll.mineadditions.blocks.BlockThermalCrusher;
-import ua.andrey08xtomyoll.mineadditions.gui.containers.ContainerThermalCrusher;
 import ua.andrey08xtomyoll.mineadditions.util.TCrusherRecipies;
-import ua.andrey08xtomyoll.mineadditions.util.Reference;
+import ua.andrey08xtomyoll.mineadditions.util.TilesFuel;
 
 import javax.annotation.Nonnull;
 
-import static ua.andrey08xtomyoll.mineadditions.util.TilesFuel.getItemBurnTime;
 
 /**
- * Клас блоку-сутності механізму Thermal Crusher
+ * Клас тайла механізма ThermalCrusher
+ * Реалізує логіку роботи маханізма
  */
 @Nonnull
 public class TileThermalCrusher extends TileEntity implements ITickable, ISidedInventory
 {
-    /** Величины, которые задают кол-во слотов на выход/выход и соотвественно саму математику **/
-    // Общее кол-во слотов, не менее 3х, не более 11 (5 входящих + топливо + 5 на выходе)
+    // Загальна кількусть слотів, не меньше 3-х, не більше 11 (5 на віхд + паливо + 5 на виході
     public static int slotscount = 4;
-    // Кол-во входящих (от 1 до 5, с ориентацией на общее кол-во)
+    // Кількість слотів на вхід ( від 1 до 5)
     public static int slotsinput = 1;
 
     private static final int[] SLOTS_TOP = new int[] {0};
     private static final int[] SLOTS_BOTTOM = new int[] {slotsinput + 1, slotsinput};
     private static final int[] SLOTS_SIDES = new int[] {slotsinput};
 
-    // Все слоты. Сначала входящие, затем топливо, затем результат, затем суб-продукты
     private NonNullList<ItemStack> CrusherItemStacks = NonNullList.withSize(slotscount, ItemStack.EMPTY);
 
     private int CrusherBurnTime;
@@ -58,8 +53,8 @@ public class TileThermalCrusher extends TileEntity implements ITickable, ISidedI
     private String CustomName;
 
     /**
-     * Геттер, який повертає розмір інвентарю
-     * @return розмір інвентарю
+     * Геттер, який повертає розмір інвентаря
+     * @return розмір інвентаря
      */
     public int getSizeInventory()
     {
@@ -86,7 +81,7 @@ public class TileThermalCrusher extends TileEntity implements ITickable, ISidedI
     /**
      * Метод отримання предмету з слоту
      * @param index індекс слоту механізму
-     * @return предмет з слоту
+     * @return стек предметів з слоту
      */
     @Nonnull
     public ItemStack getStackInSlot(int index)
@@ -95,10 +90,10 @@ public class TileThermalCrusher extends TileEntity implements ITickable, ISidedI
     }
 
     /**
-     * Метод для розділення предметів в стаку
-     * @param index індекс слоту, в якому знаходиться стак
-     * @param count кількість
-     * @return розділений стак
+     * Зменшує розмір стека в слоті
+     * @param index індекс слота
+     * @param count на скільки потрібно зменьшити розмір
+     * @return стек зі зменшеним розміром
      */
     @Nonnull
     public ItemStack decrStackSize(int index, int count)
@@ -107,9 +102,9 @@ public class TileThermalCrusher extends TileEntity implements ITickable, ISidedI
     }
 
     /**
-     * Метод для забирання предмету з слоту
-     * @param index індекс слоту, в якому знаходиться стак
-     * @return стак без частини предметів
+     * Видаляє весь стек предметів зі слота
+     * @param index індекс слота
+     * @return видалення слота
      */
     @Nonnull
     public ItemStack removeStackFromSlot(int index)
@@ -118,9 +113,9 @@ public class TileThermalCrusher extends TileEntity implements ITickable, ISidedI
     }
 
     /**
-     * Сеттер стаку предметів по індексу в механізмі
+     * Сеттер стеку предметів по індексу в механізмі
      * @param index індекс слоту в механізмі
-     * @param stack стак предметів
+     * @param stack стек предметів
      */
     public void setInventorySlotContents(int index, ItemStack stack)
     {
@@ -132,7 +127,7 @@ public class TileThermalCrusher extends TileEntity implements ITickable, ISidedI
         {
             stack.setCount(this.getInventoryStackLimit());
         }
-        // Сбрасываем время, если меняются входящие
+
         if (index >= 0 && index < slotsinput && !flag)
         {
             this.totalCookTime = TCrusherRecipies.getCookTimeForItems(getInputSlots());
@@ -142,8 +137,8 @@ public class TileThermalCrusher extends TileEntity implements ITickable, ISidedI
     }
 
     /**
-     * Геттер імені механізму
-     * @return ім'я механізму
+     * Отримує назву контейнера
+     * @return якщо назви для контейнера не встановлено, йому дається вказана назва
      */
     @Nonnull
     public String getName()
@@ -170,8 +165,8 @@ public class TileThermalCrusher extends TileEntity implements ITickable, ISidedI
     }
 
     /**
-     * Метод присвоєння даних з NBT-тегу
-     * @param compound NBT-тег
+     * Читає стан параметрів тайла з NBT
+     * @param compound NBT-тег, з якого необхідно отримати параметри
      */
     public void readFromNBT(NBTTagCompound  compound)
     {
@@ -189,8 +184,8 @@ public class TileThermalCrusher extends TileEntity implements ITickable, ISidedI
         }
     }
     /**
-     * Метод запису даних в NBT-тег
-     * @param compound NBT-тег
+     * Записує стан параметрів тайла в NBT
+     * @param compound NBT-тег, в який необхідно записати параметри
      */
     @Nonnull
     public NBTTagCompound writeToNBT(NBTTagCompound compound)
@@ -236,8 +231,8 @@ public class TileThermalCrusher extends TileEntity implements ITickable, ISidedI
     }
 
     /**
-     * Метод перевірки на те, чи є якісь предмети в механізмі
-     * @return true, якщо так, або false, якщо ні
+     * Метод визначає, чи є сировина у вхідних слотах
+     * @return чи є сировина в слотах
      */
     private boolean isSomethingInput(){
         boolean isSomething = false;
@@ -259,14 +254,14 @@ public class TileThermalCrusher extends TileEntity implements ITickable, ISidedI
     }
 
     /**
-     * Метод, який виконується кожен ігровий тік
+     * Оновлює стан тайла кожен тік.
      */
     public void update()
     {
         boolean flag = this.isBurning();
         boolean flag1 = false;
 
-        // Если печь горит, медленно тратим топливо
+        // Якщо тайл працює, повільно витрачаємо паливо
         if (this.isBurning())
         {
             --this.CrusherBurnTime;
@@ -274,12 +269,12 @@ public class TileThermalCrusher extends TileEntity implements ITickable, ISidedI
 
         if (!this.world.isRemote)
         {
-            // Получаем стак в слоте топлива
+            // Отриуємо стек палива
             ItemStack fuel = this.CrusherItemStacks.get(getFuelSlotId());
 
             if (this.isBurning() || !fuel.isEmpty() && isSomethingInput())
             {
-                // Если горит и рецепт проходит проверку, то тратим топливо
+                // Якщо тайл працює і рецепт проходить перевірку, то повільно витарчаємо паливо
                 if (!this.isBurning() && this.canSmelt())
                 {
                     this.CrusherBurnTime = getItemBurnTime(fuel);
@@ -305,8 +300,7 @@ public class TileThermalCrusher extends TileEntity implements ITickable, ISidedI
 
                 if (this.isBurning() && this.canSmelt())
                 {
-                    // Наблюдаем за процессом
-                    ModMain.log("Процесс плавления: " + this.cookTime + " из " + this.totalCookTime);
+                    ModMain.log("Процесс крафту: " + this.cookTime + " з " + this.totalCookTime);
                     ++this.cookTime;
 
                     if (this.cookTime == this.totalCookTime)
@@ -319,8 +313,7 @@ public class TileThermalCrusher extends TileEntity implements ITickable, ISidedI
                 }
                 else
                 {
-                    // Если процесс не идёт, сбрасываем время
-                    ModMain.log("Печь не горит, либо невозможно произвести прцоесс");
+                    ModMain.log("Тайл не працює, або неможливо провести процес");
                     this.cookTime = 0;
                 }
             }
@@ -346,7 +339,6 @@ public class TileThermalCrusher extends TileEntity implements ITickable, ISidedI
      * Геттер списку активних слотів для вхідних інгрідієнтів
      * @return список активних слотів для вхідних інгрідієнтів
      */
-    // Получаем список активных слотов входящих веществ
     private List<Item> getInputSlots(){
 
         ArrayList<Item> inputItemsStacks = new ArrayList<>();
@@ -362,7 +354,6 @@ public class TileThermalCrusher extends TileEntity implements ITickable, ISidedI
      * Перевірка на те, чи можна провести такий рецепт
      * @return true, якщо так, або false, якщо ні
      */
-    // Проверка на то, можно ли провести такой рецепт
     private boolean canSmelt()
     {
         boolean inputChecker = false;
@@ -382,22 +373,21 @@ public class TileThermalCrusher extends TileEntity implements ITickable, ISidedI
         if (result.isEmpty()) return false;
         else
         {
-            ItemStack resultSlot = this.CrusherItemStacks.get(slotsinput + 1); // берём слот выше входящих + топливо
+            ItemStack resultSlot = this.CrusherItemStacks.get(slotsinput + 1);
             if (resultSlot.isEmpty())
                 return true;
             else if (!resultSlot.isItemEqual(result))
                 return false;
-            else if (resultSlot.getCount() + result.getCount() <= this.getInventoryStackLimit() && resultSlot.getCount() + result.getCount() <= resultSlot.getMaxStackSize())  // Forge fix: make furnace respect stack sizes in furnace recipes
+            else if (resultSlot.getCount() + result.getCount() <= this.getInventoryStackLimit() && resultSlot.getCount() + result.getCount() <= resultSlot.getMaxStackSize())
                 return true;
             else
-                return resultSlot.getCount() + result.getCount() <= result.getMaxStackSize(); // Forge fix: make furnace respect stack sizes in furnace recipes
+                return resultSlot.getCount() + result.getCount() <= result.getMaxStackSize();
         }
     }
 
     /**
      * Метод завершення циклу переплавки
      */
-    // Конец переплавки (цикла)
     public void smeltItem()
     {
         if (this.canSmelt())
@@ -408,7 +398,7 @@ public class TileThermalCrusher extends TileEntity implements ITickable, ISidedI
             ItemStack resultSlot = this.CrusherItemStacks.get(resultSlotId);
             List<Item> output = TCrusherRecipies.getSubsForItems(input);
 
-            // Основной результат
+            // Основний результат
             if (resultSlot.isEmpty())
             {
                 this.CrusherItemStacks.set(resultSlotId, result.copy());
@@ -418,7 +408,6 @@ public class TileThermalCrusher extends TileEntity implements ITickable, ISidedI
                 resultSlot.grow(result.getCount());
             }
 
-            // Добрасываем суб-продукты в слоты исходящих
             for(int item = 0; item < output.size(); item++)
             {
                 if(output.get(item) == null)
@@ -445,7 +434,16 @@ public class TileThermalCrusher extends TileEntity implements ITickable, ISidedI
         }
     }
 
-    // Время пережигания, вынесено в отдельный класс
+
+    /**
+     * Визначає, скільки може горіти паливо
+     * @param stack стек паливо
+     * @return повертає час горіння для даного палива
+     */
+    public static int getItemBurnTime(ItemStack stack)
+    {
+        return TilesFuel.getFuelTime(stack, 1);
+    }
 
     /**
      * Метод перевірки на те, чи являється предмет в слоті для палива, паливом
@@ -458,7 +456,7 @@ public class TileThermalCrusher extends TileEntity implements ITickable, ISidedI
     }
 
     /**
-     * Метод перевірки на те, чи може бути цей блок аикористаний гравцем
+     * Метод перевірки на те, чи може бути цей блок використаний гравцем
      * @param player гравець
      * @return true, якщо гравець знаходиться на дозволеній відстані, або false, якщо гравець занадто далеко
      */
@@ -475,7 +473,7 @@ public class TileThermalCrusher extends TileEntity implements ITickable, ISidedI
     }
 
     /**
-     * Метод відкриття інвентарю гравцем (повинен бути реалізований, так як наслідується від абстрактного класу)
+     * Метод відкриття інвентарю гравцем (повинен бути реалізований, так як наслідується від інтерфейсу)
      * @param player гравець
      */
     public void openInventory(EntityPlayer player)
@@ -483,7 +481,7 @@ public class TileThermalCrusher extends TileEntity implements ITickable, ISidedI
     }
 
     /**
-     * Метод закриття інвентарю гравцем (повинен бути реалізований, так як наслідується від абстрактного класу)
+     * Метод закриття інвентарю гравцем (повинен бути реалізований, так як наслідується від інтерфйесу)
      * @param player гравець
      */
     public void closeInventory(EntityPlayer player)
@@ -516,7 +514,7 @@ public class TileThermalCrusher extends TileEntity implements ITickable, ISidedI
     /**
      * Метод отримання слотів, які можуть бути доступними з різних сторін (потрібно для воронки і подібних блоків)
      * @param side сторона, до якої приєднаний блок
-     * @return масив індексів комірок, які доступні для блоку
+     * @return масив індексів слотів, які доступні для блоку
      */
     public int[] getSlotsForFace(EnumFacing side)
     {
@@ -532,7 +530,7 @@ public class TileThermalCrusher extends TileEntity implements ITickable, ISidedI
 
     /**
      * Метод перевірки на те, чи може цей предмет потрапити в механізм
-     * @param index індекс комірки
+     * @param index індекс слота
      * @param itemStackIn предмет
      * @param direction сторона блоку
      * @return true, якщо так, або false, якщо ні
@@ -561,16 +559,11 @@ public class TileThermalCrusher extends TileEntity implements ITickable, ISidedI
         return true;
     }
 
-    public String getGuiID()
-    {
-        return Reference.MOD_ID + ":thermalcrusher";
-    }
-
-    public Container createContainer(InventoryPlayer playerInventory, EntityPlayer playerIn)
-    {
-        return new ContainerThermalCrusher(playerInventory, this);
-    }
-
+    /**
+     * Отримаує параметри тайла за індексом
+     * @param id номер індекса
+     * @return поле, яке відповідає даному індексу
+     */
     public int getField(int id)
     {
         switch (id)
@@ -588,8 +581,8 @@ public class TileThermalCrusher extends TileEntity implements ITickable, ISidedI
         }
     }
     /**
-     * Сеттер поля класу по ідентифікатору
-     * @param id ідентифікатор
+     * Встановлює індекси для параметрів тайла, а також значення полів
+     * @param id індекс
      * @param value значення
      */
     public void setField(int id, int value)
@@ -611,8 +604,8 @@ public class TileThermalCrusher extends TileEntity implements ITickable, ISidedI
     }
 
     /**
-     * Геттер кількості полей
-     * @return кількість полей
+     * Метод визначає, скільки полів параметрів є у тайла
+     * @return кількість параметрів
      */
     public int getFieldCount()
     {
@@ -620,7 +613,7 @@ public class TileThermalCrusher extends TileEntity implements ITickable, ISidedI
     }
 
     /**
-     * Метод очистки комірок механізму
+     * Очищає всі слоти від стеків
      */
     public void clear()
     {

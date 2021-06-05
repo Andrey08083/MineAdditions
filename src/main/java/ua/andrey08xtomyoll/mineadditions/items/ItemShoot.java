@@ -11,12 +11,19 @@ import ua.andrey08xtomyoll.mineadditions.util.IHasModel;
 public class ItemShoot extends Item implements IHasModel
 {
 
+    /**
+     * Конструктор
+     * @param name ім'я снаряду
+     */
     public ItemShoot(String name) {
         setTranslationKey(name);
         setRegistryName(name);
         ModItems.ITEMS.add(this);
     }
 
+    /**
+     * Реєстрація моделі предмета снаряду
+     */
     @Override
     public void registerModels()
     {

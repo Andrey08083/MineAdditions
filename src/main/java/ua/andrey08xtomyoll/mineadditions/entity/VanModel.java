@@ -57,6 +57,9 @@ public class VanModel extends ModelBase {
 	final ModelRenderer cube_r39;
 	final ModelRenderer cube_r40;
 
+	/**
+	 * Конструктор
+	 */
 	public VanModel() {
 		textureWidth = 64;
 		textureHeight = 64;

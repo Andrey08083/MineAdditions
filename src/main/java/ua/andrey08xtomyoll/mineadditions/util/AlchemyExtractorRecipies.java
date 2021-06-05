@@ -15,25 +15,22 @@ import java.util.List;
 public class AlchemyExtractorRecipies {
 
     private static final ArrayList<List<Item>> inputList = new ArrayList<List<Item>>();
-    // Основной результат
+    // Основний результат
     private static final ArrayList<Item> resultList = new ArrayList<Item>();
-    // Суб-продукты
+    // Суб-результат
     public static final ArrayList<List<Item>> subOutputList = new ArrayList<List<Item>>();
-    // Время плавки
+    // Час крафту
     private static final ArrayList<Integer> timeList = new ArrayList<Integer>();
 
     /**
      * Метод ініціалізації рецептів
      */
     public static void init() {
-		/* Рецепты состоят из:
-		- int время плавления
-		- Item[]{} список  исходных (до 5 соответсвенно)
-		- Item основной результат
-		- Item[]{} список  суб-результатов (до 4х соответсвенно)
-
-		Ниже разобран как пример по строкам
-		- Руда типа 1 + Руда типа 2 за 200 тиков дают Кирпич + Порох + Камень
+		/* Рецепти складаються з:
+		- int час крафту
+		- Item[]{} список  вихідних предметів (до 5)
+		- Item основний результат
+		- Item[]{} список  суб-результатів (до 4)
 		*/
         AlchemyExtractorRecipies.addFurnaceRecipeWithCookTime(500, new Item[]{(ModItems.LITTLE_LABATIUM_DUST), Items.WHEAT_SEEDS}, ModItems.LABATIUM_FRUIT_SEED, new Item[]{Items.GLASS_BOTTLE});
         AlchemyExtractorRecipies.addFurnaceRecipeWithCookTime(500, new Item[]{(ModItems.LITTLE_TOMIUM_DUST), Items.WHEAT_SEEDS}, ModItems.TOMIUM_FRUIT_SEED, new Item[]{Items.GLASS_BOTTLE});
@@ -57,7 +54,6 @@ public class AlchemyExtractorRecipies {
         for(int i = 0; i < outputRaw.length; i++)
             output.add(outputRaw[i]);
 
-        // Проверяем, что входящие и результат существуют
         if (result == null)
             return;
         for(int i = 0; i < input.size(); i++){
