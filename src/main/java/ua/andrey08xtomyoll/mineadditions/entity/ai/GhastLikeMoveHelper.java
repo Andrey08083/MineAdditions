@@ -56,7 +56,7 @@ public class GhastLikeMoveHelper extends EntityMoveHelper {
      * @param y
      * @param z
      * @param dist дистанція між мобом, та сутністю з якою він стикається
-     * @return true, якщо моб стикнувся з чимос, false, якщо ні
+     * @return true, якщо моб не стикнувся з чимось, false, якщо стикнувся
      */
     private boolean isNotColliding(double x, double y, double z, double dist) {
         double d0 = (x - this.parentEntity.posX) / dist;

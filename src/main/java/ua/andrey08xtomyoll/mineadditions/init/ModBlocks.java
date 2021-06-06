@@ -7,8 +7,8 @@ import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import ua.andrey08xtomyoll.mineadditions.blocks.*;
-import ua.andrey08xtomyoll.mineadditions.blocks.tiles.TileThermalCrusher;
-import ua.andrey08xtomyoll.mineadditions.blocks.tiles.TileAlchemyExtractor;
+import ua.andrey08xtomyoll.mineadditions.tiles.TileThermalCrusher;
+import ua.andrey08xtomyoll.mineadditions.tiles.TileAlchemyExtractor;
 
 /**
  * Клас з блоками

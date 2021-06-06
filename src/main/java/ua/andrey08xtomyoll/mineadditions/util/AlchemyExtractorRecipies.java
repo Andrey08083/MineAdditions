@@ -32,8 +32,8 @@ public class AlchemyExtractorRecipies {
 		- Item основний результат
 		- Item[]{} список  суб-результатів (до 4)
 		*/
-        AlchemyExtractorRecipies.addFurnaceRecipeWithCookTime(500, new Item[]{(ModItems.LITTLE_LABATIUM_DUST), Items.WHEAT_SEEDS}, ModItems.LABATIUM_FRUIT_SEED, new Item[]{Items.GLASS_BOTTLE});
-        AlchemyExtractorRecipies.addFurnaceRecipeWithCookTime(500, new Item[]{(ModItems.LITTLE_TOMIUM_DUST), Items.WHEAT_SEEDS}, ModItems.TOMIUM_FRUIT_SEED, new Item[]{Items.GLASS_BOTTLE});
+        AlchemyExtractorRecipies.addRecipeWithCookTime(500, new Item[]{(ModItems.LITTLE_LABATIUM_DUST), Items.WHEAT_SEEDS}, ModItems.LABATIUM_FRUIT_SEED, new Item[]{Items.GLASS_BOTTLE});
+        AlchemyExtractorRecipies.addRecipeWithCookTime(500, new Item[]{(ModItems.LITTLE_TOMIUM_DUST), Items.WHEAT_SEEDS}, ModItems.TOMIUM_FRUIT_SEED, new Item[]{Items.GLASS_BOTTLE});
 
     }
 
@@ -44,7 +44,7 @@ public class AlchemyExtractorRecipies {
      * @param result результат
      * @param outputRaw масив побічних результатів
      */
-    public static void addFurnaceRecipeWithCookTime(int cookTime, Item[] inputRaw, Item result, Item[] outputRaw)
+    public static void addRecipeWithCookTime(int cookTime, Item[] inputRaw, Item result, Item[] outputRaw)
     {
         List<Item> input = new ArrayList<Item>();
         for(int i = 0; i < inputRaw.length; i++)
@@ -60,7 +60,7 @@ public class AlchemyExtractorRecipies {
             if (input.get(i) == null)
                 return;
         }
-        ModMain.log("Рецепт на " + new ItemStack(result).getDisplayName() + " зарегестрирован.");
+        ModMain.log("Рецепт на " + new ItemStack(result).getDisplayName() + " зареєстрований.");
         timeList.add(cookTime);
         inputList.add(input);
         resultList.add(result);
@@ -150,7 +150,7 @@ public class AlchemyExtractorRecipies {
             }
         }
 
-        ModMain.log("После проверки всех рецептов совпадения не найдено.");
+        ModMain.log("После перевірки всіх рецептів співпадінь не знайдено.");
         return null;
     }
 

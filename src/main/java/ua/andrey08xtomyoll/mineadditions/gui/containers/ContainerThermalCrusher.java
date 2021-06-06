@@ -12,7 +12,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.FurnaceRecipes;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import ua.andrey08xtomyoll.mineadditions.blocks.tiles.TileThermalCrusher;
+import ua.andrey08xtomyoll.mineadditions.tiles.TileThermalCrusher;
 
 /**
  * Клас контейнера тайла AlchemyExtractor

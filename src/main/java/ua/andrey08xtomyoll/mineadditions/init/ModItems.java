@@ -8,6 +8,8 @@ import ua.andrey08xtomyoll.mineadditions.handlers.ConfigHandler;
 import ua.andrey08xtomyoll.mineadditions.items.*;
 import ua.andrey08xtomyoll.mineadditions.items.armor.ArmorBase;
 import ua.andrey08xtomyoll.mineadditions.items.armor.ChestplateBase;
+import ua.andrey08xtomyoll.mineadditions.items.food.ItemLabatiumFruit;
+import ua.andrey08xtomyoll.mineadditions.items.food.ItemTomiumFruit;
 import ua.andrey08xtomyoll.mineadditions.items.records.UntitledRecord;
 import ua.andrey08xtomyoll.mineadditions.items.seeds.LabatiumFruitSeed;
 import ua.andrey08xtomyoll.mineadditions.items.seeds.TomiumFruitSeed;
@@ -74,5 +76,6 @@ public class ModItems {
     public static final Item TOMIUM_FRUIT = new ItemTomiumFruit("tomium_fruit", 1, false);
     //Records
     public static final Item UNTITLED_RECORD = new UntitledRecord("untitled_record", ModSounds.untitledRecord);
+
 
 }

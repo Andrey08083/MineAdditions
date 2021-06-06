@@ -21,7 +21,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import ua.andrey08xtomyoll.mineadditions.ModMain;
-import ua.andrey08xtomyoll.mineadditions.blocks.tiles.TileAlchemyExtractor;
+import ua.andrey08xtomyoll.mineadditions.tiles.TileAlchemyExtractor;
 import ua.andrey08xtomyoll.mineadditions.handlers.GuiHandler;
 import ua.andrey08xtomyoll.mineadditions.init.ModBlocks;
 import ua.andrey08xtomyoll.mineadditions.init.ModItems;
@@ -367,9 +367,9 @@ public class BlockAlchemyExtractor extends BlockContainer implements IHasModel {
         return state.withRotation(mirrorIn.toRotation(state.getValue(FACING)));
     }
 
-    public BlockRenderLayer getBlockLayer() {
+    /*public BlockRenderLayer getBlockLayer() {
         return BlockRenderLayer.CUTOUT_MIPPED;
-    }
+    }*/
 
     /**
      * Чи цей блок непрозорий

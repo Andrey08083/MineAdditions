@@ -8,7 +8,7 @@ import net.minecraft.inventory.IInventory;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import ua.andrey08xtomyoll.mineadditions.blocks.tiles.TileAlchemyExtractor;
+import ua.andrey08xtomyoll.mineadditions.tiles.TileAlchemyExtractor;
 import ua.andrey08xtomyoll.mineadditions.gui.containers.ContainerAlchemyExtractor;
 import ua.andrey08xtomyoll.mineadditions.init.ModBlocks;
 import ua.andrey08xtomyoll.mineadditions.util.Reference;
@@ -72,18 +72,18 @@ GuiElchemyExtractor extends GuiContainer
     {
         GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
         this.mc.getTextureManager().bindTexture(EXTRACTOR_GUI_TEXTURES);
-        int i = (this.width - this.xSize) / 2;
-        int j = (this.height - this.ySize) / 2;
-        this.drawTexturedModalRect(i, j, 0, 0, this.xSize, this.ySize);
-        int l;
+        int x = (this.width - this.xSize) / 2;
+        int y = (this.height - this.ySize) / 2;
+        this.drawTexturedModalRect(x, y, 0, 0, this.xSize, this.ySize);
+        int gui_x;
         if (TileAlchemyExtractor.isBurning(this.tileinventory))
         {
          int k = this.getBurnLeftScaled(19); //Ширина від края GUI
-        this.drawTexturedModalRect( i + 29,   j + 51 - k, 176, 19 - k,  7, k);
+        this.drawTexturedModalRect( x + 29,   y + 51 - k, 176, 19 - k,  7, k);
         }
 
-        l = this.getCookProgressScaled(64); //Ширина від края GUI
-        this.drawTexturedModalRect(i + 59, j + 20, 176 + 8, 18, l, 49);
+        gui_x = this.getCookProgressScaled(64); //Ширина від края GUI
+        this.drawTexturedModalRect(x + 59, y + 20, 176 + 8, 18, gui_x, 49);
     }
 
     /**

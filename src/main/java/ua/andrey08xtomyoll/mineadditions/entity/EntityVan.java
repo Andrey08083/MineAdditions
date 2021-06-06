@@ -6,6 +6,7 @@ import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.entity.monster.IMob;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.projectile.*;
+import net.minecraft.init.SoundEvents;
 import net.minecraft.pathfinding.PathNavigateFlying;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumParticleTypes;
@@ -107,12 +108,12 @@ public class EntityVan extends EntityMob implements IRangedAttackMob, IMob {
      */
     public void attackEntityWithRangedAttack(EntityLivingBase target, float flval) {
         EntityVanShoot van_shoot = new EntityVanShoot(this.world, this);
-        double d0 = target.posY + (double)target.getEyeHeight() - 1.100000023841858D;
-        double d1 = target.posX - this.posX;
-        double d2 = d0 - van_shoot.posY;
-        double d3 = target.posZ - this.posZ;
-        float f = MathHelper.sqrt(d1 * d1 + d3 * d3) * 0.2F;
-        van_shoot.shoot(d1, d2 +(double)f, d3, 2F, inAccurate);
+
+        double d0 = target.posX - this.posX;
+        double d1 = target.getEntityBoundingBox().minY + (double)(target.height / 3.0F) - van_shoot.posY;
+        double d2 = target.posZ - this.posZ;
+        double d3 = (double)MathHelper.sqrt(d0 * d0 + d2 * d2);
+        van_shoot.shoot(d0, d1 + d3 * 0.20000000298023224D, d2, 1.9F, inAccurate);
         this.playSound(ModSounds.van_shoot_sound, 1.0F, 1.0F / (this.getRNG().nextFloat() * 0.4F + 0.8F));
         this.world.spawnEntity(van_shoot);
     }
@@ -192,7 +193,7 @@ public class EntityVan extends EntityMob implements IRangedAttackMob, IMob {
      * @return висота очей
      */
     public float getEyeHeight() {
-        return 1.7F;
+        return 1.5F;
     }
 
     /**

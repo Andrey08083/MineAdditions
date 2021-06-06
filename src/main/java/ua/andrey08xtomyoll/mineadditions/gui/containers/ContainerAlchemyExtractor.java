@@ -6,7 +6,6 @@ import net.minecraft.inventory.*;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import ua.andrey08xtomyoll.mineadditions.blocks.tiles.TileAlchemyExtractor;
 
 /**
  * Клас контейнера тайла AlchemyExtractor
