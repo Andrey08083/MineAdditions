@@ -41,7 +41,7 @@ public class ItemEventHandler {
      * @param event параметр події
      */
     @SubscribeEvent
-    public static void onArmorEquipped(LivingEvent.LivingUpdateEvent event) {
+    public static void onPlayerTick(LivingEvent.LivingUpdateEvent event) {
         EntityLivingBase player = event.getEntityLiving();
         if (player instanceof EntityPlayer) {
             if ((!(PlayerUtils.getPlayerArmorInventory(player, 2) instanceof ChestplateBase)) && ModItems.LABATIUM_CHESTPLATE.isEquipped && !((EntityPlayer) player).isCreative()) {
@@ -61,7 +61,7 @@ public class ItemEventHandler {
         EntityLivingBase player = event.getEntityLiving();
         if (player instanceof EntityPlayer) {
             if (PlayerUtils.isAllArmorEqual(player)) {
-                if (event.getSource() == DamageSource.IN_FIRE || event.getSource() == DamageSource.LAVA) {
+                if (event.getSource() == DamageSource.IN_FIRE || event.getSource() == DamageSource.LAVA || event.getSource() == DamageSource.ON_FIRE || event.getSource() == DamageSource.HOT_FLOOR) {
                     event.setAmount(0);
                     player.extinguish();
                     event.setCanceled(true);
@@ -94,7 +94,6 @@ public class ItemEventHandler {
 
         if (event.getEntityPlayer().getHeldItem(EnumHand.MAIN_HAND).getItem() instanceof ToolHoe) {
             NBTTagCompound nbt = new NBTTagCompound();
-            List<BlockPos> blocks = new ArrayList<>();
             if (event.getItemStack().hasTagCompound()) {
                 nbt = event.getItemStack().getTagCompound();
             }
@@ -111,32 +110,8 @@ public class ItemEventHandler {
             BlockPos pos = lookingAt.getBlockPos();
 
             int depth = event.getItemStack().getTagCompound().getInteger("zone");
-            switch (facing) {
-                case EAST:
-                    for (int i = 0; i < depth; i++) {
-                        BlockPos blockPos = new BlockPos(pos.getX() + i, pos.getY(), pos.getZ());
-                        blocks.add(blockPos);
-                    }
-                    break;
-                case WEST:
-                    for (int i = 0; i < depth; i++) {
-                        BlockPos blockPos = new BlockPos(pos.getX() - i, pos.getY(), pos.getZ());
-                        blocks.add(blockPos);
-                    }
-                    break;
-                case NORTH:
-                    for (int i = 0; i < depth; i++) {
-                        BlockPos blockPos = new BlockPos(pos.getX(), pos.getY(), pos.getZ() - i);
-                        blocks.add(blockPos);
-                    }
-                    break;
-                case SOUTH:
-                    for (int i = 0; i < depth; i++) {
-                        BlockPos blockPos = new BlockPos(pos.getX(), pos.getY(), pos.getZ() + i);
-                        blocks.add(blockPos);
-                    }
-                    break;
-            }
+
+            List<BlockPos> blocks = BlockUtils.calculateBlocks(facing, pos, depth);
 
             for (BlockPos block : blocks) {
                 if (event.getWorld().getBlockState(block).getBlock().equals(Blocks.GRASS) || event.getWorld().getBlockState(block).getBlock().equals(Blocks.GRASS_PATH) || event.getWorld().getBlockState(block).getBlock().equals(Blocks.DIRT)) {
@@ -155,38 +130,14 @@ public class ItemEventHandler {
     public static void onBlockBreak(BlockEvent.BreakEvent event) {
         if ((event.getPlayer().getHeldItem(EnumHand.MAIN_HAND).getItem() instanceof ToolPickaxe || event.getPlayer().getHeldItem(EnumHand.MAIN_HAND).getItem() instanceof ToolSpade) && event.getPlayer().getHeldItem(EnumHand.MAIN_HAND).hasTagCompound()) {
             BlockPos pos = event.getPos();
-            List<BlockPos> blocks = new ArrayList<>();
             EnumFacing facing = event.getPlayer().getHorizontalFacing();
             if (event.getPlayer().getHeldItem(EnumHand.MAIN_HAND).hasTagCompound()) {
                 int depth = event.getPlayer().getHeldItem(EnumHand.MAIN_HAND).getTagCompound().getInteger("zone");
                 if (depth == 1)
                     return;
-                switch (facing) {
-                    case EAST:
-                        for (int i = 0; i < depth; i++) {
-                            BlockPos blockPos = new BlockPos(pos.getX() + i, pos.getY(), pos.getZ());
-                            blocks.add(blockPos);
-                        }
-                        break;
-                    case WEST:
-                        for (int i = 0; i < depth; i++) {
-                            BlockPos blockPos = new BlockPos(pos.getX() - i, pos.getY(), pos.getZ());
-                            blocks.add(blockPos);
-                        }
-                        break;
-                    case NORTH:
-                        for (int i = 0; i < depth; i++) {
-                            BlockPos blockPos = new BlockPos(pos.getX(), pos.getY(), pos.getZ() - i);
-                            blocks.add(blockPos);
-                        }
-                        break;
-                    case SOUTH:
-                        for (int i = 0; i < depth; i++) {
-                            BlockPos blockPos = new BlockPos(pos.getX(), pos.getY(), pos.getZ() + i);
-                            blocks.add(blockPos);
-                        }
-                        break;
-                }
+
+                List<BlockPos> blocks = BlockUtils.calculateBlocks(facing, pos, depth);
+
                 List<String> toolClasses = new ArrayList<>(event.getPlayer().getHeldItem(EnumHand.MAIN_HAND).getItem().getToolClasses(event.getPlayer().getHeldItem(EnumHand.MAIN_HAND)));
                 for (BlockPos block : blocks) {
                     if (event.getWorld().getBlockState(block).getBlockHardness(event.getWorld(), block) > 0) {
@@ -234,5 +185,38 @@ public class ItemEventHandler {
             }
             return true;
         }
+    }
+
+    static class BlockUtils {
+         public static List<BlockPos> calculateBlocks(EnumFacing facing, BlockPos pos, int depth) {
+             List<BlockPos> blocks = new ArrayList<>();
+             switch (facing) {
+                 case EAST:
+                     for (int i = 0; i < depth; i++) {
+                         BlockPos blockPos = new BlockPos(pos.getX() + i, pos.getY(), pos.getZ());
+                         blocks.add(blockPos);
+                     }
+                     break;
+                 case WEST:
+                     for (int i = 0; i < depth; i++) {
+                         BlockPos blockPos = new BlockPos(pos.getX() - i, pos.getY(), pos.getZ());
+                         blocks.add(blockPos);
+                     }
+                     break;
+                 case NORTH:
+                     for (int i = 0; i < depth; i++) {
+                         BlockPos blockPos = new BlockPos(pos.getX(), pos.getY(), pos.getZ() - i);
+                         blocks.add(blockPos);
+                     }
+                     break;
+                 case SOUTH:
+                     for (int i = 0; i < depth; i++) {
+                         BlockPos blockPos = new BlockPos(pos.getX(), pos.getY(), pos.getZ() + i);
+                         blocks.add(blockPos);
+                     }
+                     break;
+             }
+             return blocks;
+         }
     }
 }

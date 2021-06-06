@@ -5,13 +5,14 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.item.Item;
 import ua.andrey08xtomyoll.mineadditions.ModMain;
 import ua.andrey08xtomyoll.mineadditions.init.ModBlocks;
+import ua.andrey08xtomyoll.mineadditions.util.IHasModel;
 
 import java.util.Random;
 
 /**
  * Клас Томіумової руди
  */
-public class TomiumOre extends BlockBase
+public class TomiumOre extends BlockBase implements IHasModel
 {
     /**
      * Конструктор блоку

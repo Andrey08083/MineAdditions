@@ -2,13 +2,14 @@ package ua.andrey08xtomyoll.mineadditions.blocks;
 
 import net.minecraft.block.material.Material;
 import ua.andrey08xtomyoll.mineadditions.ModMain;
+import ua.andrey08xtomyoll.mineadditions.util.IHasModel;
 
 import java.util.Random;
 
 /**
  * Клас блоків з руди (Лабатіум, Томіум)
  */
-public class ModOreBlock extends BlockBase
+public class ModOreBlock extends BlockBase implements IHasModel
 {
     /**
      * Конструктор блоку
