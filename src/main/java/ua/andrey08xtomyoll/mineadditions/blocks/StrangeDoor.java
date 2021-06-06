@@ -39,7 +39,7 @@ public class StrangeDoor extends BlockDoor implements IHasModel
         setTranslationKey(name);
         setRegistryName(name);
         setCreativeTab(ModMain.creativeTab);
-
+        setResistance(50);
         ModBlocks.BLOCKS.add(this);
         ModItems.ITEMS.add(new StrangeDoorItemBlock(this).setRegistryName(this.getRegistryName()));
     }

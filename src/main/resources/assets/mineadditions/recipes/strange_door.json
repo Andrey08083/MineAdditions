@@ -1,0 +1,28 @@
+{
+  "type": "minecraft:crafting_shaped",
+
+  "pattern":
+  [
+    "LT ",
+    "LT ",
+    "LT "
+  ],
+
+  "key":
+  {
+    "L":
+    {
+      "item": "mineadditions:labatium"
+    },
+    "T":
+    {
+      "item": "mineadditions:tomium"
+    }
+  },
+
+  "result":
+  {
+    "item": "mineadditions:strange_door",
+    "count": 1
+  }
+}

@@ -38,14 +38,13 @@ public class ItemEventHandler {
 
     /**
      * Подія, яка виконується кожний ігровий тік (20 разів за секунду) і перевіряє наявність броні на гравці
-     *
      * @param event параметр події
      */
     @SubscribeEvent
     public static void onArmorEquipped(LivingEvent.LivingUpdateEvent event) {
         EntityLivingBase player = event.getEntityLiving();
         if (player instanceof EntityPlayer) {
-            if ((!(PlayerUtils.getPlayerArmorInventory(player, 2) instanceof ChestplateBase)) && ModItems.LABATIUM_CHESTPLATE.isEquipped) {
+            if ((!(PlayerUtils.getPlayerArmorInventory(player, 2) instanceof ChestplateBase)) && ModItems.LABATIUM_CHESTPLATE.isEquipped && !((EntityPlayer) player).isCreative()) {
                 ((EntityPlayer) player).capabilities.isFlying = false;
                 ((EntityPlayer) player).capabilities.allowFlying = false;
                 ModItems.LABATIUM_CHESTPLATE.isEquipped = false;
@@ -203,7 +202,18 @@ public class ItemEventHandler {
             }
         }
     }
+
+    /**
+     * Внутрішній клас утиліт для гравця
+     */
      static class PlayerUtils {
+
+         /**
+         * Геттер предмету з інвентарю броні гравця по заданому індексу
+         * @param player гравець
+         * @param slotIndex індекс слота
+         * @return предмет броні
+         */
         public static Item getPlayerArmorInventory(EntityLivingBase player, int slotIndex) {
             List<ItemStack> list = new ArrayList<>();
             for (ItemStack itemStack : player.getArmorInventoryList()) {
@@ -212,6 +222,11 @@ public class ItemEventHandler {
             return list.get(slotIndex).getItem();
         }
 
+        /**
+         * Метод перевірки всіх слотів броні на відповідність одному типу броні
+         * @param player гравець
+         * @return true, якщо всі елементи броні являються екземплярами класу ArmorBase, або false, якщо хоча б один елемент броні не являється екземпляром класу ArmorBase
+         */
         public static boolean isAllArmorEqual(EntityLivingBase player) {
             for (ItemStack itemStack : player.getArmorInventoryList()) {
                 if (!(itemStack.getItem() instanceof ArmorBase))

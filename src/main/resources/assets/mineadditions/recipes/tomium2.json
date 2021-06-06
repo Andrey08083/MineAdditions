@@ -1,0 +1,28 @@
+{
+  "type": "minecraft:crafting_shaped",
+
+  "pattern":
+  [
+    " D ",
+    "DFD",
+    " D "
+  ],
+
+  "key":
+  {
+    "D":
+    {
+      "item": "mineadditions:tomium_dust"
+    },
+    "F":
+    {
+      "item": "mineadditions:tomium_fruit"
+    }
+  },
+
+  "result":
+  {
+    "item": "mineadditions:tomium",
+    "count": 1
+  }
+}
