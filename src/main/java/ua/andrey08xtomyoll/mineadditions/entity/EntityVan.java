@@ -7,6 +7,8 @@ import net.minecraft.entity.monster.IMob;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.projectile.*;
 import net.minecraft.init.SoundEvents;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraft.pathfinding.PathNavigateFlying;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumParticleTypes;
@@ -20,7 +22,10 @@ import ua.andrey08xtomyoll.mineadditions.entity.ai.AiLookArround;
 import ua.andrey08xtomyoll.mineadditions.entity.ai.AiRandomFly;
 import ua.andrey08xtomyoll.mineadditions.entity.ai.GhastLikeMoveHelper;
 import ua.andrey08xtomyoll.mineadditions.handlers.ConfigHandler;
+import ua.andrey08xtomyoll.mineadditions.init.ModItems;
 import ua.andrey08xtomyoll.mineadditions.init.ModSounds;
+
+import java.util.Random;
 
 /**
  * Клас моба Van
@@ -67,9 +72,9 @@ public class EntityVan extends EntityMob implements IRangedAttackMob, IMob {
     @Override
     protected void applyEntityAttributes() {
         super.applyEntityAttributes();
-        this.getEntityAttribute(SharedMonsterAttributes.ARMOR).setBaseValue(20D);
+        this.getEntityAttribute(SharedMonsterAttributes.ARMOR).setBaseValue(20D); //20
         this.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.5D);
-        this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(100D);
+        this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(100D); //100
         this.getEntityAttribute(SharedMonsterAttributes.FOLLOW_RANGE).setBaseValue(48.0D);
        this.getAttributeMap().registerAttribute(SharedMonsterAttributes.FLYING_SPEED);
         this.getEntityAttribute(SharedMonsterAttributes.FLYING_SPEED).setBaseValue(0.5D);
@@ -194,6 +199,17 @@ public class EntityVan extends EntityMob implements IRangedAttackMob, IMob {
      */
     public float getEyeHeight() {
         return 1.5F;
+    }
+
+    @Override
+    public Item getDropItem() {
+        Random random = new Random();
+        int number1 = random.nextInt(2)+1;
+        int number2 = random.nextInt(100)+1;
+
+        if (number1 == 1) { return ModItems.LITTLE_LABATIUM_DUST; }
+        if (number2 == 1) { return ModItems.UNTITLED_RECORD; }
+        return ModItems.LITTLE_TOMIUM_DUST;
     }
 
     /**
