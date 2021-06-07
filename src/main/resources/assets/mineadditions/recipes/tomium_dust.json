@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+
+  "pattern":
+  [
+    "LLL",
+    "LLL",
+    "LLL"
+  ],
+
+  "key":
+  {
+    "L":
+    {
+      "item": "mineadditions:little_tomium_dust"
+    }
+  },
+
+  "result":
+  {
+    "item": "mineadditions:tomium_dust",
+    "count": 1
+  }
+}

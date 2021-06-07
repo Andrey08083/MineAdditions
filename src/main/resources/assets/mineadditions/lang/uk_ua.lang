@@ -41,15 +41,14 @@ item.tomium_chestplate.name=§6§lТоміумова куртка
 item.tomium_helmet.name=§6§lТоміумовий шолом
 
 #Machines
-tile.thermalcrusher.name=§5§lТермічний подрібнювач
-
+tile.thermalcrusher.name=§lТермічний подрібнювач
+tile.alchemy_extractor.name=§lАлхімічний екстрактор
 #Records
 item.untitled_record.name=Покрита пилом стара пластинка
 item.record.untitled_record.desc=Діалог
 
 #Tooltips
 untitled_record.tooltip=§5§oЯкщо прислухатися, то можна почути діалог. Що ж це за запис?
-tile.alchemy_extractor.name=§5§lАлхімічний екстрактор
 #Entities
 
 container.thermalcrusher=Thermal Crusher

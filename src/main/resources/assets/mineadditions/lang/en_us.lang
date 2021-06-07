@@ -50,9 +50,9 @@ untitled_record.tooltip=§5§oIf you listen, you can hear the dialogue. What kin
 #Entities
 
 #Machines
-tile.thermalcrusher.name=§5Thermal Crusher
+tile.thermalcrusher.name=Thermal Crusher
 container.thermalcrusher=Thermal Crusher
-tile.alchemy_extractor.name=§5Alchemy Extractor
+tile.alchemy_extractor.name=Alchemy Extractor
 
 container.alchemy_extractor=1
 itemGroup.MineAdditions=MineAdditions

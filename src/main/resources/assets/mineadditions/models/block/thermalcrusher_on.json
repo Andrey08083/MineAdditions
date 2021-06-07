@@ -6,6 +6,7 @@
     "north": "mineadditions:blocks/thermalcrusher_front_on",
     "east": "mineadditions:blocks/thermalcrusher_side",
     "south": "mineadditions:blocks/thermalcrusher_side",
-    "west": "mineadditions:blocks/thermalcrusher_side"
+    "west": "mineadditions:blocks/thermalcrusher_side",
+    "particle": "mineadditions:blocks/thermalcrusher_bottom"
   }
 }
