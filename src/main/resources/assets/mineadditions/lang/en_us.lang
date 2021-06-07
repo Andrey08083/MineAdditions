@@ -57,3 +57,31 @@ tile.alchemy_extractor.name=Alchemy Extractor
 container.alchemy_extractor=1
 itemGroup.MineAdditions=MineAdditions
 entity.Van.name=Van
+
+#Config
+mineadditions.cfg.labatium_category=Labatium category
+mineadditions.cfg.tomium_category=Tomium category
+mineadditions.cfg.general_category=General category
+mineadditions.cfg.ore_gen_category=Ore generation category
+
+
+mineadditions.cfg.depth_modes=Depth modes
+mineadditions.cfg.can_fly=Can fly?
+mineadditions.cfg.van_damage=Van damage
+
+mineadditions.cfg.overall_resistance=Overall resistance
+mineadditions.cfg.helmet_resistance=Helmet resistance
+mineadditions.cfg.chestplate_resistance=Chestplate resistance
+mineadditions.cfg.leggings_resistance=Leggings resistance
+mineadditions.cfg.boots_resistance=Boots resistance
+mineadditions.cfg.overall_toughness=Overall toughness
+
+
+mineadditions.cfg.labatium_min_height=Labatium min spawn height
+mineadditions.cfg.labatium_max_height=Labatium max spawn height
+mineadditions.cfg.labatium_per_chunk_spawn=Labatium per chunk spawn
+
+
+mineadditions.cfg.tomium_min_height=Tomium min spawn height
+mineadditions.cfg.tomium_max_height=Tomium max spawn height
+mineadditions.cfg.tomium_per_chunk_spawn=Tomium per chunk spawn

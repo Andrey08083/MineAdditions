@@ -85,7 +85,7 @@ public class ConfigHandler {
         @Config.LangKey(Reference.MOD_ID + ".cfg.can_fly")
         public boolean canFly = true;
 
-        @Config.LangKey(Reference.MOD_ID + ".cfg.can_fly")
+        @Config.LangKey(Reference.MOD_ID + ".cfg.van_damage")
         public int vanDamage = 5;
     }
 

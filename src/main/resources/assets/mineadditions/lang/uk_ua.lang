@@ -57,3 +57,32 @@ container.alchemy_extractor=1
 itemGroup.MineAdditions=MineAdditions
 
 entity.Van.name=Вен
+
+
+#Config
+mineadditions.cfg.labatium_category=Лабатіумова категорія
+mineadditions.cfg.tomium_category=Томіумова категорія
+mineadditions.cfg.general_category=Загальна категорія
+mineadditions.cfg.ore_gen_category=Категорія генерації руд
+
+
+mineadditions.cfg.depth_modes=Режими глибини
+mineadditions.cfg.can_fly=Чи може літати?
+mineadditions.cfg.van_damage=Шкода Вена
+
+mineadditions.cfg.overall_resistance=Загальна стійкість
+mineadditions.cfg.helmet_resistance=Стійкість шолому
+mineadditions.cfg.chestplate_resistance=Стійкість куртки
+mineadditions.cfg.leggings_resistance=Стійкість штанів
+mineadditions.cfg.boots_resistance=Стійкість ботфорів
+mineadditions.cfg.overall_toughness=Загальна міцність
+
+
+mineadditions.cfg.labatium_min_height=Мінімальна висота генерації Лабатіумової руди
+mineadditions.cfg.labatium_max_height=Максимальна висота генерації Лабатіумової руди
+mineadditions.cfg.labatium_per_chunk_spawn=Кількість кластерів Лабатіумової руди в одному чанку
+
+
+mineadditions.cfg.tomium_min_height=Мінімальна висота генерації Томіумової руди
+mineadditions.cfg.tomium_max_height=Максимальна висота генерації Томіумової руди
+mineadditions.cfg.tomium_per_chunk_spawn=Кількість кластерів Томіумової руди в одному чанку
