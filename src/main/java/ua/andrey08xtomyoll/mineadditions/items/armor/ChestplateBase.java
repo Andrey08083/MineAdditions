@@ -38,10 +38,8 @@ public class ChestplateBase extends ArmorBase implements IHasModel, IHasEffect {
      * @param stack броня
      */
     public void onArmorTick(@Nonnull World world, @Nonnull EntityPlayer player, @Nonnull ItemStack stack) {
-        if (ConfigHandler.generalSettings.canFly) {
-            isEquipped = true;
-            player.capabilities.allowFlying = true;
-        }
+        isEquipped = true;
+        player.capabilities.allowFlying = ConfigHandler.generalSettings.canFly;
     }
 
     @Override

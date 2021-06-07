@@ -20,15 +20,18 @@
     },
     "S":
     {
-      "item": "minecraft:brewing_stand"
+      "item": "minecraft:brewing_stand",
+      "data": 32767
     },
     "B":
     {
-      "item": "minecraft:glass_bottle"
+      "item": "minecraft:glass_bottle",
+      "data": 32767
     },
     "P":
     {
-      "item": "minecraft:blaze_powder"
+      "item": "minecraft:blaze_powder",
+      "data": 32767
     },
     "L":
     {
@@ -38,7 +41,7 @@
 
   "result":
   {
-    "item": "mineadditions:thermal_crusher",
+    "item": "mineadditions:alchemy_extractor",
     "count": 1
   }
 }
