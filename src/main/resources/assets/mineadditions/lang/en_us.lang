@@ -47,6 +47,7 @@ item.record.untitled_record.desc=Dialogue
 
 #Tooltips
 untitled_record.tooltip=§5§oIf you listen, you can hear the dialogue. What kind of record is this?
+tools.depth.tooltip=§6To change depth just press Shift+RMB
 #Entities
 
 #Machines

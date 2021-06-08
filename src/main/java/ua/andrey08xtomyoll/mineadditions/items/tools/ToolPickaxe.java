@@ -1,5 +1,7 @@
 package ua.andrey08xtomyoll.mineadditions.items.tools;
 
+import net.minecraft.client.resources.I18n;
+import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemPickaxe;
 import net.minecraft.item.ItemStack;
@@ -16,6 +18,9 @@ import ua.andrey08xtomyoll.mineadditions.handlers.ConfigHandler;
 import ua.andrey08xtomyoll.mineadditions.init.ModItems;
 import ua.andrey08xtomyoll.mineadditions.util.IHasEffect;
 import ua.andrey08xtomyoll.mineadditions.util.IHasModel;
+
+import javax.annotation.Nullable;
+import java.util.List;
 
 /**
  * Клас-конструктор кирки
@@ -83,6 +88,12 @@ public class ToolPickaxe extends ItemPickaxe implements IHasModel, IHasEffect
         NBTTagCompound nbt = new NBTTagCompound();
         nbt.setInteger("zone", 1);
         stack.setTagCompound(nbt);
+    }
+
+    @Override
+    @SideOnly(Side.CLIENT)
+    public void addInformation(ItemStack stack, @Nullable World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
+        tooltip.add(I18n.format("tools.depth.tooltip"));
     }
 
     @Override

@@ -49,6 +49,7 @@ item.record.untitled_record.desc=Діалог
 
 #Tooltips
 untitled_record.tooltip=§5§oЯкщо прислухатися, то можна почути діалог. Що ж це за запис?
+tools.depth.tooltip=§6Для зміни глибини потрібно натиснути Shift+ПКМ
 #Entities
 
 container.thermalcrusher=Thermal Crusher
