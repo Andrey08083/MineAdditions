@@ -28,7 +28,7 @@ public class ItemLabatiumFruit extends ItemFood implements IHasModel
         setRegistryName(name);
         setTranslationKey(name);
         setCreativeTab(ModMain.creativeTab);
-
+        setAlwaysEdible();
         ModItems.ITEMS.add(this);
     }
 
